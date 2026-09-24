@@ -22,9 +22,10 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
+          rm -rf /tmp/petertecnet-source
           git clone --depth 1 --filter=blob:none --sparse \
-            https://github.com/petertecnetdev/petertecnet.com.br.git source-repo
-          git -C source-repo sparse-checkout set apps/admincenter
+            https://github.com/petertecnetdev/petertecnet.com.br.git /tmp/petertecnet-source
+          git -C /tmp/petertecnet-source sparse-checkout set apps/admincenter
 
       - name: Move Admin Center to repository root
         shell: bash
@@ -33,8 +34,7 @@ jobs:
           rsync -a --delete \
             --exclude ".git" \
             --exclude ".github" \
-            source-repo/apps/admincenter/ ./
-          rm -rf source-repo
+            /tmp/petertecnet-source/apps/admincenter/ ./
           rm -f .migration-seed
           rm -f .github/workflows/migrate-admincenter.yml
           rmdir .github/workflows 2>/dev/null || true
