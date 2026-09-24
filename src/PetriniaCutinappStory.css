@@ -1,0 +1,71 @@
+.petrinia-story-shell {
+  background:
+    radial-gradient(circle at 72% 20%, rgba(104, 74, 255, .09), transparent 31rem),
+    radial-gradient(circle at 16% 58%, rgba(55, 207, 255, .06), transparent 28rem),
+    #02090d;
+}
+
+.petrinia-story-header {
+  overflow: hidden;
+}
+
+.petrinia-story-cover-wrap {
+  position: relative;
+  margin-top: clamp(-1.5rem, -2vw, -.75rem);
+  margin-bottom: clamp(2.75rem, 7vw, 6.5rem);
+}
+
+.petrinia-story-cover-wrap::before {
+  content: '';
+  position: absolute;
+  inset: 12% 8% -8%;
+  border-radius: 2.25rem;
+  background: linear-gradient(120deg, rgba(77, 221, 255, .2), rgba(114, 85, 255, .24), rgba(220, 78, 255, .15));
+  filter: blur(50px);
+  opacity: .7;
+  pointer-events: none;
+}
+
+.petrinia-story-cover {
+  position: relative;
+  z-index: 1;
+  display: block;
+  width: 100%;
+  height: auto;
+  border: 1px solid rgba(132, 170, 255, .23);
+  border-radius: clamp(1.25rem, 3vw, 2.2rem);
+  box-shadow: 0 32px 90px rgba(0, 0, 0, .42), 0 0 0 1px rgba(255, 255, 255, .025) inset;
+}
+
+.petrinia-story-layout .mkt-article-content > section {
+  scroll-margin-top: 7rem;
+}
+
+.petrinia-story-quote {
+  margin: clamp(2rem, 5vw, 4rem) 0;
+  padding: clamp(1.5rem, 4vw, 2.4rem);
+  border: 1px solid rgba(123, 112, 255, .24);
+  border-left: 4px solid #6ee8ff;
+  border-radius: 0 1.4rem 1.4rem 0;
+  background: linear-gradient(120deg, rgba(62, 203, 255, .075), rgba(119, 81, 255, .08));
+  color: #eaf6ff;
+  font-size: clamp(1.25rem, 2.2vw, 1.7rem);
+  font-weight: 650;
+  line-height: 1.48;
+}
+
+.petrinia-story-cta {
+  margin-top: clamp(2.5rem, 6vw, 5rem);
+}
+
+@media (max-width: 760px) {
+  .petrinia-story-cover-wrap {
+    width: calc(100% - 1.5rem);
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  .petrinia-story-cover {
+    border-radius: 1rem;
+  }
+}

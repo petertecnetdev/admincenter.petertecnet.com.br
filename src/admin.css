@@ -1,0 +1,183 @@
+/*
+ * Admin Center global style entry.
+ * Keep the cascade explicit here so main.jsx has one stylesheet dependency.
+ * Feature-specific lazy modules keep their own CSS imports to avoid duplicating
+ * those styles in both the entry bundle and the route chunk.
+ */
+@import './AdminDesignSystem.css';
+@import './App.css';
+@import './AdminUsersCenter.css';
+@import './AdminEstablishmentsFeedback.css';
+@import './AdminEstablishmentCatalog.css';
+@import './AdminResponsive.css';
+@import './SupportAdminResponsiveFix.css';
+@import './AdminProcessingExperience.css';
+@import './AdminExperienceV2.css';
+@import './AdminUiKit.css';
+@import './AdminQualityLayer.css';
+@import './AdminResponsiveV3.css';
+@import './AdminEstablishmentEventsResponsive.css';
+
+/* Primary information architecture: users and establishments always lead the menu. */
+.sidebar nav button[data-admin-page-target='users'] { order: 1; font-weight: 700; }
+.sidebar nav button[data-admin-page-target='establishments'] { order: 2; font-weight: 700; margin-top: 0; }
+
+/* Keep primary navigation legible and comfortably tappable without JS/layout work. */
+.sidebar nav button[data-admin-page-target] { min-height: 44px; min-width: 0; font-size: max(.95rem, 15px); line-height: 1.25; }
+.sidebar nav button[data-admin-page-target]:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+.sidebar nav button[data-admin-page-target] > span,
+.sidebar nav button[data-admin-page-target] > i { flex: 0 0 auto; }
+.sidebar nav button[data-admin-page-target] > b { flex: 1 1 auto; min-width: 0; font-size: inherit; line-height: inherit; overflow-wrap: anywhere; }
+
+/* Global search is the escape hatch to secondary capabilities; keep keyboard focus explicit. */
+.top-search input:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+
+/* Secondary capabilities retain routes/deep links/search access without competing with entities. */
+.sidebar nav button[data-admin-page-target='operations'],
+.sidebar nav button[data-admin-page-target='agents'],
+.sidebar nav button[data-admin-page-target='financial'],
+.sidebar nav button[data-admin-page-target='applications'],
+.sidebar nav button[data-admin-page-target='items'],
+.sidebar nav button[data-admin-page-target='notifications'],
+.sidebar nav button[data-admin-page-target='activity'] { display: none !important; }
+
+/* A slow administrative request must never freeze navigation. */
+.peter-processing { pointer-events: none; }
+
+/* Dense contextual entity lists should not spend layout/paint budget below the viewport. */
+.acu-simple-user,
+.aec-item,
+.aee-event-shell,
+.aee-ticket-row { content-visibility: auto; contain: layout paint style; contain-intrinsic-size: auto 76px; }
+.aee-event-shell { contain-intrinsic-size: auto 132px; }
+
+/* Isolate the two primary administration surfaces so nested updates do not repaint the shell/sidebar. */
+.acu-users-simple,
+.aep-page { contain: layout paint style; }
+
+/* User administration is a primary surface: keep identity, metadata and actions readable. */
+.acu-users-simple__head span,
+.acu-simple-user__meta small { font-size: .8125rem; line-height: 1.35; }
+.acu-users-simple__head p,
+.acu-simple-user__identity small,
+.acu-simple-user__meta strong,
+.acu-pagination,
+.acu-secondary { font-size: .875rem; line-height: 1.4; }
+.acu-simple-user__identity strong { font-size: 1rem; line-height: 1.3; }
+.acu-simple-user__impersonate { min-height: 40px; font-size: .875rem; }
+
+/* Primary entity actions should respond immediately to touch without gesture ambiguity. */
+.acu-simple-user__details,
+.acu-simple-user__impersonate,
+.acu-invite-button,
+.aep-primary,
+.aep-table button { touch-action: manipulation; }
+
+/* Keep keyboard focus unmistakable on the two primary entity workflows. */
+.acu-simple-user__details:focus-visible,
+.acu-simple-user__impersonate:focus-visible,
+.acu-invite-button:focus-visible,
+.aep-primary:focus-visible,
+.aep-table button:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+
+/* Establishment is the second primary entity. Keep its nested context from widening the shell. */
+.aep-page,
+.aep-list-header,
+.aep-list-header > div,
+.aep-editor,
+.aep-card,
+.aec-list,
+.aee-event-shell { min-width: 0; max-width: 100%; }
+.aep-page,
+.aep-editor,
+.aep-card { overflow-wrap: anywhere; }
+
+/* Establishment data is operational content, not fine print. */
+.aep-table th,
+.aep-table td { font-size: .875rem !important; line-height: 1.45 !important; }
+
+/* Keep nested entity context inside the Admin viewport. */
+.admin-shell,
+.admin-shell > main,
+.admin-shell .content { min-width: 0; max-width: 100%; }
+
+/* Keep route changes and long entity lists from shifting the shell. */
+.admin-shell .content { scrollbar-gutter: stable; overscroll-behavior: contain; }
+
+/* Backdrop blur is expensive on large administrative overlays and adds no operational value. */
+.acu-invite-modal,
+.pt-ui-dialog-backdrop,
+.auc-modal-backdrop,
+.auc-modal-head,
+.aep-card,
+.aep-editor-actions,
+.aie-preview-badge,
+.aie-footer { backdrop-filter: none; -webkit-backdrop-filter: none; }
+
+/* Respect the platform motion preference globally. */
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+/* Touch devices do not benefit from hover motion; skip those paint/composite steps for better INP. */
+@media (hover: none) and (pointer: coarse) {
+  .acu-simple-user,
+  .acu-simple-user__impersonate,
+  .acu-invite-button,
+  .aep-primary,
+  .aep-table button { transition: none !important; }
+
+  .acu-simple-user__impersonate:hover:not(:disabled),
+  .acu-invite-button:hover { transform: none; filter: none; }
+}
+
+/* Final mobile readability/performance contract. */
+@media (max-width: 760px) {
+  .admin-shell,
+  .admin-shell .content { overflow-x: clip; }
+  .top-search input { font-size: 1rem; min-height: 44px; }
+  .sidebar nav button[data-admin-page-target] { min-height: 48px; font-size: 1rem; }
+  .acu-simple-user__impersonate { min-height: 44px; font-size: .875rem; }
+
+  /* User rows must not squeeze identity/actions side-by-side on narrow phones. */
+  .acu-simple-user { display: grid; grid-template-columns: minmax(0, 1fr); gap: 0; padding-right: 0; }
+  .acu-simple-user__details { width: 100%; min-width: 0; }
+  .acu-simple-user__impersonate { width: calc(100% - 28px); margin: 0 14px 12px; justify-self: stretch; }
+
+  /* User invitation is a focused task on phones: use the whole viewport instead of a cramped bottom sheet. */
+  .acu-invite-modal { align-items: stretch; padding: 0; }
+  .acu-invite-modal__panel { width: 100%; height: 100dvh; max-height: none; overscroll-behavior: contain; }
+  .acu-invite-modal .api-card { min-height: 100dvh; border-radius: 0; padding-top: env(safe-area-inset-top); }
+  .acu-invite-modal__close { width: 44px; height: 44px; touch-action: manipulation; }
+  .acu-invite-modal .api-form input,
+  .acu-invite-modal .api-form select { min-height: 44px; font-size: 1rem; }
+
+  /* Keep invite actions reachable above mobile browser chrome and safe-area insets. */
+  .acu-invite-modal .api-form { padding-bottom: calc(1rem + env(safe-area-inset-bottom)); }
+
+  /* Put the primary establishment action in the first viewport instead of squeezing it beside the title. */
+  .aep-list-header { display: grid !important; grid-template-columns: minmax(0, 1fr) !important; gap: .875rem !important; align-items: start !important; }
+  .aep-list-header > .aep-primary { width: 100%; min-height: 48px; justify-content: center; }
+
+  /* Keep the establishment list operational on phones: secondary context remains available in the editor/deep links. */
+  .aep-table th:nth-child(3),
+  .aep-table td:nth-child(3),
+  .aep-table th:nth-child(4),
+  .aep-table td:nth-child(4) { display: none; }
+  .aep-table-wrap { max-width: 100%; overflow-x: auto; overscroll-behavior-inline: contain; }
+
+  /* Establishment row actions must remain readable and tappable after secondary columns collapse. */
+  .aep-table td:last-child { min-width: 7rem; }
+  .aep-table td:last-child button { min-height: 44px; min-width: 44px; font-size: .875rem; }
+
+  .skeleton-wrap::before,
+  .skeleton-wrap::after,
+  .admin-google-login.status-loading::before,
+  .admin-google-login.status-loading::after { animation: none; }
+  .skeleton-wrap::after { content: 'Preparando o centro de controle…'; }
+}

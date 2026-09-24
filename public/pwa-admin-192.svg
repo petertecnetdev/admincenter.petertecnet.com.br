@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 192 192" role="img" aria-label="Peter Tecnet Admin Center">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#0b1722"/>
+      <stop offset="1" stop-color="#02080c"/>
+    </linearGradient>
+  </defs>
+  <rect width="192" height="192" rx="44" fill="url(#g)"/>
+  <circle cx="96" cy="96" r="61" fill="none" stroke="#35b7ff" stroke-width="8" opacity=".95"/>
+  <path d="M67 132V60h32c23 0 37 12 37 32s-14 32-37 32H84v8H67Zm17-25h15c13 0 20-5 20-15s-7-15-20-15H84v30Z" fill="#fff"/>
+  <circle cx="145" cy="48" r="10" fill="#35b7ff"/>
+</svg>

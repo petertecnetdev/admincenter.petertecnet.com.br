@@ -1,0 +1,363 @@
+.admin-access-blocked {
+  position: fixed;
+  z-index: 100000;
+  inset: 0;
+  min-height: 100dvh;
+  overflow: auto;
+  display: grid;
+  place-items: center;
+  padding: 28px;
+  background:
+    radial-gradient(circle at 14% 10%, rgba(64, 214, 239, 0.13), transparent 32%),
+    radial-gradient(circle at 86% 88%, rgba(50, 111, 255, 0.12), transparent 34%),
+    #02080c;
+  color: #ecfbff;
+  isolation: isolate;
+}
+
+.admin-access-blocked::before {
+  content: '';
+  position: fixed;
+  inset: 0;
+  z-index: -2;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(101, 215, 233, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(101, 215, 233, 0.035) 1px, transparent 1px);
+  background-size: 44px 44px;
+  mask-image: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.5) 62%, transparent 100%);
+}
+
+.admin-access-aura {
+  position: fixed;
+  z-index: -1;
+  border-radius: 999px;
+  pointer-events: none;
+  filter: blur(18px);
+}
+
+.admin-access-aura-one {
+  width: 430px;
+  height: 430px;
+  top: -180px;
+  left: -140px;
+  background: radial-gradient(circle, rgba(52, 216, 240, 0.17), transparent 66%);
+}
+
+.admin-access-aura-two {
+  width: 520px;
+  height: 520px;
+  right: -240px;
+  bottom: -260px;
+  background: radial-gradient(circle, rgba(56, 101, 255, 0.16), transparent 68%);
+}
+
+.admin-access-card {
+  width: min(720px, 100%);
+  padding: clamp(26px, 5vw, 46px);
+  border: 1px solid rgba(130, 218, 235, 0.18);
+  border-radius: 28px;
+  background: linear-gradient(155deg, rgba(10, 27, 36, 0.97), rgba(4, 13, 18, 0.98));
+  box-shadow: 0 34px 110px rgba(0, 0, 0, 0.48);
+  position: relative;
+  overflow: hidden;
+}
+
+.admin-access-card::before {
+  content: '';
+  position: absolute;
+  inset: 0 18% auto;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(99, 230, 248, 0.72), transparent);
+}
+
+.admin-access-brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 34px;
+}
+
+.admin-access-logo {
+  width: 46px;
+  height: 46px;
+  display: grid;
+  place-items: center;
+  border: 1px solid rgba(102, 224, 245, 0.18);
+  border-radius: 15px;
+  background: linear-gradient(145deg, rgba(67, 215, 240, 0.14), rgba(255, 255, 255, 0.02));
+}
+
+.admin-access-logo img {
+  width: 31px;
+  height: 31px;
+  object-fit: contain;
+}
+
+.admin-access-brand strong,
+.admin-access-brand small {
+  display: block;
+}
+
+.admin-access-brand strong {
+  font-family: Manrope, Inter, sans-serif;
+  font-size: 0.94rem;
+}
+
+.admin-access-brand small {
+  margin-top: 2px;
+  color: #64808a;
+  font-size: 0.69rem;
+}
+
+.admin-access-status {
+  display: inline-flex;
+  align-items: center;
+  gap: 9px;
+  min-height: 30px;
+  padding: 0 11px;
+  border: 1px solid rgba(255, 200, 106, 0.18);
+  border-radius: 999px;
+  background: rgba(246, 200, 106, 0.055);
+  color: #efd089;
+  font-size: 0.69rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.admin-access-status > span {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #f6c86a;
+  box-shadow: 0 0 0 5px rgba(246, 200, 106, 0.07);
+}
+
+.admin-access-card h1 {
+  margin: 20px 0 10px;
+  font-family: Manrope, Inter, sans-serif;
+  font-size: clamp(2rem, 5vw, 3.75rem);
+  line-height: 0.98;
+  letter-spacing: -0.055em;
+}
+
+.admin-access-message {
+  margin: 0;
+  max-width: 620px;
+  color: #86a3ac;
+  font-size: 0.95rem;
+  line-height: 1.65;
+}
+
+.admin-access-account {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  margin-top: 24px;
+  padding: 14px;
+  border: 1px solid rgba(255, 115, 125, 0.18);
+  border-radius: 15px;
+  background: rgba(255, 115, 125, 0.045);
+}
+
+.admin-access-avatar {
+  width: 42px;
+  height: 42px;
+  flex: 0 0 42px;
+  display: grid;
+  place-items: center;
+  border-radius: 12px;
+  background: rgba(255, 115, 125, 0.12);
+  color: #ffabb1;
+  font-weight: 800;
+}
+
+.admin-access-account > span:last-child {
+  min-width: 0;
+}
+
+.admin-access-account small,
+.admin-access-account strong,
+.admin-access-account em {
+  display: block;
+  min-width: 0;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.admin-access-account small {
+  margin-bottom: 3px;
+  color: #8f777c;
+  font-size: 0.62rem;
+  font-weight: 800;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.admin-access-account strong {
+  color: #ffe4e6;
+  font-size: 0.84rem;
+}
+
+.admin-access-account em {
+  margin-top: 2px;
+  color: #b5878c;
+  font-size: 0.72rem;
+  font-style: normal;
+}
+
+.admin-access-guidance {
+  display: grid;
+  gap: 5px;
+  margin-top: 18px;
+  padding: 14px 16px;
+  border: 1px solid rgba(119, 219, 236, 0.12);
+  border-radius: 14px;
+  background: rgba(64, 214, 239, 0.035);
+}
+
+.admin-access-guidance strong {
+  font-size: 0.76rem;
+}
+
+.admin-access-guidance span {
+  color: #78949d;
+  font-size: 0.76rem;
+  line-height: 1.5;
+}
+
+.admin-access-guidance b {
+  color: #c4f4fb;
+}
+
+.admin-access-primary {
+  width: 100%;
+  min-height: 52px;
+  margin-top: 20px;
+  border: 0;
+  border-radius: 13px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  background: linear-gradient(135deg, #38d7ee, #62e7f6);
+  color: #001116;
+  font-weight: 800;
+  box-shadow: 0 14px 34px rgba(42, 205, 229, 0.16);
+  transition: transform 0.18s ease, filter 0.18s ease;
+}
+
+.admin-access-primary:hover:not(:disabled) {
+  transform: translateY(-1px);
+  filter: brightness(1.04);
+}
+
+.admin-access-primary:disabled {
+  opacity: 0.62;
+  cursor: wait;
+}
+
+.admin-access-divider {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin: 27px 0 14px;
+  color: #526d75;
+  font-size: 0.66rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+}
+
+.admin-access-divider::before,
+.admin-access-divider::after {
+  content: '';
+  height: 1px;
+  flex: 1;
+  background: rgba(145, 210, 223, 0.09);
+}
+
+.admin-access-apps {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.admin-access-apps a {
+  min-width: 0;
+  min-height: 74px;
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: center;
+  gap: 14px;
+  padding: 13px 14px;
+  border: 1px solid rgba(145, 210, 223, 0.1);
+  border-radius: 13px;
+  background: rgba(255, 255, 255, 0.018);
+  transition: border-color 0.18s ease, background 0.18s ease, transform 0.18s ease;
+}
+
+.admin-access-apps a:hover {
+  transform: translateY(-1px);
+  border-color: rgba(64, 214, 239, 0.25);
+  background: rgba(64, 214, 239, 0.05);
+}
+
+.admin-access-apps strong,
+.admin-access-apps small {
+  display: block;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.admin-access-apps strong {
+  color: #dff8fc;
+  font-size: 0.78rem;
+}
+
+.admin-access-apps small {
+  margin-top: 4px;
+  color: #5f7b84;
+  font-size: 0.64rem;
+  line-height: 1.35;
+}
+
+.admin-access-apps i {
+  color: #65d7e9;
+  font-size: 0.9rem;
+  font-style: normal;
+}
+
+.admin-access-footnote {
+  margin: 17px 0 0;
+  color: #4f6870;
+  font-size: 0.66rem;
+  line-height: 1.5;
+  text-align: center;
+}
+
+@media (max-width: 680px) {
+  .admin-access-blocked {
+    place-items: start center;
+    padding: 12px;
+  }
+
+  .admin-access-card {
+    margin: 0;
+    padding: 24px 18px 22px;
+    border-radius: 20px;
+  }
+
+  .admin-access-brand {
+    margin-bottom: 26px;
+  }
+
+  .admin-access-apps {
+    grid-template-columns: 1fr;
+  }
+
+  .admin-access-card h1 {
+    font-size: clamp(2rem, 12vw, 3rem);
+  }
+}

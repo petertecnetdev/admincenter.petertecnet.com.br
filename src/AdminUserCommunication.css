@@ -1,0 +1,362 @@
+.auc-quick-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.auc-action,
+.auc-primary,
+.auc-secondary,
+.auc-close,
+.auc-channel-grid button,
+.auc-template-row button {
+  font: inherit;
+}
+
+.auc-action {
+  min-height: 42px;
+  padding: 0 15px;
+  border: 1px solid rgba(148, 163, 184, .24);
+  border-radius: 12px;
+  background: rgba(15, 23, 42, .78);
+  color: #e8f1fb;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform .18s ease, border-color .18s ease, background .18s ease, box-shadow .18s ease;
+}
+
+.auc-action:hover:not(:disabled) {
+  transform: translateY(-1px);
+  border-color: rgba(125, 211, 252, .52);
+  background: rgba(30, 41, 59, .96);
+  box-shadow: 0 10px 26px rgba(2, 8, 23, .24);
+}
+
+.auc-action--email::before { content: '✉'; margin-right: 7px; }
+.auc-action--notification::before { content: '●'; margin-right: 7px; font-size: .72em; }
+
+.auc-action--both {
+  border-color: rgba(125, 211, 252, .44);
+  background: linear-gradient(135deg, rgba(14, 116, 144, .92), rgba(30, 64, 175, .88));
+  color: #fff;
+}
+
+.auc-action:disabled,
+.auc-primary:disabled,
+.auc-secondary:disabled,
+.auc-channel-grid button:disabled,
+.auc-template-row button:disabled,
+.auc-close:disabled {
+  opacity: .48;
+  cursor: not-allowed;
+  transform: none;
+}
+
+.auc-modal-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: 100000;
+  display: grid;
+  place-items: center;
+  padding: 24px;
+  background: rgba(2, 6, 23, .76);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+}
+
+.auc-modal {
+  width: min(780px, 100%);
+  max-height: min(92vh, 900px);
+  overflow: auto;
+  border: 1px solid rgba(148, 163, 184, .22);
+  border-radius: 24px;
+  background:
+    radial-gradient(circle at 92% 0%, rgba(14, 165, 233, .13), transparent 38%),
+    linear-gradient(180deg, #0d1725 0%, #0a1320 100%);
+  box-shadow: 0 32px 90px rgba(0, 0, 0, .52);
+  color: #e6edf7;
+}
+
+.auc-modal-head {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 20px;
+  padding: 24px 26px 20px;
+  border-bottom: 1px solid rgba(148, 163, 184, .16);
+  background: rgba(13, 23, 37, .94);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+.auc-modal-head span,
+.auc-template-row > span {
+  display: block;
+  color: #7dd3fc;
+  font-size: 11px;
+  font-weight: 900;
+  letter-spacing: .15em;
+}
+
+.auc-modal-head h2 {
+  margin: 6px 0 5px;
+  color: #fff;
+  font-size: clamp(20px, 3vw, 28px);
+  line-height: 1.15;
+}
+
+.auc-modal-head p {
+  margin: 0;
+  color: #94a8bd;
+  font-size: 13px;
+  overflow-wrap: anywhere;
+}
+
+.auc-close {
+  flex: 0 0 auto;
+  width: 40px;
+  height: 40px;
+  border: 1px solid rgba(148, 163, 184, .2);
+  border-radius: 12px;
+  background: rgba(15, 23, 42, .75);
+  color: #dce8f5;
+  font-size: 26px;
+  line-height: 1;
+  cursor: pointer;
+}
+
+.auc-channel-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 10px;
+  padding: 22px 26px 12px;
+}
+
+.auc-channel-grid button {
+  min-width: 0;
+  padding: 14px;
+  border: 1px solid rgba(148, 163, 184, .18);
+  border-radius: 14px;
+  background: rgba(15, 23, 42, .58);
+  color: #dce8f5;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color .18s ease, background .18s ease, transform .18s ease;
+}
+
+.auc-channel-grid button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  border-color: rgba(125, 211, 252, .42);
+}
+
+.auc-channel-grid button.active {
+  border-color: rgba(56, 189, 248, .64);
+  background: rgba(14, 116, 144, .18);
+  box-shadow: inset 0 0 0 1px rgba(56, 189, 248, .13);
+}
+
+.auc-channel-grid b,
+.auc-channel-grid small {
+  display: block;
+}
+
+.auc-channel-grid b { color: #fff; font-size: 14px; }
+.auc-channel-grid small { margin-top: 5px; color: #8da2b7; font-size: 11px; line-height: 1.35; }
+
+.auc-template-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 4px 26px 10px;
+}
+
+.auc-template-row > div {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 7px;
+}
+
+.auc-template-row button {
+  min-height: 32px;
+  padding: 0 11px;
+  border: 1px solid rgba(148, 163, 184, .17);
+  border-radius: 999px;
+  background: rgba(30, 41, 59, .56);
+  color: #cbd9e8;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.auc-form {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px;
+  padding: 12px 26px 26px;
+}
+
+.auc-form label {
+  display: flex;
+  min-width: 0;
+  flex-direction: column;
+  gap: 7px;
+  color: #9eb1c4;
+  font-size: 12px;
+  font-weight: 800;
+}
+
+.auc-form input,
+.auc-form select,
+.auc-form textarea {
+  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid rgba(148, 163, 184, .2);
+  border-radius: 12px;
+  outline: 0;
+  background: rgba(4, 12, 24, .66);
+  color: #eef6ff;
+  font: inherit;
+  transition: border-color .18s ease, box-shadow .18s ease, background .18s ease;
+}
+
+.auc-form input,
+.auc-form select { min-height: 46px; padding: 0 13px; }
+.auc-form textarea { min-height: 170px; padding: 13px; line-height: 1.55; resize: vertical; }
+
+.auc-form input:focus,
+.auc-form select:focus,
+.auc-form textarea:focus {
+  border-color: rgba(56, 189, 248, .72);
+  background: rgba(5, 15, 29, .92);
+  box-shadow: 0 0 0 3px rgba(56, 189, 248, .12);
+}
+
+.auc-form label > small {
+  align-self: flex-end;
+  color: #6f849a;
+  font-size: 11px;
+  font-weight: 600;
+}
+
+.auc-wide { grid-column: 1 / -1; }
+
+.auc-feedback {
+  grid-column: 1 / -1;
+  padding: 12px 14px;
+  border-radius: 12px;
+  font-size: 13px;
+  line-height: 1.5;
+}
+
+.auc-feedback--error {
+  border: 1px solid rgba(248, 113, 113, .28);
+  background: rgba(127, 29, 29, .18);
+  color: #fecaca;
+}
+
+.auc-feedback--success {
+  border: 1px solid rgba(74, 222, 128, .24);
+  background: rgba(20, 83, 45, .2);
+  color: #bbf7d0;
+}
+
+.auc-modal-actions {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+  padding-top: 4px;
+}
+
+.auc-modal-actions > div {
+  display: flex;
+  gap: 9px;
+}
+
+.auc-primary,
+.auc-secondary {
+  min-height: 42px;
+  padding: 0 15px;
+  border-radius: 12px;
+  font-weight: 800;
+  cursor: pointer;
+}
+
+.auc-primary {
+  border: 1px solid rgba(125, 211, 252, .45);
+  background: linear-gradient(135deg, #0e7490, #1d4ed8);
+  color: #fff;
+}
+
+.auc-secondary {
+  border: 1px solid rgba(148, 163, 184, .2);
+  background: rgba(15, 23, 42, .7);
+  color: #d6e2ef;
+}
+
+@media (max-width: 820px) {
+  .auc-quick-actions { width: 100%; }
+  .auc-action { flex: 1 1 120px; }
+  .auc-modal-backdrop { padding: 10px; }
+  .auc-modal { max-height: 96vh; border-radius: 18px; }
+  .auc-modal-head { padding: 18px; }
+  .auc-channel-grid { grid-template-columns: 1fr; padding: 18px 18px 10px; }
+  .auc-template-row { align-items: flex-start; flex-direction: column; padding: 4px 18px 8px; }
+  .auc-form { grid-template-columns: 1fr; padding: 10px 18px 20px; }
+  .auc-wide { grid-column: auto; }
+  .auc-feedback { grid-column: auto; }
+  .auc-modal-actions { align-items: stretch; flex-direction: column; }
+  .auc-modal-actions > div { display: grid; grid-template-columns: 1fr 1fr; }
+  .auc-modal-actions > .auc-secondary { width: 100%; }
+}
+
+@media (max-width: 460px) {
+  .auc-action { flex: 1 1 100%; }
+  .auc-modal-head h2 { font-size: 20px; }
+  .auc-modal-actions > div { grid-template-columns: 1fr; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .auc-action,
+  .auc-channel-grid button,
+  .auc-form input,
+  .auc-form select,
+  .auc-form textarea { transition: none; }
+}
+
+
+/* Direct administrative access from the user detail header. */
+.auc-action--impersonate {
+  position: relative;
+  border-color: rgba(167, 139, 250, .42);
+  background: linear-gradient(135deg, rgba(79, 70, 229, .92), rgba(124, 58, 237, .88));
+  color: #fff;
+  box-shadow: 0 8px 22px rgba(91, 70, 220, .16);
+}
+
+.auc-action--impersonate::before {
+  content: '↗';
+  margin-right: 7px;
+  font-size: .9em;
+}
+
+.auc-action--impersonate:hover:not(:disabled) {
+  border-color: rgba(196, 181, 253, .66);
+  background: linear-gradient(135deg, rgba(67, 56, 202, .98), rgba(109, 40, 217, .95));
+  box-shadow: 0 10px 28px rgba(91, 70, 220, .24);
+}
+
+.auc-action--impersonate:focus-visible {
+  outline: 2px solid rgba(196, 181, 253, .8);
+  outline-offset: 3px;
+}
+
+@media (max-width: 820px) {
+  .auc-action--impersonate {
+    flex: 1 1 180px;
+  }
+}

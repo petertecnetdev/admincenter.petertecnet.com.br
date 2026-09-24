@@ -1,0 +1,31 @@
+{
+  "id": "/admin/",
+  "name": "Peter Tecnet Admin Center",
+  "short_name": "Admin Center",
+  "description": "Admin Center do ecossistema Peter Tecnet.",
+  "lang": "pt-BR",
+  "dir": "ltr",
+  "start_url": "/admin/?source=pwa",
+  "scope": "/",
+  "display": "standalone",
+  "display_override": ["standalone", "minimal-ui"],
+  "orientation": "any",
+  "background_color": "#02080c",
+  "theme_color": "#02080c",
+  "categories": ["business", "productivity"],
+  "prefer_related_applications": false,
+  "icons": [
+    {
+      "src": "/favicon.svg?v=4",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    },
+    {
+      "src": "/favicon.svg?v=4",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "maskable"
+    }
+  ]
+}

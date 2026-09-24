@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" role="img" aria-label="Peter Tecnet">
+<defs>
+ <linearGradient id="g" x1="0" y1="0" x2="1" y2="1"><stop stop-color="#6ef0ff"/><stop offset=".45" stop-color="#19d8f2"/><stop offset="1" stop-color="#0089b4"/></linearGradient>
+ <linearGradient id="d" x1="0" y1="0" x2="0" y2="1"><stop stop-color="#0d79dc"/><stop offset="1" stop-color="#031b46"/></linearGradient>
+ <filter id="glow" x="-30%" y="-30%" width="160%" height="160%"><feGaussianBlur stdDeviation="5" result="b"/><feMerge><feMergeNode in="b"/><feMergeNode in="SourceGraphic"/></feMerge></filter>
+</defs>
+<g filter="url(#glow)" stroke="#6ef0ff" stroke-width="2" stroke-linejoin="round">
+ <path fill="url(#g)" d="M106 310 43 339v72l92 54 49-29v-57l-52 29-89-51 63-29z"/>
+ <path fill="url(#g)" d="m406 310 63 29v72l-92 54-49-29v-57l52 29 89-51-63-29z"/>
+ <path fill="url(#g)" d="m256 398 72 41v58l-72 42-72-42v-58z"/>
+ <path fill="url(#g)" d="M183 83 113 153v194l70 41z"/>
+ <path fill="url(#d)" d="m183 83 52 52v253l-52-31z"/>
+ <path fill="url(#g)" d="m329 83 70 70v194l-70 41z"/>
+ <path fill="url(#d)" d="m329 83-52 52v253l52-31z"/>
+</g></svg>

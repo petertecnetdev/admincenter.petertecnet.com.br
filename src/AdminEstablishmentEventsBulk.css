@@ -1,0 +1,190 @@
+.aee-bulk-toolbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  margin: 14px 0;
+  padding: 12px 14px;
+  border: 1px solid rgba(117, 145, 205, 0.25);
+  border-radius: 14px;
+  background: rgba(9, 20, 42, 0.74);
+  box-shadow: 0 12px 30px rgba(0, 0, 0, 0.14);
+}
+
+.aee-bulk-selection {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+.aee-bulk-selection label,
+.aee-event-select {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  user-select: none;
+}
+
+.aee-bulk-selection input,
+.aee-event-select input {
+  width: 18px;
+  height: 18px;
+  margin: 0;
+  accent-color: #6785ff;
+  cursor: pointer;
+}
+
+.aee-bulk-selection strong {
+  font-size: 0.9rem;
+}
+
+.aee-bulk-selection span {
+  color: rgba(222, 231, 251, 0.72);
+  font-size: 0.86rem;
+}
+
+.aee-bulk-delete-button {
+  appearance: none;
+  border: 1px solid rgba(255, 91, 116, 0.52);
+  border-radius: 10px;
+  padding: 10px 14px;
+  background: rgba(128, 25, 46, 0.3);
+  color: #ffdce2;
+  font: inherit;
+  font-weight: 800;
+  cursor: pointer;
+  transition: transform 160ms ease, border-color 160ms ease, background 160ms ease;
+}
+
+.aee-bulk-delete-button:hover:not(:disabled) {
+  transform: translateY(-1px);
+  border-color: rgba(255, 111, 134, 0.85);
+  background: rgba(154, 30, 54, 0.42);
+}
+
+.aee-bulk-delete-button:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+.aee-event-shell {
+  position: relative;
+}
+
+.aee-event-shell.bulk-selected {
+  border-color: rgba(103, 133, 255, 0.72);
+  box-shadow: 0 0 0 1px rgba(103, 133, 255, 0.2), 0 14px 34px rgba(0, 0, 0, 0.18);
+}
+
+.aee-event-select {
+  flex: 0 0 auto;
+  align-self: flex-start;
+  padding: 7px 9px;
+  border: 1px solid rgba(136, 159, 211, 0.25);
+  border-radius: 9px;
+  background: rgba(8, 17, 36, 0.68);
+  color: rgba(235, 241, 255, 0.86);
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.aee-event-select span {
+  white-space: nowrap;
+}
+
+.aee-bulk-dialog .aee-dialog-body {
+  display: grid;
+  gap: 14px;
+}
+
+.aee-bulk-warning {
+  padding: 12px 14px;
+  border: 1px solid rgba(255, 91, 116, 0.35);
+  border-radius: 11px;
+  background: rgba(118, 21, 42, 0.2);
+  color: #ffd5dd;
+  line-height: 1.45;
+}
+
+.aee-bulk-summary {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 12px 14px;
+  border: 1px solid rgba(112, 143, 210, 0.2);
+  border-radius: 11px;
+  background: rgba(13, 27, 55, 0.56);
+}
+
+.aee-bulk-summary span {
+  color: rgba(220, 230, 250, 0.72);
+}
+
+.aee-bulk-summary b {
+  font-size: 1.35rem;
+}
+
+.aee-bulk-list {
+  display: grid;
+  gap: 7px;
+  max-height: 210px;
+  overflow: auto;
+  padding-right: 4px;
+}
+
+.aee-bulk-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  padding: 9px 11px;
+  border: 1px solid rgba(112, 143, 210, 0.15);
+  border-radius: 9px;
+  background: rgba(5, 13, 29, 0.46);
+}
+
+.aee-bulk-item b {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.aee-bulk-item small {
+  flex: 0 0 auto;
+  color: rgba(218, 227, 247, 0.62);
+}
+
+.aee-bulk-more {
+  color: rgba(218, 227, 247, 0.66);
+  font-size: 0.84rem;
+  text-align: center;
+}
+
+.aee-bulk-dialog footer .danger {
+  border: 1px solid rgba(255, 91, 116, 0.6);
+  background: #a52c47;
+  color: #fff;
+}
+
+.aee-bulk-dialog footer .danger:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+@media (max-width: 760px) {
+  .aee-bulk-toolbar {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .aee-bulk-delete-button {
+    width: 100%;
+  }
+
+  .aee-event-select span {
+    display: none;
+  }
+}

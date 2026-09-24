@@ -1,0 +1,432 @@
+/*
+ * Peter Tecnet Admin Center — topbar polish.
+ * Loaded last so the desktop navigation keeps one coherent visual hierarchy
+ * even when auxiliary controls (global search / important events) are mounted later.
+ */
+
+:root {
+  --admin-topbar-height: 72px;
+  --admin-topbar-inline: clamp(18px, 2vw, 32px);
+  --admin-topbar-control: 44px;
+  --admin-topbar-gap: 8px;
+  --admin-ecosystem-width: 205px;
+}
+
+.admin-shell .topbar {
+  height: var(--admin-topbar-height) !important;
+  min-height: var(--admin-topbar-height) !important;
+  gap: 12px !important;
+  padding: 0 var(--admin-topbar-inline) !important;
+  border-bottom: 1px solid rgba(121, 211, 226, .10) !important;
+  background:
+    radial-gradient(circle at 15% -40%, rgba(64, 214, 239, .08), transparent 34%),
+    linear-gradient(180deg, rgba(3, 12, 18, .94), rgba(2, 9, 14, .91)) !important;
+  box-shadow: 0 12px 34px rgba(0, 0, 0, .14) !important;
+  backdrop-filter: blur(22px) saturate(130%) !important;
+  -webkit-backdrop-filter: blur(22px) saturate(130%) !important;
+}
+
+.admin-shell .topbar::after {
+  content: '';
+  position: absolute;
+  right: var(--admin-topbar-inline);
+  bottom: -1px;
+  left: var(--admin-topbar-inline);
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(75, 216, 237, .18), transparent);
+  pointer-events: none;
+}
+
+/* Keep the menu trigger compact and visually aligned with the action controls. */
+.admin-shell .hamburger,
+.admin-shell .sidebar.open ~ .workspace .hamburger {
+  --admin-menu-size: var(--admin-topbar-control);
+  border-radius: 14px !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .055),
+    0 8px 20px rgba(0, 0, 0, .16) !important;
+}
+
+.admin-shell .hamburger::after {
+  top: 7px;
+  right: 7px;
+  width: 4px;
+  height: 4px;
+  opacity: .48;
+}
+
+.admin-shell .top-actions {
+  flex: 1 1 auto !important;
+  min-width: 0 !important;
+  margin-left: 0 !important;
+  gap: var(--admin-topbar-gap) !important;
+  justify-content: flex-end;
+}
+
+/* Global search is the primary desktop command surface instead of a tiny icon. */
+.admin-shell .admin-search-nav-button {
+  order: -10 !important;
+  position: relative;
+  display: flex !important;
+  flex: 1 1 520px !important;
+  width: auto !important;
+  max-width: min(940px, 52vw) !important;
+  min-width: 260px !important;
+  height: var(--admin-topbar-control) !important;
+  margin-right: 52px !important; /* reserved slot for the important-events control */
+  padding: 0 72px 0 14px !important;
+  align-items: center;
+  justify-content: flex-start !important;
+  gap: 10px;
+  overflow: hidden;
+  border: 1px solid rgba(135, 209, 222, .11) !important;
+  border-radius: 14px !important;
+  background:
+    linear-gradient(135deg, rgba(10, 29, 39, .92), rgba(5, 18, 25, .95)) !important;
+  color: #73939c !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .035),
+    0 8px 24px rgba(0, 0, 0, .10);
+  text-align: left;
+  transition: border-color .18s ease, background .18s ease, color .18s ease, box-shadow .18s ease !important;
+}
+
+.admin-shell .admin-search-nav-button::after {
+  content: 'Pesquisar usuários, eventos, pedidos e mais…';
+  min-width: 0;
+  overflow: hidden;
+  color: #678791;
+  font-size: .72rem;
+  font-weight: 600;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.admin-shell .admin-search-nav-button::before {
+  content: 'Ctrl K';
+  position: absolute;
+  top: 50%;
+  right: 10px;
+  min-width: 48px;
+  padding: 5px 7px;
+  transform: translateY(-50%);
+  border: 1px solid rgba(148, 207, 218, .10);
+  border-radius: 7px;
+  background: rgba(255, 255, 255, .025);
+  color: #54717a;
+  font-size: .55rem;
+  font-weight: 700;
+  letter-spacing: .02em;
+  text-align: center;
+}
+
+.admin-shell .admin-search-nav-button svg {
+  flex: 0 0 18px;
+  width: 18px !important;
+  height: 18px !important;
+  color: #63dbea;
+}
+
+.admin-shell .admin-search-nav-button:hover,
+.admin-shell .admin-search-nav-button.active,
+.admin-shell .admin-search-nav-button:focus-visible {
+  border-color: rgba(78, 217, 238, .30) !important;
+  background:
+    linear-gradient(135deg, rgba(17, 48, 61, .94), rgba(7, 23, 31, .97)) !important;
+  color: #d9f8fc !important;
+  box-shadow:
+    inset 0 1px 0 rgba(255, 255, 255, .055),
+    0 0 0 3px rgba(64, 214, 239, .04),
+    0 10px 26px rgba(0, 0, 0, .12) !important;
+}
+
+.admin-shell .admin-search-nav-button:hover::after,
+.admin-shell .admin-search-nav-button.active::after,
+.admin-shell .admin-search-nav-button:focus-visible::after {
+  color: #a9cbd2;
+}
+
+.admin-shell .icon-button,
+.admin-shell .ecosystem-button {
+  height: var(--admin-topbar-control) !important;
+  min-height: var(--admin-topbar-control) !important;
+  border: 1px solid rgba(135, 209, 222, .12) !important;
+  border-radius: 14px !important;
+  background: rgba(7, 22, 30, .88) !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .035) !important;
+  transition: border-color .18s ease, background .18s ease, color .18s ease, transform .18s ease !important;
+}
+
+.admin-shell .icon-button {
+  width: var(--admin-topbar-control) !important;
+  min-width: var(--admin-topbar-control) !important;
+  display: grid !important;
+  place-items: center;
+  color: #7fa1aa !important;
+}
+
+.admin-shell .ecosystem-button {
+  width: var(--admin-ecosystem-width) !important;
+  min-width: var(--admin-ecosystem-width) !important;
+  padding: 0 13px !important;
+  justify-content: center;
+  gap: 8px !important;
+  color: #bcebf2 !important;
+}
+
+.admin-shell .ecosystem-button b {
+  overflow: hidden;
+  font-size: .68rem !important;
+  font-weight: 700;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.admin-shell .ecosystem-button span {
+  color: #5cdeef !important;
+}
+
+.admin-shell .ecosystem-button i {
+  margin-left: 2px;
+  color: #66858e !important;
+}
+
+.admin-shell .icon-button:hover,
+.admin-shell .ecosystem-button:hover,
+.admin-shell .icon-button:focus-visible,
+.admin-shell .ecosystem-button:focus-visible {
+  border-color: rgba(80, 218, 239, .30) !important;
+  background: rgba(19, 48, 59, .88) !important;
+  color: #d9f8fc !important;
+  transform: translateY(-1px);
+}
+
+.admin-shell .launcher-wrap {
+  flex: 0 0 auto;
+}
+
+/*
+ * The important-events globe is injected outside React. Keep one canonical
+ * visual contract and vary only the breakpoint-specific placement/background.
+ */
+body #pt-important-events-root .pt-ie-globe {
+  top: calc((var(--admin-topbar-height) - var(--admin-topbar-control)) / 2) !important;
+  right: calc(var(--admin-topbar-inline) + var(--admin-ecosystem-width) + (var(--admin-topbar-gap) * 2) + var(--admin-topbar-control)) !important;
+  bottom: auto !important;
+  z-index: 80 !important;
+  width: var(--admin-topbar-control) !important;
+  height: var(--admin-topbar-control) !important;
+  border: 1px solid rgba(135, 209, 222, .12) !important;
+  border-radius: 14px !important;
+  background: rgba(7, 22, 30, .88) !important;
+  color: #79ddec !important;
+  box-shadow: inset 0 1px 0 rgba(255, 255, 255, .035) !important;
+}
+
+body #pt-important-events-root .pt-ie-globe:hover,
+body #pt-important-events-root .pt-ie-globe:focus-visible {
+  border-color: rgba(80, 218, 239, .30) !important;
+  background: rgba(19, 48, 59, .88) !important;
+  transform: translateY(-1px) !important;
+}
+
+@media (min-width: 1181px) {
+  body #pt-important-events-root .pt-ie-globe {
+    backdrop-filter: blur(18px) !important;
+    -webkit-backdrop-filter: blur(18px) !important;
+  }
+}
+
+/* Draw a monochrome globe so the navbar does not mix emoji styling with UI icons. */
+body #pt-important-events-root .pt-ie-globe-icon {
+  position: relative;
+  display: block;
+  width: 18px;
+  height: 18px;
+  border: 1.5px solid currentColor;
+  border-radius: 50%;
+  font-size: 0 !important;
+}
+
+body #pt-important-events-root .pt-ie-globe-icon::before,
+body #pt-important-events-root .pt-ie-globe-icon::after {
+  content: '';
+  position: absolute;
+  pointer-events: none;
+}
+
+body #pt-important-events-root .pt-ie-globe-icon::before {
+  top: 2px;
+  bottom: 2px;
+  left: 50%;
+  width: 6px;
+  transform: translateX(-50%);
+  border-right: 1px solid currentColor;
+  border-left: 1px solid currentColor;
+  border-radius: 50%;
+}
+
+body #pt-important-events-root .pt-ie-globe-icon::after {
+  top: 50%;
+  right: 2px;
+  left: 2px;
+  height: 1px;
+  transform: translateY(-50%);
+  background: currentColor;
+}
+
+body #pt-important-events-root .pt-ie-badge {
+  top: -5px !important;
+  right: -5px !important;
+  border-color: #071018 !important;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, .24);
+}
+
+.admin-shell .content {
+  min-height: calc(100dvh - var(--admin-topbar-height)) !important;
+}
+
+@media (max-width: 1180px) and (min-width: 761px) {
+  :root {
+    --admin-ecosystem-width: 44px;
+  }
+
+  .admin-shell .admin-search-nav-button {
+    flex-basis: 320px !important;
+    max-width: min(520px, 44vw) !important;
+    min-width: 190px !important;
+    margin-right: 52px !important;
+    padding-right: 14px !important;
+  }
+
+  .admin-shell .admin-search-nav-button::after {
+    content: 'Pesquisar no ecossistema';
+  }
+
+  .admin-shell .admin-search-nav-button::before {
+    display: none;
+  }
+
+  .admin-shell .ecosystem-button {
+    width: var(--admin-ecosystem-width) !important;
+    min-width: var(--admin-ecosystem-width) !important;
+    padding: 0 !important;
+  }
+
+  .admin-shell .ecosystem-button b,
+  .admin-shell .ecosystem-button i {
+    display: none !important;
+  }
+
+  body #pt-important-events-root .pt-ie-globe {
+    background: rgba(7, 22, 30, .90) !important;
+  }
+}
+
+@media (max-width: 900px) and (min-width: 761px) {
+  .admin-shell .admin-search-nav-button {
+    flex: 0 0 var(--admin-topbar-control) !important;
+    width: var(--admin-topbar-control) !important;
+    min-width: var(--admin-topbar-control) !important;
+    max-width: var(--admin-topbar-control) !important;
+    margin-right: 52px !important;
+    padding: 0 !important;
+    justify-content: center !important;
+  }
+
+  .admin-shell .admin-search-nav-button::after,
+  .admin-shell .admin-search-nav-button::before {
+    display: none !important;
+  }
+}
+
+@media (max-width: 760px) {
+  :root {
+    --admin-topbar-height: 66px;
+    --admin-topbar-control: 40px;
+  }
+
+  .admin-shell .topbar {
+    gap: 8px !important;
+    padding-top: max(8px, env(safe-area-inset-top)) !important;
+    padding-right: max(12px, env(safe-area-inset-right)) !important;
+    padding-bottom: 8px !important;
+    padding-left: max(12px, env(safe-area-inset-left)) !important;
+  }
+
+  .admin-shell .topbar::after {
+    right: max(12px, env(safe-area-inset-right));
+    left: max(12px, env(safe-area-inset-left));
+  }
+
+  .admin-shell .hamburger,
+  .admin-shell .sidebar.open ~ .workspace .hamburger {
+    --admin-menu-size: 46px;
+  }
+
+  .admin-shell .admin-search-nav-button {
+    flex: 0 0 var(--admin-topbar-control) !important;
+    width: var(--admin-topbar-control) !important;
+    min-width: var(--admin-topbar-control) !important;
+    max-width: var(--admin-topbar-control) !important;
+    height: var(--admin-topbar-control) !important;
+    margin-right: 0 !important;
+    padding: 0 !important;
+    justify-content: center !important;
+    border-radius: 12px !important;
+  }
+
+  .admin-shell .admin-search-nav-button::after,
+  .admin-shell .admin-search-nav-button::before {
+    display: none !important;
+  }
+
+  .admin-shell .icon-button,
+  .admin-shell .ecosystem-button {
+    width: var(--admin-topbar-control) !important;
+    min-width: var(--admin-topbar-control) !important;
+    height: var(--admin-topbar-control) !important;
+    min-height: var(--admin-topbar-control) !important;
+    border-radius: 12px !important;
+  }
+
+  .admin-shell .ecosystem-button {
+    padding: 0 !important;
+  }
+
+  .admin-shell .ecosystem-button b,
+  .admin-shell .ecosystem-button i {
+    display: none !important;
+  }
+
+  /* Keep the important-events control as the existing floating mobile action. */
+  body #pt-important-events-root .pt-ie-globe {
+    top: auto !important;
+    right: max(14px, env(safe-area-inset-right)) !important;
+    bottom: calc(74px + env(safe-area-inset-bottom)) !important;
+    width: 48px !important;
+    height: 48px !important;
+    border-radius: 15px !important;
+  }
+}
+
+@media (max-width: 420px) {
+  .admin-shell .top-actions {
+    gap: 6px !important;
+  }
+
+  .admin-shell .hamburger,
+  .admin-shell .sidebar.open ~ .workspace .hamburger {
+    --admin-menu-size: 44px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .admin-shell .topbar,
+  .admin-shell .admin-search-nav-button,
+  .admin-shell .icon-button,
+  .admin-shell .ecosystem-button,
+  body #pt-important-events-root .pt-ie-globe {
+    transition: none !important;
+  }
+}

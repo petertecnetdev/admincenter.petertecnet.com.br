@@ -1,0 +1,12 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap');
+
+:root { font-family: Inter, system-ui, sans-serif; color: #eaf9fc; background: #01070b; font-synthesis: none; text-rendering: optimizeLegibility; --cyan:#19d8f2; --cyan-dark:#00a8c1; --line:rgba(112,239,255,.15); --muted:#8ca7b0; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+body { margin: 0; min-width: 320px; min-height: 100vh; overflow-x: hidden; }
+body, button, a { font-family: inherit; }
+a { color: inherit; text-decoration: none; }
+button { color: inherit; }
+img, video, svg { max-width: 100%; }
+::selection { color: #001018; background: var(--cyan); }
+::-webkit-scrollbar { width: 8px; } ::-webkit-scrollbar-track { background:#01070b; } ::-webkit-scrollbar-thumb { background:#007b94; border-radius:20px; }

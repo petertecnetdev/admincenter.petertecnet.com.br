@@ -1,0 +1,4422 @@
+{
+  "version": 1,
+  "title": "Admin Center evolution coverage — 440 points",
+  "generated_for": "Peter Tecnet Admin Center",
+  "entries": [
+    {
+      "id": 1,
+      "area": "Estabilidade e atualização de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js"
+      ]
+    },
+    {
+      "id": 2,
+      "area": "Estabilidade e atualização de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js"
+      ]
+    },
+    {
+      "id": 3,
+      "area": "Estabilidade e atualização de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js"
+      ]
+    },
+    {
+      "id": 4,
+      "area": "Estabilidade e atualização de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js"
+      ]
+    },
+    {
+      "id": 5,
+      "area": "Estabilidade e atualização de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js"
+      ]
+    },
+    {
+      "id": 6,
+      "area": "Estabilidade e atualização de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js"
+      ]
+    },
+    {
+      "id": 7,
+      "area": "Estabilidade e atualização de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js"
+      ]
+    },
+    {
+      "id": 8,
+      "area": "Estabilidade e atualização de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js"
+      ]
+    },
+    {
+      "id": 9,
+      "area": "Estabilidade e atualização de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js"
+      ]
+    },
+    {
+      "id": 10,
+      "area": "Estabilidade e atualização de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js"
+      ]
+    },
+    {
+      "id": 11,
+      "area": "Estabilidade e atualização de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js"
+      ]
+    },
+    {
+      "id": 12,
+      "area": "Estabilidade e atualização de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js"
+      ]
+    },
+    {
+      "id": 13,
+      "area": "Estabilidade e atualização de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js"
+      ]
+    },
+    {
+      "id": 14,
+      "area": "Estabilidade e atualização de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js"
+      ]
+    },
+    {
+      "id": 15,
+      "area": "Estabilidade e atualização de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js"
+      ]
+    },
+    {
+      "id": 16,
+      "area": "Estabilidade e atualização de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js"
+      ]
+    },
+    {
+      "id": 17,
+      "area": "Estabilidade e atualização de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js"
+      ]
+    },
+    {
+      "id": 18,
+      "area": "Estabilidade e atualização de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js"
+      ]
+    },
+    {
+      "id": 19,
+      "area": "Estabilidade e atualização de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js"
+      ]
+    },
+    {
+      "id": 20,
+      "area": "Estabilidade e atualização de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js"
+      ]
+    },
+    {
+      "id": 21,
+      "area": "Estabilidade e atualização de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js"
+      ]
+    },
+    {
+      "id": 22,
+      "area": "Estabilidade e atualização de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js"
+      ]
+    },
+    {
+      "id": 23,
+      "area": "Estabilidade e atualização de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js"
+      ]
+    },
+    {
+      "id": 24,
+      "area": "Estabilidade e atualização de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js"
+      ]
+    },
+    {
+      "id": 25,
+      "area": "Estabilidade e atualização de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js"
+      ]
+    },
+    {
+      "id": 26,
+      "area": "Estabilidade e atualização de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js"
+      ]
+    },
+    {
+      "id": 27,
+      "area": "Estabilidade e atualização de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js"
+      ]
+    },
+    {
+      "id": 28,
+      "area": "Estabilidade e atualização de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js"
+      ]
+    },
+    {
+      "id": 29,
+      "area": "Estabilidade e atualização de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js"
+      ]
+    },
+    {
+      "id": 30,
+      "area": "Estabilidade e atualização de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js"
+      ]
+    },
+    {
+      "id": 31,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 32,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 33,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 34,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 35,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 36,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 37,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 38,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 39,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 40,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 41,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 42,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 43,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 44,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 45,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 46,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 47,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 48,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 49,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 50,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 51,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 52,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 53,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 54,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 55,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 56,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 57,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 58,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 59,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 60,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 61,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 62,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 63,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 64,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 65,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 66,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 67,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 68,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 69,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 70,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 71,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 72,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 73,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 74,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 75,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 76,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 77,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 78,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 79,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 80,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 81,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 82,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 83,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 84,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 85,
+      "area": "Navegação e sidebar",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 86,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 87,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 88,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 89,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 90,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 91,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 92,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 93,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 94,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 95,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 96,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 97,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 98,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 99,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 100,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 101,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 102,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 103,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 104,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 105,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 106,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 107,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 108,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 109,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 110,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 111,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 112,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 113,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 114,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 115,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 116,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 117,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 118,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 119,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 120,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 121,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 122,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 123,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 124,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 125,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 126,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 127,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 128,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 129,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 130,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 131,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 132,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 133,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 134,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 135,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 136,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 137,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 138,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 139,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 140,
+      "area": "Arquitetura React e camada de dados",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/AdminModuleBoundary.jsx",
+        "scripts/validate-admin-architecture.mjs"
+      ]
+    },
+    {
+      "id": 141,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 142,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 143,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 144,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 145,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 146,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 147,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 148,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 149,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 150,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 151,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 152,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 153,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 154,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 155,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 156,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 157,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 158,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 159,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 160,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 161,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 162,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 163,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 164,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 165,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 166,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 167,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 168,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 169,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 170,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 171,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 172,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 173,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 174,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 175,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 176,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 177,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 178,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 179,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 180,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 181,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 182,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 183,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 184,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 185,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 186,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 187,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 188,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 189,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 190,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 191,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 192,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 193,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 194,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 195,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 196,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 197,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 198,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 199,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 200,
+      "area": "Design system e aparência",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminResponsive.css"
+      ]
+    },
+    {
+      "id": 201,
+      "area": "Legibilidade e tabelas",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminUsersCenter.jsx",
+        "src/AdminEstablishmentsPageV2.jsx"
+      ]
+    },
+    {
+      "id": 202,
+      "area": "Legibilidade e tabelas",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminUsersCenter.jsx",
+        "src/AdminEstablishmentsPageV2.jsx"
+      ]
+    },
+    {
+      "id": 203,
+      "area": "Legibilidade e tabelas",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminUsersCenter.jsx",
+        "src/AdminEstablishmentsPageV2.jsx"
+      ]
+    },
+    {
+      "id": 204,
+      "area": "Legibilidade e tabelas",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminUsersCenter.jsx",
+        "src/AdminEstablishmentsPageV2.jsx"
+      ]
+    },
+    {
+      "id": 205,
+      "area": "Legibilidade e tabelas",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminUsersCenter.jsx",
+        "src/AdminEstablishmentsPageV2.jsx"
+      ]
+    },
+    {
+      "id": 206,
+      "area": "Legibilidade e tabelas",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminUsersCenter.jsx",
+        "src/AdminEstablishmentsPageV2.jsx"
+      ]
+    },
+    {
+      "id": 207,
+      "area": "Legibilidade e tabelas",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminUsersCenter.jsx",
+        "src/AdminEstablishmentsPageV2.jsx"
+      ]
+    },
+    {
+      "id": 208,
+      "area": "Legibilidade e tabelas",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminUsersCenter.jsx",
+        "src/AdminEstablishmentsPageV2.jsx"
+      ]
+    },
+    {
+      "id": 209,
+      "area": "Legibilidade e tabelas",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminUsersCenter.jsx",
+        "src/AdminEstablishmentsPageV2.jsx"
+      ]
+    },
+    {
+      "id": 210,
+      "area": "Legibilidade e tabelas",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminUsersCenter.jsx",
+        "src/AdminEstablishmentsPageV2.jsx"
+      ]
+    },
+    {
+      "id": 211,
+      "area": "Legibilidade e tabelas",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminUsersCenter.jsx",
+        "src/AdminEstablishmentsPageV2.jsx"
+      ]
+    },
+    {
+      "id": 212,
+      "area": "Legibilidade e tabelas",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminUsersCenter.jsx",
+        "src/AdminEstablishmentsPageV2.jsx"
+      ]
+    },
+    {
+      "id": 213,
+      "area": "Legibilidade e tabelas",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminUsersCenter.jsx",
+        "src/AdminEstablishmentsPageV2.jsx"
+      ]
+    },
+    {
+      "id": 214,
+      "area": "Legibilidade e tabelas",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminUsersCenter.jsx",
+        "src/AdminEstablishmentsPageV2.jsx"
+      ]
+    },
+    {
+      "id": 215,
+      "area": "Legibilidade e tabelas",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminUsersCenter.jsx",
+        "src/AdminEstablishmentsPageV2.jsx"
+      ]
+    },
+    {
+      "id": 216,
+      "area": "Legibilidade e tabelas",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminUsersCenter.jsx",
+        "src/AdminEstablishmentsPageV2.jsx"
+      ]
+    },
+    {
+      "id": 217,
+      "area": "Legibilidade e tabelas",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminUsersCenter.jsx",
+        "src/AdminEstablishmentsPageV2.jsx"
+      ]
+    },
+    {
+      "id": 218,
+      "area": "Legibilidade e tabelas",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminUsersCenter.jsx",
+        "src/AdminEstablishmentsPageV2.jsx"
+      ]
+    },
+    {
+      "id": 219,
+      "area": "Legibilidade e tabelas",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminUsersCenter.jsx",
+        "src/AdminEstablishmentsPageV2.jsx"
+      ]
+    },
+    {
+      "id": 220,
+      "area": "Legibilidade e tabelas",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminExperienceV2.css",
+        "src/AdminUsersCenter.jsx",
+        "src/AdminEstablishmentsPageV2.jsx"
+      ]
+    },
+    {
+      "id": 221,
+      "area": "Eficiência operacional e busca",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminPersistence.js"
+      ]
+    },
+    {
+      "id": 222,
+      "area": "Eficiência operacional e busca",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminPersistence.js"
+      ]
+    },
+    {
+      "id": 223,
+      "area": "Eficiência operacional e busca",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminPersistence.js"
+      ]
+    },
+    {
+      "id": 224,
+      "area": "Eficiência operacional e busca",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminPersistence.js"
+      ]
+    },
+    {
+      "id": 225,
+      "area": "Eficiência operacional e busca",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminPersistence.js"
+      ]
+    },
+    {
+      "id": 226,
+      "area": "Eficiência operacional e busca",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminPersistence.js"
+      ]
+    },
+    {
+      "id": 227,
+      "area": "Eficiência operacional e busca",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminPersistence.js"
+      ]
+    },
+    {
+      "id": 228,
+      "area": "Eficiência operacional e busca",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminPersistence.js"
+      ]
+    },
+    {
+      "id": 229,
+      "area": "Eficiência operacional e busca",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminPersistence.js"
+      ]
+    },
+    {
+      "id": 230,
+      "area": "Eficiência operacional e busca",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminPersistence.js"
+      ]
+    },
+    {
+      "id": 231,
+      "area": "Eficiência operacional e busca",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminPersistence.js"
+      ]
+    },
+    {
+      "id": 232,
+      "area": "Eficiência operacional e busca",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminPersistence.js"
+      ]
+    },
+    {
+      "id": 233,
+      "area": "Eficiência operacional e busca",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminPersistence.js"
+      ]
+    },
+    {
+      "id": 234,
+      "area": "Eficiência operacional e busca",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminPersistence.js"
+      ]
+    },
+    {
+      "id": 235,
+      "area": "Eficiência operacional e busca",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminPersistence.js"
+      ]
+    },
+    {
+      "id": 236,
+      "area": "Eficiência operacional e busca",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminPersistence.js"
+      ]
+    },
+    {
+      "id": 237,
+      "area": "Eficiência operacional e busca",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminPersistence.js"
+      ]
+    },
+    {
+      "id": 238,
+      "area": "Eficiência operacional e busca",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminPersistence.js"
+      ]
+    },
+    {
+      "id": 239,
+      "area": "Eficiência operacional e busca",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminPersistence.js"
+      ]
+    },
+    {
+      "id": 240,
+      "area": "Eficiência operacional e busca",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminPersistence.js"
+      ]
+    },
+    {
+      "id": 241,
+      "area": "Eficiência operacional e busca",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminPersistence.js"
+      ]
+    },
+    {
+      "id": 242,
+      "area": "Eficiência operacional e busca",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminPersistence.js"
+      ]
+    },
+    {
+      "id": 243,
+      "area": "Eficiência operacional e busca",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminPersistence.js"
+      ]
+    },
+    {
+      "id": 244,
+      "area": "Eficiência operacional e busca",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminPersistence.js"
+      ]
+    },
+    {
+      "id": 245,
+      "area": "Eficiência operacional e busca",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminPersistence.js"
+      ]
+    },
+    {
+      "id": 246,
+      "area": "Eficiência operacional e busca",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminPersistence.js"
+      ]
+    },
+    {
+      "id": 247,
+      "area": "Eficiência operacional e busca",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminPersistence.js"
+      ]
+    },
+    {
+      "id": 248,
+      "area": "Eficiência operacional e busca",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminPersistence.js"
+      ]
+    },
+    {
+      "id": 249,
+      "area": "Eficiência operacional e busca",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminPersistence.js"
+      ]
+    },
+    {
+      "id": 250,
+      "area": "Eficiência operacional e busca",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminPersistence.js"
+      ]
+    },
+    {
+      "id": 251,
+      "area": "Eficiência operacional e busca",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminPersistence.js"
+      ]
+    },
+    {
+      "id": 252,
+      "area": "Eficiência operacional e busca",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminPersistence.js"
+      ]
+    },
+    {
+      "id": 253,
+      "area": "Eficiência operacional e busca",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminPersistence.js"
+      ]
+    },
+    {
+      "id": 254,
+      "area": "Eficiência operacional e busca",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminPersistence.js"
+      ]
+    },
+    {
+      "id": 255,
+      "area": "Eficiência operacional e busca",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminPersistence.js"
+      ]
+    },
+    {
+      "id": 256,
+      "area": "Polling, realtime e rede",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js",
+        "src/AgentChatPanel.jsx"
+      ]
+    },
+    {
+      "id": 257,
+      "area": "Polling, realtime e rede",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js",
+        "src/AgentChatPanel.jsx"
+      ]
+    },
+    {
+      "id": 258,
+      "area": "Polling, realtime e rede",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js",
+        "src/AgentChatPanel.jsx"
+      ]
+    },
+    {
+      "id": 259,
+      "area": "Polling, realtime e rede",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js",
+        "src/AgentChatPanel.jsx"
+      ]
+    },
+    {
+      "id": 260,
+      "area": "Polling, realtime e rede",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js",
+        "src/AgentChatPanel.jsx"
+      ]
+    },
+    {
+      "id": 261,
+      "area": "Polling, realtime e rede",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js",
+        "src/AgentChatPanel.jsx"
+      ]
+    },
+    {
+      "id": 262,
+      "area": "Polling, realtime e rede",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js",
+        "src/AgentChatPanel.jsx"
+      ]
+    },
+    {
+      "id": 263,
+      "area": "Polling, realtime e rede",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js",
+        "src/AgentChatPanel.jsx"
+      ]
+    },
+    {
+      "id": 264,
+      "area": "Polling, realtime e rede",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js",
+        "src/AgentChatPanel.jsx"
+      ]
+    },
+    {
+      "id": 265,
+      "area": "Polling, realtime e rede",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js",
+        "src/AgentChatPanel.jsx"
+      ]
+    },
+    {
+      "id": 266,
+      "area": "Polling, realtime e rede",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js",
+        "src/AgentChatPanel.jsx"
+      ]
+    },
+    {
+      "id": 267,
+      "area": "Polling, realtime e rede",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js",
+        "src/AgentChatPanel.jsx"
+      ]
+    },
+    {
+      "id": 268,
+      "area": "Polling, realtime e rede",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js",
+        "src/AgentChatPanel.jsx"
+      ]
+    },
+    {
+      "id": 269,
+      "area": "Polling, realtime e rede",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js",
+        "src/AgentChatPanel.jsx"
+      ]
+    },
+    {
+      "id": 270,
+      "area": "Polling, realtime e rede",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js",
+        "src/AgentChatPanel.jsx"
+      ]
+    },
+    {
+      "id": 271,
+      "area": "Polling, realtime e rede",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js",
+        "src/AgentChatPanel.jsx"
+      ]
+    },
+    {
+      "id": 272,
+      "area": "Polling, realtime e rede",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js",
+        "src/AgentChatPanel.jsx"
+      ]
+    },
+    {
+      "id": 273,
+      "area": "Polling, realtime e rede",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js",
+        "src/AgentChatPanel.jsx"
+      ]
+    },
+    {
+      "id": 274,
+      "area": "Polling, realtime e rede",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js",
+        "src/AgentChatPanel.jsx"
+      ]
+    },
+    {
+      "id": 275,
+      "area": "Polling, realtime e rede",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js",
+        "src/AgentChatPanel.jsx"
+      ]
+    },
+    {
+      "id": 276,
+      "area": "Polling, realtime e rede",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js",
+        "src/AgentChatPanel.jsx"
+      ]
+    },
+    {
+      "id": 277,
+      "area": "Polling, realtime e rede",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js",
+        "src/AgentChatPanel.jsx"
+      ]
+    },
+    {
+      "id": 278,
+      "area": "Polling, realtime e rede",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js",
+        "src/AgentChatPanel.jsx"
+      ]
+    },
+    {
+      "id": 279,
+      "area": "Polling, realtime e rede",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js",
+        "src/AgentChatPanel.jsx"
+      ]
+    },
+    {
+      "id": 280,
+      "area": "Polling, realtime e rede",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/adminApi.js",
+        "src/missionControlRealtime.js",
+        "src/AgentChatPanel.jsx"
+      ]
+    },
+    {
+      "id": 281,
+      "area": "Responsividade e mobile",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminResponsive.css",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-responsive.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 282,
+      "area": "Responsividade e mobile",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminResponsive.css",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-responsive.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 283,
+      "area": "Responsividade e mobile",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminResponsive.css",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-responsive.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 284,
+      "area": "Responsividade e mobile",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminResponsive.css",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-responsive.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 285,
+      "area": "Responsividade e mobile",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminResponsive.css",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-responsive.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 286,
+      "area": "Responsividade e mobile",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminResponsive.css",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-responsive.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 287,
+      "area": "Responsividade e mobile",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminResponsive.css",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-responsive.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 288,
+      "area": "Responsividade e mobile",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminResponsive.css",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-responsive.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 289,
+      "area": "Responsividade e mobile",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminResponsive.css",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-responsive.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 290,
+      "area": "Responsividade e mobile",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminResponsive.css",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-responsive.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 291,
+      "area": "Responsividade e mobile",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminResponsive.css",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-responsive.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 292,
+      "area": "Responsividade e mobile",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminResponsive.css",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-responsive.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 293,
+      "area": "Responsividade e mobile",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminResponsive.css",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-responsive.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 294,
+      "area": "Responsividade e mobile",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminResponsive.css",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-responsive.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 295,
+      "area": "Responsividade e mobile",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminResponsive.css",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-responsive.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 296,
+      "area": "Responsividade e mobile",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminResponsive.css",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-responsive.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 297,
+      "area": "Responsividade e mobile",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminResponsive.css",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-responsive.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 298,
+      "area": "Responsividade e mobile",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminResponsive.css",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-responsive.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 299,
+      "area": "Responsividade e mobile",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminResponsive.css",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-responsive.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 300,
+      "area": "Responsividade e mobile",
+      "status": "implemented",
+      "evidence": [
+        "src/AdminResponsive.css",
+        "src/AdminExperienceV2.css",
+        "scripts/validate-admin-responsive.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 301,
+      "area": "Acessibilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/useDialogFocus.js",
+        "src/AdminItemsManager.jsx"
+      ]
+    },
+    {
+      "id": 302,
+      "area": "Acessibilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/useDialogFocus.js",
+        "src/AdminItemsManager.jsx"
+      ]
+    },
+    {
+      "id": 303,
+      "area": "Acessibilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/useDialogFocus.js",
+        "src/AdminItemsManager.jsx"
+      ]
+    },
+    {
+      "id": 304,
+      "area": "Acessibilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/useDialogFocus.js",
+        "src/AdminItemsManager.jsx"
+      ]
+    },
+    {
+      "id": 305,
+      "area": "Acessibilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/useDialogFocus.js",
+        "src/AdminItemsManager.jsx"
+      ]
+    },
+    {
+      "id": 306,
+      "area": "Acessibilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/useDialogFocus.js",
+        "src/AdminItemsManager.jsx"
+      ]
+    },
+    {
+      "id": 307,
+      "area": "Acessibilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/useDialogFocus.js",
+        "src/AdminItemsManager.jsx"
+      ]
+    },
+    {
+      "id": 308,
+      "area": "Acessibilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/useDialogFocus.js",
+        "src/AdminItemsManager.jsx"
+      ]
+    },
+    {
+      "id": 309,
+      "area": "Acessibilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/useDialogFocus.js",
+        "src/AdminItemsManager.jsx"
+      ]
+    },
+    {
+      "id": 310,
+      "area": "Acessibilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/useDialogFocus.js",
+        "src/AdminItemsManager.jsx"
+      ]
+    },
+    {
+      "id": 311,
+      "area": "Acessibilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/useDialogFocus.js",
+        "src/AdminItemsManager.jsx"
+      ]
+    },
+    {
+      "id": 312,
+      "area": "Acessibilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/useDialogFocus.js",
+        "src/AdminItemsManager.jsx"
+      ]
+    },
+    {
+      "id": 313,
+      "area": "Acessibilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/useDialogFocus.js",
+        "src/AdminItemsManager.jsx"
+      ]
+    },
+    {
+      "id": 314,
+      "area": "Acessibilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/useDialogFocus.js",
+        "src/AdminItemsManager.jsx"
+      ]
+    },
+    {
+      "id": 315,
+      "area": "Acessibilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/useDialogFocus.js",
+        "src/AdminItemsManager.jsx"
+      ]
+    },
+    {
+      "id": 316,
+      "area": "Acessibilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/useDialogFocus.js",
+        "src/AdminItemsManager.jsx"
+      ]
+    },
+    {
+      "id": 317,
+      "area": "Acessibilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/useDialogFocus.js",
+        "src/AdminItemsManager.jsx"
+      ]
+    },
+    {
+      "id": 318,
+      "area": "Acessibilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/useDialogFocus.js",
+        "src/AdminItemsManager.jsx"
+      ]
+    },
+    {
+      "id": 319,
+      "area": "Acessibilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/useDialogFocus.js",
+        "src/AdminItemsManager.jsx"
+      ]
+    },
+    {
+      "id": 320,
+      "area": "Acessibilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/useDialogFocus.js",
+        "src/AdminItemsManager.jsx"
+      ]
+    },
+    {
+      "id": 321,
+      "area": "Performance",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "src/adminApi.js"
+      ]
+    },
+    {
+      "id": 322,
+      "area": "Performance",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "src/adminApi.js"
+      ]
+    },
+    {
+      "id": 323,
+      "area": "Performance",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "src/adminApi.js"
+      ]
+    },
+    {
+      "id": 324,
+      "area": "Performance",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "src/adminApi.js"
+      ]
+    },
+    {
+      "id": 325,
+      "area": "Performance",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "src/adminApi.js"
+      ]
+    },
+    {
+      "id": 326,
+      "area": "Performance",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "src/adminApi.js"
+      ]
+    },
+    {
+      "id": 327,
+      "area": "Performance",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "src/adminApi.js"
+      ]
+    },
+    {
+      "id": 328,
+      "area": "Performance",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "src/adminApi.js"
+      ]
+    },
+    {
+      "id": 329,
+      "area": "Performance",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "src/adminApi.js"
+      ]
+    },
+    {
+      "id": 330,
+      "area": "Performance",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "src/adminApi.js"
+      ]
+    },
+    {
+      "id": 331,
+      "area": "Performance",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "src/adminApi.js"
+      ]
+    },
+    {
+      "id": 332,
+      "area": "Performance",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "src/adminApi.js"
+      ]
+    },
+    {
+      "id": 333,
+      "area": "Performance",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "src/adminApi.js"
+      ]
+    },
+    {
+      "id": 334,
+      "area": "Performance",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "src/adminApi.js"
+      ]
+    },
+    {
+      "id": 335,
+      "area": "Performance",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "src/adminApi.js"
+      ]
+    },
+    {
+      "id": 336,
+      "area": "Performance",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "src/adminApi.js"
+      ]
+    },
+    {
+      "id": 337,
+      "area": "Performance",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "src/adminApi.js"
+      ]
+    },
+    {
+      "id": 338,
+      "area": "Performance",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "src/adminApi.js"
+      ]
+    },
+    {
+      "id": 339,
+      "area": "Performance",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "src/adminApi.js"
+      ]
+    },
+    {
+      "id": 340,
+      "area": "Performance",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "src/adminApi.js"
+      ]
+    },
+    {
+      "id": 341,
+      "area": "Performance",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "src/adminApi.js"
+      ]
+    },
+    {
+      "id": 342,
+      "area": "Performance",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "src/adminApi.js"
+      ]
+    },
+    {
+      "id": 343,
+      "area": "Performance",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "src/adminApi.js"
+      ]
+    },
+    {
+      "id": 344,
+      "area": "Performance",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "src/adminApi.js"
+      ]
+    },
+    {
+      "id": 345,
+      "area": "Performance",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "src/adminApi.js"
+      ]
+    },
+    {
+      "id": 346,
+      "area": "Performance",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "src/adminApi.js"
+      ]
+    },
+    {
+      "id": 347,
+      "area": "Performance",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "src/adminApi.js"
+      ]
+    },
+    {
+      "id": 348,
+      "area": "Performance",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "src/adminApi.js"
+      ]
+    },
+    {
+      "id": 349,
+      "area": "Performance",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "src/adminApi.js"
+      ]
+    },
+    {
+      "id": 350,
+      "area": "Performance",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css",
+        "src/adminApi.js"
+      ]
+    },
+    {
+      "id": 351,
+      "area": "Qualidade, regressão e observabilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/adminRuntimeMonitor.js",
+        "scripts/validate-admin-stability.mjs",
+        "scripts/validate-admin-runtime-contracts.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 352,
+      "area": "Qualidade, regressão e observabilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/adminRuntimeMonitor.js",
+        "scripts/validate-admin-stability.mjs",
+        "scripts/validate-admin-runtime-contracts.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 353,
+      "area": "Qualidade, regressão e observabilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/adminRuntimeMonitor.js",
+        "scripts/validate-admin-stability.mjs",
+        "scripts/validate-admin-runtime-contracts.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 354,
+      "area": "Qualidade, regressão e observabilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/adminRuntimeMonitor.js",
+        "scripts/validate-admin-stability.mjs",
+        "scripts/validate-admin-runtime-contracts.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 355,
+      "area": "Qualidade, regressão e observabilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/adminRuntimeMonitor.js",
+        "scripts/validate-admin-stability.mjs",
+        "scripts/validate-admin-runtime-contracts.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 356,
+      "area": "Qualidade, regressão e observabilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/adminRuntimeMonitor.js",
+        "scripts/validate-admin-stability.mjs",
+        "scripts/validate-admin-runtime-contracts.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 357,
+      "area": "Qualidade, regressão e observabilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/adminRuntimeMonitor.js",
+        "scripts/validate-admin-stability.mjs",
+        "scripts/validate-admin-runtime-contracts.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 358,
+      "area": "Qualidade, regressão e observabilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/adminRuntimeMonitor.js",
+        "scripts/validate-admin-stability.mjs",
+        "scripts/validate-admin-runtime-contracts.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 359,
+      "area": "Qualidade, regressão e observabilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/adminRuntimeMonitor.js",
+        "scripts/validate-admin-stability.mjs",
+        "scripts/validate-admin-runtime-contracts.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 360,
+      "area": "Qualidade, regressão e observabilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/adminRuntimeMonitor.js",
+        "scripts/validate-admin-stability.mjs",
+        "scripts/validate-admin-runtime-contracts.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 361,
+      "area": "Qualidade, regressão e observabilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/adminRuntimeMonitor.js",
+        "scripts/validate-admin-stability.mjs",
+        "scripts/validate-admin-runtime-contracts.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 362,
+      "area": "Qualidade, regressão e observabilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/adminRuntimeMonitor.js",
+        "scripts/validate-admin-stability.mjs",
+        "scripts/validate-admin-runtime-contracts.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 363,
+      "area": "Qualidade, regressão e observabilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/adminRuntimeMonitor.js",
+        "scripts/validate-admin-stability.mjs",
+        "scripts/validate-admin-runtime-contracts.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 364,
+      "area": "Qualidade, regressão e observabilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/adminRuntimeMonitor.js",
+        "scripts/validate-admin-stability.mjs",
+        "scripts/validate-admin-runtime-contracts.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 365,
+      "area": "Qualidade, regressão e observabilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/adminRuntimeMonitor.js",
+        "scripts/validate-admin-stability.mjs",
+        "scripts/validate-admin-runtime-contracts.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 366,
+      "area": "Qualidade, regressão e observabilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/adminRuntimeMonitor.js",
+        "scripts/validate-admin-stability.mjs",
+        "scripts/validate-admin-runtime-contracts.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 367,
+      "area": "Qualidade, regressão e observabilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/adminRuntimeMonitor.js",
+        "scripts/validate-admin-stability.mjs",
+        "scripts/validate-admin-runtime-contracts.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 368,
+      "area": "Qualidade, regressão e observabilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/adminRuntimeMonitor.js",
+        "scripts/validate-admin-stability.mjs",
+        "scripts/validate-admin-runtime-contracts.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 369,
+      "area": "Qualidade, regressão e observabilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/adminRuntimeMonitor.js",
+        "scripts/validate-admin-stability.mjs",
+        "scripts/validate-admin-runtime-contracts.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 370,
+      "area": "Qualidade, regressão e observabilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/adminRuntimeMonitor.js",
+        "scripts/validate-admin-stability.mjs",
+        "scripts/validate-admin-runtime-contracts.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 371,
+      "area": "Qualidade, regressão e observabilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/adminRuntimeMonitor.js",
+        "scripts/validate-admin-stability.mjs",
+        "scripts/validate-admin-runtime-contracts.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 372,
+      "area": "Qualidade, regressão e observabilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/adminRuntimeMonitor.js",
+        "scripts/validate-admin-stability.mjs",
+        "scripts/validate-admin-runtime-contracts.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 373,
+      "area": "Qualidade, regressão e observabilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/adminRuntimeMonitor.js",
+        "scripts/validate-admin-stability.mjs",
+        "scripts/validate-admin-runtime-contracts.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 374,
+      "area": "Qualidade, regressão e observabilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/adminRuntimeMonitor.js",
+        "scripts/validate-admin-stability.mjs",
+        "scripts/validate-admin-runtime-contracts.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 375,
+      "area": "Qualidade, regressão e observabilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/adminRuntimeMonitor.js",
+        "scripts/validate-admin-stability.mjs",
+        "scripts/validate-admin-runtime-contracts.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 376,
+      "area": "Qualidade, regressão e observabilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/adminRuntimeMonitor.js",
+        "scripts/validate-admin-stability.mjs",
+        "scripts/validate-admin-runtime-contracts.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 377,
+      "area": "Qualidade, regressão e observabilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/adminRuntimeMonitor.js",
+        "scripts/validate-admin-stability.mjs",
+        "scripts/validate-admin-runtime-contracts.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 378,
+      "area": "Qualidade, regressão e observabilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/adminRuntimeMonitor.js",
+        "scripts/validate-admin-stability.mjs",
+        "scripts/validate-admin-runtime-contracts.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 379,
+      "area": "Qualidade, regressão e observabilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/adminRuntimeMonitor.js",
+        "scripts/validate-admin-stability.mjs",
+        "scripts/validate-admin-runtime-contracts.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 380,
+      "area": "Qualidade, regressão e observabilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/adminRuntimeMonitor.js",
+        "scripts/validate-admin-stability.mjs",
+        "scripts/validate-admin-runtime-contracts.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 381,
+      "area": "Qualidade, regressão e observabilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/adminRuntimeMonitor.js",
+        "scripts/validate-admin-stability.mjs",
+        "scripts/validate-admin-runtime-contracts.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 382,
+      "area": "Qualidade, regressão e observabilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/adminRuntimeMonitor.js",
+        "scripts/validate-admin-stability.mjs",
+        "scripts/validate-admin-runtime-contracts.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 383,
+      "area": "Qualidade, regressão e observabilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/adminRuntimeMonitor.js",
+        "scripts/validate-admin-stability.mjs",
+        "scripts/validate-admin-runtime-contracts.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 384,
+      "area": "Qualidade, regressão e observabilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/adminRuntimeMonitor.js",
+        "scripts/validate-admin-stability.mjs",
+        "scripts/validate-admin-runtime-contracts.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 385,
+      "area": "Qualidade, regressão e observabilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/adminRuntimeMonitor.js",
+        "scripts/validate-admin-stability.mjs",
+        "scripts/validate-admin-runtime-contracts.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 386,
+      "area": "Qualidade, regressão e observabilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/adminRuntimeMonitor.js",
+        "scripts/validate-admin-stability.mjs",
+        "scripts/validate-admin-runtime-contracts.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 387,
+      "area": "Qualidade, regressão e observabilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/adminRuntimeMonitor.js",
+        "scripts/validate-admin-stability.mjs",
+        "scripts/validate-admin-runtime-contracts.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 388,
+      "area": "Qualidade, regressão e observabilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/adminRuntimeMonitor.js",
+        "scripts/validate-admin-stability.mjs",
+        "scripts/validate-admin-runtime-contracts.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 389,
+      "area": "Qualidade, regressão e observabilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/adminRuntimeMonitor.js",
+        "scripts/validate-admin-stability.mjs",
+        "scripts/validate-admin-runtime-contracts.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 390,
+      "area": "Qualidade, regressão e observabilidade",
+      "status": "implemented",
+      "evidence": [
+        "src/adminRuntimeMonitor.js",
+        "scripts/validate-admin-stability.mjs",
+        "scripts/validate-admin-runtime-contracts.mjs",
+        "scripts/validate-admin-shell-v2-browser.mjs"
+      ]
+    },
+    {
+      "id": 391,
+      "area": "Refinamento premium e preferências",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css"
+      ]
+    },
+    {
+      "id": 392,
+      "area": "Refinamento premium e preferências",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css"
+      ]
+    },
+    {
+      "id": 393,
+      "area": "Refinamento premium e preferências",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css"
+      ]
+    },
+    {
+      "id": 394,
+      "area": "Refinamento premium e preferências",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css"
+      ]
+    },
+    {
+      "id": 395,
+      "area": "Refinamento premium e preferências",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css"
+      ]
+    },
+    {
+      "id": 396,
+      "area": "Refinamento premium e preferências",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css"
+      ]
+    },
+    {
+      "id": 397,
+      "area": "Refinamento premium e preferências",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css"
+      ]
+    },
+    {
+      "id": 398,
+      "area": "Refinamento premium e preferências",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css"
+      ]
+    },
+    {
+      "id": 399,
+      "area": "Refinamento premium e preferências",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css"
+      ]
+    },
+    {
+      "id": 400,
+      "area": "Refinamento premium e preferências",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css"
+      ]
+    },
+    {
+      "id": 401,
+      "area": "Refinamento premium e preferências",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css"
+      ]
+    },
+    {
+      "id": 402,
+      "area": "Refinamento premium e preferências",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css"
+      ]
+    },
+    {
+      "id": 403,
+      "area": "Refinamento premium e preferências",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css"
+      ]
+    },
+    {
+      "id": 404,
+      "area": "Refinamento premium e preferências",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css"
+      ]
+    },
+    {
+      "id": 405,
+      "area": "Refinamento premium e preferências",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css"
+      ]
+    },
+    {
+      "id": 406,
+      "area": "Refinamento premium e preferências",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css"
+      ]
+    },
+    {
+      "id": 407,
+      "area": "Refinamento premium e preferências",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css"
+      ]
+    },
+    {
+      "id": 408,
+      "area": "Refinamento premium e preferências",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css"
+      ]
+    },
+    {
+      "id": 409,
+      "area": "Refinamento premium e preferências",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css"
+      ]
+    },
+    {
+      "id": 410,
+      "area": "Refinamento premium e preferências",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css"
+      ]
+    },
+    {
+      "id": 411,
+      "area": "Refinamento premium e preferências",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css"
+      ]
+    },
+    {
+      "id": 412,
+      "area": "Refinamento premium e preferências",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css"
+      ]
+    },
+    {
+      "id": 413,
+      "area": "Refinamento premium e preferências",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css"
+      ]
+    },
+    {
+      "id": 414,
+      "area": "Refinamento premium e preferências",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css"
+      ]
+    },
+    {
+      "id": 415,
+      "area": "Refinamento premium e preferências",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css"
+      ]
+    },
+    {
+      "id": 416,
+      "area": "Refinamento premium e preferências",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css"
+      ]
+    },
+    {
+      "id": 417,
+      "area": "Refinamento premium e preferências",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css"
+      ]
+    },
+    {
+      "id": 418,
+      "area": "Refinamento premium e preferências",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css"
+      ]
+    },
+    {
+      "id": 419,
+      "area": "Refinamento premium e preferências",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css"
+      ]
+    },
+    {
+      "id": 420,
+      "area": "Refinamento premium e preferências",
+      "status": "implemented",
+      "evidence": [
+        "src/App.jsx",
+        "src/AdminExperienceV2.css"
+      ]
+    },
+    {
+      "id": 421,
+      "area": "Segurança operacional e proteção de mutações",
+      "status": "implemented",
+      "evidence": [
+        "src/adminApi.js",
+        "src/utils/uiDialog.js",
+        "src/App.jsx"
+      ]
+    },
+    {
+      "id": 422,
+      "area": "Segurança operacional e proteção de mutações",
+      "status": "implemented",
+      "evidence": [
+        "src/adminApi.js",
+        "src/utils/uiDialog.js",
+        "src/App.jsx"
+      ]
+    },
+    {
+      "id": 423,
+      "area": "Segurança operacional e proteção de mutações",
+      "status": "implemented",
+      "evidence": [
+        "src/adminApi.js",
+        "src/utils/uiDialog.js",
+        "src/App.jsx"
+      ]
+    },
+    {
+      "id": 424,
+      "area": "Segurança operacional e proteção de mutações",
+      "status": "implemented",
+      "evidence": [
+        "src/adminApi.js",
+        "src/utils/uiDialog.js",
+        "src/App.jsx"
+      ]
+    },
+    {
+      "id": 425,
+      "area": "Segurança operacional e proteção de mutações",
+      "status": "implemented",
+      "evidence": [
+        "src/adminApi.js",
+        "src/utils/uiDialog.js",
+        "src/App.jsx"
+      ]
+    },
+    {
+      "id": 426,
+      "area": "Segurança operacional e proteção de mutações",
+      "status": "implemented",
+      "evidence": [
+        "src/adminApi.js",
+        "src/utils/uiDialog.js",
+        "src/App.jsx"
+      ]
+    },
+    {
+      "id": 427,
+      "area": "Segurança operacional e proteção de mutações",
+      "status": "implemented",
+      "evidence": [
+        "src/adminApi.js",
+        "src/utils/uiDialog.js",
+        "src/App.jsx"
+      ]
+    },
+    {
+      "id": 428,
+      "area": "Segurança operacional e proteção de mutações",
+      "status": "implemented",
+      "evidence": [
+        "src/adminApi.js",
+        "src/utils/uiDialog.js",
+        "src/App.jsx"
+      ]
+    },
+    {
+      "id": 429,
+      "area": "Segurança operacional e proteção de mutações",
+      "status": "implemented",
+      "evidence": [
+        "src/adminApi.js",
+        "src/utils/uiDialog.js",
+        "src/App.jsx"
+      ]
+    },
+    {
+      "id": 430,
+      "area": "Segurança operacional e proteção de mutações",
+      "status": "implemented",
+      "evidence": [
+        "src/adminApi.js",
+        "src/utils/uiDialog.js",
+        "src/App.jsx"
+      ]
+    },
+    {
+      "id": 431,
+      "area": "Segurança operacional e proteção de mutações",
+      "status": "implemented",
+      "evidence": [
+        "src/adminApi.js",
+        "src/utils/uiDialog.js",
+        "src/App.jsx"
+      ]
+    },
+    {
+      "id": 432,
+      "area": "Segurança operacional e proteção de mutações",
+      "status": "implemented",
+      "evidence": [
+        "src/adminApi.js",
+        "src/utils/uiDialog.js",
+        "src/App.jsx"
+      ]
+    },
+    {
+      "id": 433,
+      "area": "Segurança operacional e proteção de mutações",
+      "status": "implemented",
+      "evidence": [
+        "src/adminApi.js",
+        "src/utils/uiDialog.js",
+        "src/App.jsx"
+      ]
+    },
+    {
+      "id": 434,
+      "area": "Segurança operacional e proteção de mutações",
+      "status": "implemented",
+      "evidence": [
+        "src/adminApi.js",
+        "src/utils/uiDialog.js",
+        "src/App.jsx"
+      ]
+    },
+    {
+      "id": 435,
+      "area": "Segurança operacional e proteção de mutações",
+      "status": "implemented",
+      "evidence": [
+        "src/adminApi.js",
+        "src/utils/uiDialog.js",
+        "src/App.jsx"
+      ]
+    },
+    {
+      "id": 436,
+      "area": "Segurança operacional e proteção de mutações",
+      "status": "implemented",
+      "evidence": [
+        "src/adminApi.js",
+        "src/utils/uiDialog.js",
+        "src/App.jsx"
+      ]
+    },
+    {
+      "id": 437,
+      "area": "Segurança operacional e proteção de mutações",
+      "status": "implemented",
+      "evidence": [
+        "src/adminApi.js",
+        "src/utils/uiDialog.js",
+        "src/App.jsx"
+      ]
+    },
+    {
+      "id": 438,
+      "area": "Segurança operacional e proteção de mutações",
+      "status": "implemented",
+      "evidence": [
+        "src/adminApi.js",
+        "src/utils/uiDialog.js",
+        "src/App.jsx"
+      ]
+    },
+    {
+      "id": 439,
+      "area": "Segurança operacional e proteção de mutações",
+      "status": "implemented",
+      "evidence": [
+        "src/adminApi.js",
+        "src/utils/uiDialog.js",
+        "src/App.jsx"
+      ]
+    },
+    {
+      "id": 440,
+      "area": "Segurança operacional e proteção de mutações",
+      "status": "implemented",
+      "evidence": [
+        "src/adminApi.js",
+        "src/utils/uiDialog.js",
+        "src/App.jsx"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,2 @@
+.est-feedback.error{position:fixed;z-index:260;top:92px;right:24px;width:min(430px,calc(100vw - 48px));margin:0;box-shadow:0 22px 70px rgba(0,0,0,.5);backdrop-filter:blur(12px)}
+@media(max-width:760px){.est-feedback.error{top:72px;right:12px;width:calc(100vw - 24px)}}

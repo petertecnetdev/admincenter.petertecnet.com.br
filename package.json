@@ -1,0 +1,35 @@
+{
+  "name": "admincenter.petertecnet.com.br",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite",
+    "validate:responsive": "node scripts/validate-admin-responsive.mjs",
+    "validate:dialogs": "node scripts/validate-no-native-dialogs.mjs",
+    "validate:dialog-a11y": "node scripts/validate-dialog-a11y.mjs",
+    "validate:user-communication": "node scripts/validate-user-communication-ui.mjs",
+    "validate:login-a11y": "node scripts/validate-admin-login-a11y.mjs",
+    "validate:support-race": "node scripts/validate-support-request-race.mjs",
+    "build": "npm run validate:dialogs && npm run validate:dialog-a11y && npm run validate:responsive && npm run validate:user-communication && npm run validate:login-a11y && npm run validate:support-race && npm run validate:stability && npm run validate:performance && npm run validate:runtime && npm run validate:architecture && vite build && npm run validate:bundle",
+    "lint": "oxlint src/App.jsx src/main.jsx src/AdminModuleBoundary.jsx src/AdminApplicationsCenter.jsx src/ImportantEventsCenter.jsx src/adminPersistence.js src/missionControlRealtime.js src/AdminUserDetailExperience.jsx src/AdminUsersCenter.jsx src/AdminEstablishmentsPageV2.jsx src/AdminItemsManager.jsx src/NotificationsCenter.jsx src/AgentChatPanel.jsx src/SupportAdminApp.jsx src/PwaInstallButton.jsx src/AdminProspectInvitation.jsx src/AdminUserDetailPage.jsx src/AdminImpersonation.jsx src/AdminPayoutCenter.jsx src/utils/uiDialog.js src/adminApi.js src/adminRuntimeMonitor.js src/useDialogFocus.js src/services/googleIdentity.js scripts",
+    "validate:stability": "node scripts/validate-admin-stability.mjs",
+    "validate:performance": "node scripts/validate-admin-performance-contracts.mjs",
+    "validate:runtime": "node scripts/validate-admin-runtime-contracts.mjs",
+    "validate:architecture": "node scripts/validate-admin-architecture.mjs",
+    "validate:shell-browser": "node scripts/validate-admin-shell-v2-browser.mjs",
+    "validate:bundle": "node scripts/validate-admin-bundle-budget.mjs",
+    "validate:all": "npm run lint && npm run build && npm run validate:shell-browser"
+  },
+  "dependencies": {
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.18",
+    "@types/react-dom": "^19.2.4",
+    "@vitejs/plugin-react": "^6.1.0",
+    "oxlint": "^1.79.0",
+    "vite": "^8.2.2"
+  }
+}

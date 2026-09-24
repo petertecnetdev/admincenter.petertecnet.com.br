@@ -1,0 +1,945 @@
+/*
+ * Peter Tecnet Admin Center — responsive hardening layer
+ * Imported after all foundational Admin Center styles.
+ * Keeps every administrative surface inside the viewport while preserving
+ * local scrolling for data-dense controls such as tables and pickers.
+ */
+
+html,
+body,
+#root {
+  width: 100%;
+  max-width: 100%;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  text-size-adjust: 100%;
+}
+
+body {
+  overflow-x: hidden;
+}
+
+#root,
+.admin-shell,
+.workspace,
+.content,
+.content > *,
+.panel,
+.panel > *,
+.section-anchor,
+.analytics-grid > *,
+.operations-grid > *,
+.metrics-grid > *,
+.apps-grid > *,
+.financial-strip > *,
+.topbar > *,
+.top-actions > *,
+.establishments-admin-integration,
+.establishments-admin-integration > *,
+.est-panel,
+.est-panel > *,
+.est-filter-grid > *,
+.est-form-grid > *,
+.est-app-selector > *,
+.est-toggle-grid > *,
+.notifications-layout > *,
+.notification-form-grid > *,
+.notification-metrics > * {
+  min-width: 0;
+}
+
+.admin-shell {
+  min-height: 100vh;
+  min-height: 100dvh;
+  overflow-x: clip;
+}
+
+.content {
+  max-width: 100%;
+  overflow: visible;
+  padding-bottom: max(80px, calc(48px + env(safe-area-inset-bottom)));
+}
+
+.panel,
+.metric-card,
+.app-card,
+.est-panel,
+.est-metric,
+.notification-composer,
+.notification-guidance,
+.notification-history,
+.notification-metrics > div {
+  max-width: 100%;
+}
+
+.hero-section h1,
+.section-heading h2,
+.panel h3,
+.metric-card strong,
+.metric-card p,
+.app-card h3,
+.app-card p,
+.alert-row b,
+.alert-row small,
+.timeline-row b,
+.timeline-row small,
+.search-result b,
+.search-result small,
+.launcher-grid b,
+.launcher-grid small,
+.est-heading h2,
+.est-panel-head h3,
+.est-panel-head p,
+.est-identity b,
+.est-identity small,
+.est-owner b,
+.est-owner small,
+.est-location b,
+.est-location small,
+.notifications-heading h2,
+.notification-composer h3,
+.notification-guidance h3,
+.notification-history h3,
+.notification-table td,
+.user-results b,
+.user-results small {
+  overflow-wrap: anywhere;
+  word-break: normal;
+}
+
+/* Data surfaces scroll locally instead of widening the whole application. */
+.table-wrap,
+.est-table-wrap,
+.notification-table-wrap,
+.launcher-grid,
+.search-popover,
+.user-results {
+  max-width: 100%;
+  overscroll-behavior: contain;
+  -webkit-overflow-scrolling: touch;
+}
+
+.table-wrap,
+.est-table-wrap,
+.notification-table-wrap {
+  scrollbar-gutter: stable;
+}
+
+.table-wrap:focus-within,
+.est-table-wrap:focus-within,
+.notification-table-wrap:focus-within {
+  outline: 1px solid rgba(64, 214, 239, .18);
+  outline-offset: -1px;
+}
+
+/* Desktop / notebook widths: avoid six tiny KPI cards after the fixed sidebar. */
+@media (max-width: 1500px) {
+  .metrics-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .apps-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .est-metrics-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1180px) {
+  .financial-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .financial-strip > div:nth-child(2n) {
+    border-right: 0;
+  }
+
+  .financial-strip > div:nth-child(-n + 2) {
+    border-bottom: 1px solid rgba(141, 204, 216, .07);
+  }
+
+  .notifications-layout {
+    grid-template-columns: minmax(0, 1fr);
+  }
+}
+
+/* Tablet and mobile shell. */
+@media (max-width: 980px) {
+  :root {
+    --sidebar: min(320px, 88vw);
+  }
+
+  .sidebar {
+    width: var(--sidebar);
+    max-width: 88vw;
+    padding-top: max(18px, env(safe-area-inset-top));
+    padding-bottom: max(16px, env(safe-area-inset-bottom));
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  .sidebar nav {
+    flex: 0 0 auto;
+  }
+
+  .workspace {
+    width: 100%;
+    margin-left: 0;
+  }
+
+  .topbar {
+    width: 100%;
+    max-width: 100vw;
+  }
+
+  .hamburger,
+  .icon-button,
+  .ecosystem-button {
+    flex: 0 0 auto;
+    min-width: 42px;
+    min-height: 42px;
+  }
+
+  .top-search {
+    min-width: 0;
+    max-width: 100%;
+  }
+
+  .top-actions {
+    flex: 0 0 auto;
+  }
+
+  .analytics-grid,
+  .operations-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .apps-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .est-filter-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .est-modal-backdrop {
+    padding-top: max(12px, env(safe-area-inset-top));
+    padding-right: max(12px, env(safe-area-inset-right));
+    padding-bottom: max(12px, env(safe-area-inset-bottom));
+    padding-left: max(12px, env(safe-area-inset-left));
+  }
+}
+
+/* Tablet portrait: prioritize content over decorative login copy. */
+@media (max-width: 880px) {
+  .login-screen {
+    grid-template-columns: minmax(0, 1fr);
+    min-height: 100vh;
+    min-height: 100dvh;
+  }
+
+  .login-copy {
+    display: none;
+  }
+
+  .login-panel {
+    min-height: 100vh;
+    min-height: 100dvh;
+    padding-top: max(22px, env(safe-area-inset-top));
+    padding-right: max(22px, env(safe-area-inset-right));
+    padding-bottom: max(22px, env(safe-area-inset-bottom));
+    padding-left: max(22px, env(safe-area-inset-left));
+  }
+
+  .login-card {
+    width: min(100%, 460px);
+  }
+}
+
+@media (max-width: 760px) {
+  .content {
+    padding-left: max(14px, env(safe-area-inset-left));
+    padding-right: max(14px, env(safe-area-inset-right));
+  }
+
+  .topbar {
+    min-height: 66px;
+    height: auto;
+    gap: 8px;
+    padding-top: max(8px, env(safe-area-inset-top));
+    padding-right: max(12px, env(safe-area-inset-right));
+    padding-bottom: 8px;
+    padding-left: max(12px, env(safe-area-inset-left));
+  }
+
+  .top-search {
+    flex: 1 1 auto;
+    width: auto;
+  }
+
+  /* Refresh remains available on phones instead of disappearing. */
+  .icon-button {
+    display: grid;
+    place-items: center;
+    width: 40px;
+    height: 40px;
+  }
+
+  .ecosystem-button {
+    width: 40px;
+    height: 40px;
+  }
+
+  .search-popover,
+  .launcher-popover {
+    top: calc(74px + env(safe-area-inset-top));
+    left: max(8px, env(safe-area-inset-left));
+    right: max(8px, env(safe-area-inset-right));
+    width: auto;
+    max-width: none;
+    max-height: min(72vh, calc(100dvh - 92px));
+  }
+
+  .hero-section,
+  .section-heading,
+  .panel > header,
+  .notice {
+    min-width: 0;
+  }
+
+  .hero-section {
+    align-items: stretch;
+  }
+
+  .health-chip {
+    width: 100%;
+    max-width: 420px;
+  }
+
+  .metrics-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .metric-card {
+    min-height: 124px;
+  }
+
+  .panel > header {
+    flex-wrap: wrap;
+  }
+
+  .chart-summary,
+  .bar-row > div,
+  .app-card-head,
+  .app-stats,
+  .notice {
+    max-width: 100%;
+  }
+
+  .chart-summary > span {
+    min-width: 0;
+  }
+
+  .notice {
+    align-items: flex-start;
+    flex-wrap: wrap;
+  }
+
+  .notice button {
+    margin-left: 0;
+  }
+
+  .apps-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .timeline-row > div {
+    min-width: 0;
+  }
+
+  .launcher-grid > a,
+  .user-results > button {
+    min-width: 0;
+  }
+
+  /* Establishments */
+  .est-heading,
+  .est-panel-head {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .est-panel-head {
+    gap: 10px;
+  }
+
+  .est-filter-grid,
+  .est-form-grid,
+  .est-app-selector,
+  .est-toggle-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .est-table td,
+  .est-table td > * {
+    min-width: 0;
+  }
+
+  .est-identity small,
+  .est-owner small,
+  .est-location small {
+    max-width: 100%;
+    white-space: normal;
+  }
+
+  .est-action-menu button,
+  .est-primary-button,
+  .est-secondary-button,
+  .est-danger-button,
+  .owner-transfer-button {
+    min-height: 44px;
+  }
+
+  .est-modal,
+  .est-confirm-modal {
+    max-width: 100%;
+    max-height: calc(100dvh - 20px);
+    overflow-y: auto;
+    overscroll-behavior: contain;
+  }
+
+  .est-modal-head {
+    position: sticky;
+    top: 0;
+    z-index: 3;
+    background: linear-gradient(90deg, #0a1c24, #06151c);
+  }
+
+  .est-modal-actions {
+    position: sticky;
+    bottom: 0;
+    z-index: 3;
+    padding-bottom: max(17px, env(safe-area-inset-bottom));
+    background: rgba(4, 13, 18, .97);
+    backdrop-filter: blur(12px);
+  }
+
+  .est-feedback.error {
+    top: calc(74px + env(safe-area-inset-top));
+    right: max(10px, env(safe-area-inset-right));
+    left: max(10px, env(safe-area-inset-left));
+    width: auto;
+    max-width: none;
+  }
+
+  /* Notifications */
+  .notifications-heading,
+  .history-head,
+  .notification-composer > footer {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .notification-refresh,
+  .secondary-notification-button,
+  .send-notification-button,
+  .history-filters button {
+    min-height: 44px;
+  }
+
+  .notification-form-grid,
+  .audience-options {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .notification-composer fieldset,
+  .notification-composer > header,
+  .notification-composer > footer,
+  .notification-guidance,
+  .history-head {
+    min-width: 0;
+  }
+
+  .selected-users button {
+    max-width: 100%;
+    overflow-wrap: anywhere;
+  }
+
+  .user-results {
+    max-height: min(280px, 42dvh);
+  }
+}
+
+/* Phones: data tables become readable cards rather than forcing page overflow. */
+@media (max-width: 640px) {
+  .table-wrap {
+    overflow: visible;
+  }
+
+  .table-wrap table {
+    display: block;
+    min-width: 0;
+    width: 100%;
+  }
+
+  .table-wrap thead {
+    display: none;
+  }
+
+  .table-wrap tbody {
+    display: grid;
+    gap: 10px;
+    padding: 10px;
+  }
+
+  .table-wrap tr {
+    display: block;
+    min-width: 0;
+    border: 1px solid rgba(145, 207, 219, .08);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, .012);
+    overflow: hidden;
+  }
+
+  .table-wrap td {
+    display: grid;
+    grid-template-columns: minmax(92px, .42fr) minmax(0, 1fr);
+    gap: 10px;
+    min-width: 0;
+    padding: 10px 12px;
+    border-bottom: 1px solid rgba(145, 207, 219, .055);
+    white-space: normal;
+  }
+
+  .table-wrap td:last-child {
+    border-bottom: 0;
+  }
+
+  .table-wrap td::before {
+    color: #58757d;
+    font-size: .54rem;
+    font-weight: 800;
+    letter-spacing: .05em;
+    text-transform: uppercase;
+  }
+
+  .table-wrap td:nth-child(1)::before { content: 'Aplicação'; }
+  .table-wrap td:nth-child(2)::before { content: 'Transações'; }
+  .table-wrap td:nth-child(3)::before { content: 'Volume bruto'; }
+  .table-wrap td:nth-child(4)::before { content: 'Taxa Peter'; }
+  .table-wrap td:nth-child(5)::before { content: 'Líquido'; }
+
+  .table-wrap td[colspan] {
+    display: block;
+  }
+
+  .table-wrap td[colspan]::before {
+    display: none;
+  }
+
+  .notification-table-wrap {
+    overflow: visible;
+    padding: 10px;
+  }
+
+  .notification-table,
+  .notification-table tbody {
+    display: block;
+    width: 100%;
+    min-width: 0;
+  }
+
+  .notification-table thead {
+    display: none;
+  }
+
+  .notification-table tbody {
+    display: grid;
+    gap: 10px;
+  }
+
+  .notification-table tr {
+    display: block;
+    min-width: 0;
+    border: 1px solid rgba(145, 211, 223, .09);
+    border-radius: 12px;
+    background: rgba(255, 255, 255, .012);
+    overflow: hidden;
+  }
+
+  .notification-table td {
+    display: grid;
+    grid-template-columns: minmax(86px, .38fr) minmax(0, 1fr);
+    gap: 9px;
+    align-items: start;
+    min-width: 0;
+    padding: 10px 11px;
+    border-bottom: 1px solid rgba(145, 211, 223, .055);
+    white-space: normal;
+  }
+
+  .notification-table td:last-child {
+    border-bottom: 0;
+  }
+
+  .notification-table td::before {
+    color: #506d75;
+    font-size: .52rem;
+    font-weight: 800;
+    letter-spacing: .06em;
+    text-transform: uppercase;
+  }
+
+  .notification-table td:nth-child(1)::before { content: 'Campanha'; }
+  .notification-table td:nth-child(2)::before { content: 'Público'; }
+  .notification-table td:nth-child(3)::before { content: 'Tipo'; }
+  .notification-table td:nth-child(4)::before { content: 'Entrega'; }
+  .notification-table td:nth-child(5)::before { content: 'Leitura'; }
+  .notification-table td:nth-child(6)::before { content: 'Enviada em'; }
+  .notification-table td:nth-child(7)::before { content: 'Status'; }
+
+  .notification-table td[colspan] {
+    display: block;
+  }
+
+  .notification-table td[colspan]::before {
+    display: none;
+  }
+
+  .notification-table td > small {
+    max-width: 100%;
+    white-space: normal;
+  }
+
+  .history-pagination {
+    justify-content: space-between;
+    flex-wrap: wrap;
+  }
+}
+
+@media (max-width: 560px) {
+  .top-search {
+    grid-template-columns: 30px minmax(0, 1fr);
+  }
+
+  .top-search kbd {
+    display: none;
+  }
+
+  .top-search input {
+    min-width: 0;
+  }
+
+  .hero-section h1 {
+    font-size: clamp(1.9rem, 10vw, 2.35rem);
+  }
+
+  .section-heading h2 {
+    font-size: clamp(1.35rem, 7vw, 1.8rem);
+  }
+
+  .financial-strip {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .financial-strip > div {
+    border-right: 0;
+    border-bottom: 1px solid rgba(141, 204, 216, .07);
+  }
+
+  .financial-strip > div:last-child {
+    border-bottom: 0;
+  }
+
+  .notification-metrics {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .history-filters {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .history-filters button {
+    grid-column: auto;
+  }
+
+  .notification-composer > footer > div,
+  .audience-preview {
+    min-width: 0;
+  }
+
+  .send-notification-button,
+  .notification-refresh {
+    width: 100%;
+  }
+}
+
+@media (max-width: 420px) {
+  .login-panel {
+    padding-top: max(14px, env(safe-area-inset-top));
+    padding-right: max(12px, env(safe-area-inset-right));
+    padding-bottom: max(14px, env(safe-area-inset-bottom));
+    padding-left: max(12px, env(safe-area-inset-left));
+  }
+
+  .login-card {
+    padding: 24px 18px;
+    border-radius: 18px;
+  }
+
+  .login-mark {
+    width: 54px;
+    height: 54px;
+    margin-bottom: 18px;
+  }
+
+  .login-card h2 {
+    font-size: 1.9rem;
+  }
+
+  .topbar {
+    padding-left: 8px;
+    padding-right: 8px;
+    gap: 6px;
+  }
+
+  .hamburger,
+  .icon-button,
+  .ecosystem-button {
+    width: 38px;
+    min-width: 38px;
+    height: 40px;
+    min-height: 40px;
+  }
+
+  .top-actions {
+    gap: 4px;
+  }
+
+  .top-search {
+    height: 40px;
+  }
+
+  .top-search > span {
+    font-size: .95rem;
+  }
+
+  .top-search input {
+    font-size: .72rem;
+  }
+
+  .content {
+    padding-left: 10px;
+    padding-right: 10px;
+  }
+
+  .metrics-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .metric-card {
+    min-height: 108px;
+  }
+
+  .pulse-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .pulse-grid > div,
+  .pulse-grid > div:nth-child(2n),
+  .pulse-grid > div:nth-last-child(-n + 2) {
+    border-right: 0;
+    border-bottom: 1px solid rgba(144, 207, 218, .07);
+  }
+
+  .pulse-grid > div:last-child {
+    border-bottom: 0;
+  }
+
+  .app-stats {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .timeline-row {
+    grid-template-columns: 12px minmax(0, 1fr);
+  }
+
+  .timeline-row time {
+    grid-column: 2;
+    justify-self: start;
+  }
+
+  .launcher-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .est-table td,
+  .table-wrap td,
+  .notification-table td {
+    grid-template-columns: minmax(72px, .36fr) minmax(0, 1fr);
+  }
+
+  .est-modal-backdrop {
+    padding: 6px;
+  }
+
+  .est-modal,
+  .est-confirm-modal {
+    border-radius: 12px;
+    max-height: calc(100dvh - 12px);
+  }
+
+  .est-form-section,
+  .est-modal-head,
+  .est-modal-actions {
+    padding-left: 13px;
+    padding-right: 13px;
+  }
+}
+
+@media (max-width: 360px) {
+  .top-search > span {
+    display: none;
+  }
+
+  .top-search {
+    grid-template-columns: minmax(0, 1fr);
+    padding-left: 9px;
+  }
+
+  .top-search input::placeholder {
+    color: transparent;
+  }
+
+  .est-metrics-grid {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .est-table td,
+  .table-wrap td,
+  .notification-table td {
+    display: block;
+  }
+
+  .est-table td::before,
+  .table-wrap td::before,
+  .notification-table td::before {
+    display: block;
+    margin-bottom: 5px;
+  }
+}
+
+/* Short landscape screens: keep controls reachable without clipping. */
+@media (max-height: 620px) and (orientation: landscape) {
+  .login-screen {
+    grid-template-columns: minmax(0, 1fr);
+  }
+
+  .login-copy {
+    display: none;
+  }
+
+  .login-panel {
+    min-height: 100dvh;
+    place-items: start center;
+    overflow-y: auto;
+  }
+
+  .login-card {
+    margin: 12px auto;
+  }
+
+  .sidebar {
+    overflow-y: auto;
+  }
+
+  .sidebar-status {
+    margin-top: 18px;
+  }
+
+  .est-modal-backdrop {
+    align-items: flex-start;
+  }
+}
+
+/* Touch devices should not depend on hover and interactive targets stay usable. */
+@media (hover: none), (pointer: coarse) {
+  .sidebar nav button,
+  .search-result,
+  .launcher-grid > a,
+  .est-action-menu button,
+  .history-filters button,
+  .history-pagination button,
+  .audience-options > button,
+  .user-results > button {
+    min-height: 44px;
+  }
+
+  .sidebar nav button > i {
+    opacity: .55;
+    transform: none;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: .01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: .01ms !important;
+  }
+}
+
+
+/* Mobile app ergonomics — readable, touch-friendly Admin Center */
+@media (max-width: 680px) {
+  .admin-shell { font-size: 16px; }
+  .content { padding-left: 14px; padding-right: 14px; }
+  .section-anchor { padding-top: 36px; }
+  .section-heading { align-items: flex-start; gap: 10px; margin-bottom: 16px; }
+  .section-heading > p { font-size: .92rem; line-height: 1.55; }
+  .panel { border-radius: 20px; }
+  .panel > header { min-height: 76px; padding: 18px; align-items: flex-start; }
+  .panel > header h3 { font-size: 1.05rem; line-height: 1.3; }
+  .panel > header p { font-size: .88rem; line-height: 1.45; margin-top: 6px; }
+  .metric-card p, .app-card > p, .alert-row small, .insight p, .pulse-grid span, .financial-strip span, .app-stats small, .empty-state { font-size: .86rem; line-height: 1.5; }
+  .metric-card strong, .financial-strip b { font-size: 1.2rem; }
+  .app-card { border-radius: 20px; padding: 18px; }
+  .app-card h3 { font-size: 1.05rem; }
+  .app-card > p { height: auto; min-height: 0; }
+  .app-state, .app-card > a, .app-stats b { font-size: .82rem; }
+  .top-search input { font-size: 1rem; }
+  .timeline { padding: 12px; display: grid; gap: 10px; }
+  .timeline-row { grid-template-columns: 14px minmax(0, 1fr); gap: 12px; align-items: flex-start; padding: 15px 14px; border: 1px solid rgba(144, 205, 217, .08); border-radius: 16px; background: rgba(8, 24, 31, .72); min-height: 78px; }
+  .timeline-row:last-child { border-bottom: 1px solid rgba(144, 205, 217, .08); }
+  .timeline-dot { width: 8px; height: 8px; margin-top: 7px; box-shadow: 0 0 0 6px rgba(66, 207, 231, .055); }
+  .timeline-row b { font-size: 1rem; line-height: 1.35; }
+  .timeline-row small { font-size: .9rem; line-height: 1.45; margin-top: 5px; color: #7897a0; }
+  .timeline-row time { grid-column: 2; justify-self: start; font-size: .82rem; line-height: 1.35; color: #6f8c94; margin-top: -2px; }
+  .alert-row { padding: 15px 4px; }
+  .alert-row b { font-size: .98rem; line-height: 1.35; }
+  .pulse-grid > div, .financial-strip > div { padding: 18px; }
+  .table-wrap table { min-width: 0; }
+  .table-wrap thead { display: none; }
+  .table-wrap tbody, .table-wrap tr, .table-wrap td { display: block; width: 100%; }
+  .table-wrap tr { margin: 10px 0; padding: 12px 14px; border: 1px solid rgba(144, 205, 217, .08); border-radius: 16px; background: rgba(8, 24, 31, .65); }
+  .table-wrap td { padding: 6px 0; border-bottom: 0; font-size: .9rem; line-height: 1.45; }
+  .table-wrap td b { font-size: .98rem; }
+}
+
+@media (max-width: 420px) {
+  .content { padding-left: 12px; padding-right: 12px; }
+  .top-search input { font-size: 1rem; }
+  .section-heading h2 { font-size: clamp(1.5rem, 7.5vw, 1.9rem); }
+  .timeline-row { padding: 15px 13px; }
+}

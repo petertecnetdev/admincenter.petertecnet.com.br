@@ -1,0 +1,104 @@
+/* Peter Tecnet Admin Center — sustainable quality layer.
+ * Low-specificity shared contracts only. Page-specific visuals stay in module CSS.
+ */
+@layer admin-quality {
+  :root {
+    --adm-focus-ring: 0 0 0 3px rgba(88,220,255,.16);
+    --adm-transition-fast: 140ms ease;
+    --adm-grid-min: 220px;
+  }
+
+  :where(.admin-shell) :where(button,a,input,select,textarea,[role="button"]) {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  :where(.admin-shell) :where(button,a,[role="button"]):focus-visible,
+  :where(.admin-shell) :where(input,select,textarea):focus-visible {
+    outline: 2px solid var(--adm-accent,#58dcff);
+    outline-offset: 2px;
+    box-shadow: var(--adm-focus-ring);
+  }
+
+  :where(.admin-shell) :where(button,.adm-button,[role="button"]) {
+    transition: transform var(--adm-transition-fast), border-color var(--adm-transition-fast), background-color var(--adm-transition-fast), color var(--adm-transition-fast), opacity var(--adm-transition-fast);
+  }
+
+  :where(.admin-shell) :where(button,.adm-button,[role="button"]):active:not(:disabled) {
+    transform: translateY(1px);
+  }
+
+  :where(.admin-shell) :where(button,input,select,textarea):disabled,
+  :where(.admin-shell) [aria-disabled="true"] {
+    cursor: not-allowed;
+    opacity: .52;
+  }
+
+  :where(.admin-shell) :where(.metric-card,.adm-kpi,.panel,.aac-card,.acu-card,.aep-card,.itm-card,.aud-card) {
+    content-visibility: auto;
+    contain-intrinsic-size: auto 180px;
+  }
+
+  :where(.admin-shell) :where(.metrics-grid,.aac-grid,.aep-grid,.itm-grid,.aud-grid) {
+    grid-template-columns: repeat(auto-fit,minmax(min(100%,var(--adm-grid-min)),1fr));
+  }
+
+  :where(.admin-shell) :where(.metric-card strong,.adm-kpi__value,.financial-strip b,.aac-metrics b,.acu-stat strong,.itm-metric b,.notification-metrics b,.aep-metric b,.aud-metric strong) {
+    font-variant-numeric: tabular-nums lining-nums;
+  }
+
+  :where(.admin-shell) :where(time,[data-date],.adm-date) {
+    font-variant-numeric: tabular-nums;
+  }
+
+  :where(.admin-shell) :where(.empty-state,.adm-inline-state) {
+    text-wrap: balance;
+  }
+
+  :where(.admin-shell) :where(.adm-status,.status-badge,.badge) {
+    line-height: 1.2;
+  }
+
+  :where(.admin-shell) :where(img,svg,video,canvas) {
+    max-inline-size: 100%;
+  }
+
+  :where(.admin-shell) img:not([width]):not([height]) {
+    height: auto;
+  }
+
+  @media (max-width:760px) {
+    :where(.admin-shell) :where(button,.adm-button,input,select,textarea) {
+      min-height: 44px;
+      max-inline-size: 100%;
+      box-sizing: border-box;
+    }
+
+    :where(.admin-shell) :where(input,select,textarea) {
+      min-inline-size: 0;
+      font-size: max(1rem,16px);
+    }
+  }
+
+  @media (prefers-reduced-motion:reduce) {
+    :where(.admin-shell) *,
+    :where(.admin-shell) *::before,
+    :where(.admin-shell) *::after {
+      scroll-behavior: auto;
+      animation-duration: .01ms;
+      animation-iteration-count: 1;
+      transition-duration: .01ms;
+    }
+  }
+
+  @media (prefers-contrast:more) {
+    :root {
+      --pt-line: rgba(205,239,247,.28);
+      --pt-line-strong: rgba(205,239,247,.52);
+      --pt-text-muted: #b8cbd1;
+    }
+
+    :where(.admin-shell) :where(.panel,.metric-card,.adm-kpi,.adm-filterbar,.adm-datatable-shell) {
+      border-color: currentColor;
+    }
+  }
+}

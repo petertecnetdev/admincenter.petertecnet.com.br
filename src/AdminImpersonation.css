@@ -1,0 +1,403 @@
+/* Admin Center — impersonation dialog
+ * Viewport-anchored, compact, responsive and intentionally independent
+ * from page/sidebar layout containers.
+ */
+
+body.aim-modal-open .admin-shell .content{
+  contain:style!important;
+}
+.aim-backdrop{
+  position:fixed;
+  inset:0;
+  z-index:10020;
+  display:flex;
+  align-items:center;
+  justify-content:center;
+  box-sizing:border-box;
+  min-width:100vw;
+  min-height:100dvh;
+  padding:clamp(14px,3vh,32px);
+  overflow:auto;
+  overscroll-behavior:contain;
+  background:rgba(1,7,14,.88);
+}
+
+.aim-dialog{
+  position:relative;
+  display:flex;
+  flex-direction:column;
+  width:min(720px,calc(100vw - 32px));
+  max-height:min(820px,calc(100dvh - 32px));
+  margin:auto;
+  overflow:hidden;
+  border:1px solid #1c3445;
+  border-radius:22px;
+  background:#07131e;
+  color:#edf8fb;
+  box-shadow:0 28px 90px rgba(0,0,0,.48);
+  isolation:isolate;
+}
+
+.aim-dialog::before{
+  content:"";
+  position:absolute;
+  inset:0 0 auto;
+  height:3px;
+  background:linear-gradient(90deg,#53d8ef,#6f78ff 54%,#a45dff);
+  pointer-events:none;
+}
+
+.aim-dialog--audit{width:min(920px,calc(100vw - 32px))}
+
+.aim-dialog>header{
+  display:flex;
+  align-items:flex-start;
+  justify-content:space-between;
+  gap:24px;
+  padding:26px 26px 22px;
+  border-bottom:1px solid #162b39;
+  background:#081722;
+}
+
+.aim-dialog>header>div{min-width:0;max-width:580px}
+.aim-dialog>header span,.aim-history>header span{
+  display:block;
+  margin-bottom:7px;
+  color:#9b85ff;
+  font-size:.68rem;
+  font-weight:900;
+  line-height:1.2;
+  letter-spacing:.14em;
+  text-transform:uppercase;
+}
+.aim-dialog>header h3{
+  margin:0;
+  color:#f5fbfd;
+  font-size:clamp(1.28rem,2vw,1.58rem);
+  line-height:1.2;
+  letter-spacing:-.025em;
+}
+.aim-dialog>header p{
+  margin:8px 0 0;
+  color:#91a9b3;
+  font-size:.9rem;
+  line-height:1.55;
+}
+
+.aim-close{
+  flex:0 0 auto;
+  display:grid;
+  place-items:center;
+  width:40px;
+  height:40px;
+  padding:0;
+  border:1px solid #203747;
+  border-radius:12px;
+  background:#0d1d29;
+  color:#cfe2e8;
+  font-size:1.35rem;
+  line-height:1;
+  cursor:pointer;
+  transition:background 140ms ease,border-color 140ms ease,color 140ms ease,transform 140ms ease;
+}
+.aim-close:hover:not(:disabled){
+  border-color:#35576c;
+  background:#122735;
+  color:#fff;
+  transform:translateY(-1px);
+}
+.aim-close:focus-visible{
+  outline:2px solid #63dff2;
+  outline-offset:2px;
+}
+
+.aim-identity{
+  display:grid;
+  grid-template-columns:48px minmax(0,1fr);
+  align-items:center;
+  gap:14px;
+  margin:20px 26px 0;
+  padding:14px 16px;
+  border:1px solid #1b3850;
+  border-radius:15px;
+  background:#0a1a28;
+}
+.aim-avatar{
+  display:grid;
+  place-items:center;
+  width:48px;
+  height:48px;
+  border:1px solid #7582ff;
+  border-radius:14px;
+  background:linear-gradient(145deg,#2563eb,#7c3aed);
+  color:#fff;
+  font-size:.95rem;
+  font-weight:900;
+  letter-spacing:.02em;
+}
+.aim-identity>div:last-child{min-width:0}
+.aim-identity strong,.aim-identity span{display:block}
+.aim-identity strong{
+  overflow:hidden;
+  color:#f5fbfd;
+  font-size:.98rem;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+.aim-identity span{
+  margin-top:4px;
+  overflow:hidden;
+  color:#879faa;
+  font-size:.8rem;
+  text-overflow:ellipsis;
+  white-space:nowrap;
+}
+
+.aim-form{
+  display:grid;
+  gap:16px;
+  padding:20px 26px 24px;
+  overflow-y:auto;
+  scrollbar-gutter:stable;
+}
+.aim-form label{
+  display:grid;
+  gap:8px;
+  color:#d7e6eb;
+  font-size:.82rem;
+  font-weight:800;
+}
+.aim-form select,.aim-form textarea{
+  width:100%;
+  box-sizing:border-box;
+  border:1px solid #254050;
+  border-radius:13px;
+  background:#071923;
+  color:#f6fbfd;
+  padding:12px 13px;
+  font:inherit;
+  font-size:.9rem;
+  line-height:1.35;
+  outline:none;
+  transition:border-color 140ms ease,box-shadow 140ms ease,background 140ms ease;
+}
+.aim-form select{min-height:46px}
+.aim-form textarea{
+  min-height:92px;
+  max-height:180px;
+  resize:vertical;
+}
+.aim-form select:hover,.aim-form textarea:hover{border-color:#31546a}
+.aim-form select:focus,.aim-form textarea:focus{
+  border-color:#5fcfe4;
+  background:#091d29;
+  box-shadow:0 0 0 3px rgba(95,207,228,.11);
+}
+.aim-form small{
+  color:#7f98a3;
+  font-size:.74rem;
+  font-weight:500;
+  line-height:1.45;
+}
+
+.aim-security-note{
+  display:grid;
+  grid-template-columns:auto minmax(0,1fr);
+  align-items:start;
+  gap:4px 14px;
+  padding:14px 15px;
+  border:1px solid #185346;
+  border-radius:13px;
+  background:#08221f;
+}
+.aim-security-note strong{
+  color:#9be7c5;
+  font-size:.8rem;
+  white-space:nowrap;
+}
+.aim-security-note span{
+  color:#91aaa4;
+  font-size:.76rem;
+  line-height:1.45;
+}
+
+.aim-actions{
+  display:flex;
+  justify-content:flex-end;
+  gap:10px;
+  padding-top:2px;
+}
+.aim-primary,.aim-secondary{
+  min-height:44px;
+  border-radius:12px;
+  padding:11px 16px;
+  font-size:.82rem;
+  font-weight:850;
+  cursor:pointer;
+  transition:transform 140ms ease,filter 140ms ease,border-color 140ms ease,background 140ms ease;
+}
+.aim-primary{
+  border:1px solid #725df3;
+  background:linear-gradient(135deg,#2563eb,#7c3aed);
+  color:#fff;
+  box-shadow:0 10px 24px rgba(65,75,220,.22);
+}
+.aim-secondary{
+  border:1px solid #263e4e;
+  background:#10202c;
+  color:#dcecef;
+}
+.aim-primary:hover:not(:disabled),.aim-secondary:hover:not(:disabled){transform:translateY(-1px)}
+.aim-primary:hover:not(:disabled){filter:brightness(1.08)}
+.aim-secondary:hover:not(:disabled){border-color:#385a6e;background:#142735}
+.aim-primary:focus-visible,.aim-secondary:focus-visible{
+  outline:2px solid #63dff2;
+  outline-offset:2px;
+}
+.aim-primary:disabled,.aim-secondary:disabled{opacity:.46;cursor:not-allowed;transform:none}
+
+.aim-alert{
+  margin:16px 26px 0;
+  padding:12px 14px;
+  border-radius:12px;
+  font-size:.82rem;
+  line-height:1.45;
+}
+.aim-alert--danger{
+  border:1px solid #663039;
+  background:#281116;
+  color:#ffc7ce;
+}
+
+/* History / audit */
+.aim-history{margin-top:18px}
+.aim-history td small,.aim-history td b{display:block}
+.aim-history td small{margin-top:4px;color:var(--muted,#718096)}
+.aim-status{display:inline-flex;align-items:center;padding:4px 8px;border-radius:999px;font-size:.72rem;font-weight:900}
+.aim-status--active{background:#0e3527;color:#7ce1b2}
+.aim-status--ended{background:#1a2730;color:#9fb0b9}
+.aim-status--expired{background:#38290d;color:#f4c96b}
+.aim-audit-list{display:grid;gap:10px;padding:18px 24px 24px;overflow:auto}
+.aim-audit-list article{padding:13px 14px;border:1px solid #1a3140;border-radius:14px;background:#091824}
+.aim-audit-list article>div{display:flex;align-items:center;gap:9px;flex-wrap:wrap}
+.aim-audit-list strong{font-size:.9rem}
+.aim-audit-list small{margin-left:auto;color:#7f98a3}
+.aim-audit-list code{display:block;margin:9px 0;color:#b8d9ff;word-break:break-all}
+.aim-audit-list footer{display:flex;gap:12px;flex-wrap:wrap;color:#91a6b0;font-size:.74rem}
+.aim-method{display:inline-flex;padding:3px 6px;border-radius:6px;background:#102e55;color:#a9ccff;font-size:.7rem;font-weight:900}
+
+@media(max-height:760px) and (min-width:721px){
+  .aim-backdrop{padding-block:12px}
+  .aim-dialog{max-height:calc(100dvh - 24px)}
+  .aim-dialog>header{padding:20px 22px 17px}
+  .aim-identity{margin:15px 22px 0;padding:11px 13px}
+  .aim-form{gap:13px;padding:16px 22px 19px}
+  .aim-form textarea{min-height:72px}
+  .aim-security-note{padding:11px 13px}
+}
+
+@media(max-width:720px){
+  .aim-backdrop{
+    display:block;
+    padding:0;
+    overflow:hidden;
+    background:#05101a;
+  }
+  .aim-dialog{
+    width:100%;
+    max-width:none;
+    height:100dvh;
+    max-height:100dvh;
+    margin:0;
+    border:0;
+    border-radius:0;
+    box-shadow:none;
+    background:#06131e;
+  }
+  .aim-dialog::before{height:2px}
+  .aim-dialog>header{
+    position:sticky;
+    top:0;
+    z-index:3;
+    gap:14px;
+    padding:max(18px,env(safe-area-inset-top)) 18px 16px;
+    border-bottom:1px solid #162c3a;
+    background:#081722;
+  }
+  .aim-dialog>header span{font-size:.61rem}
+  .aim-dialog>header h3{font-size:1.28rem}
+  .aim-dialog>header p{margin-top:6px;font-size:.82rem;line-height:1.45}
+  .aim-close{
+    width:42px;
+    height:42px;
+    border-radius:12px;
+  }
+  .aim-identity{
+    grid-template-columns:44px minmax(0,1fr);
+    margin:16px 16px 0;
+    padding:12px 13px;
+    border-radius:14px;
+  }
+  .aim-avatar{width:44px;height:44px;border-radius:13px}
+  .aim-form{
+    flex:1;
+    gap:17px;
+    padding:18px 16px calc(18px + env(safe-area-inset-bottom));
+  }
+  .aim-form label{font-size:.86rem}
+  .aim-form select,.aim-form textarea{
+    min-height:50px;
+    border-radius:13px;
+    font-size:16px;
+  }
+  .aim-form textarea{min-height:96px}
+  .aim-form small{font-size:.76rem}
+  .aim-security-note{
+    grid-template-columns:1fr;
+    gap:5px;
+    padding:13px 14px;
+  }
+  .aim-security-note strong{font-size:.82rem}
+  .aim-security-note span{font-size:.77rem}
+  .aim-actions{
+    position:sticky;
+    bottom:0;
+    z-index:2;
+    display:grid;
+    grid-template-columns:1fr 1.35fr;
+    gap:9px;
+    margin:0 -16px calc(-18px - env(safe-area-inset-bottom));
+    padding:12px 16px calc(12px + env(safe-area-inset-bottom));
+    border-top:1px solid #172d3b;
+    background:#07131e;
+  }
+  .aim-primary,.aim-secondary{
+    width:100%;
+    min-height:48px;
+    padding-inline:12px;
+    font-size:.8rem;
+  }
+  .aim-alert{margin:12px 16px 0}
+  .aim-history .acu-table-wrap{overflow-x:auto}
+  .aim-audit-list{padding:14px 16px 20px}
+  .aim-audit-list small{width:100%;margin-left:0}
+  .aim-dialog--audit{height:100dvh}
+}
+
+@media(max-width:420px){
+  .aim-dialog>header{padding-inline:14px}
+  .aim-dialog>header p{display:none}
+  .aim-identity{margin-inline:14px}
+  .aim-form{padding-inline:14px}
+  .aim-actions{
+    grid-template-columns:1fr;
+    margin-inline:-14px;
+    padding-inline:14px;
+  }
+  .aim-secondary{order:2}
+  .aim-primary{order:1}
+}
+
+@media(prefers-reduced-motion:reduce){
+  .aim-close,.aim-primary,.aim-secondary,.aim-form select,.aim-form textarea{transition:none}
+}

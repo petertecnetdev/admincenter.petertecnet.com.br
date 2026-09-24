@@ -1,0 +1,55 @@
+/* Peter Tecnet Admin Center — Design System Foundation
+ * Canonical tokens/primitives shared by every administrative module.
+ * Module CSS should consume these variables instead of inventing local values.
+ */
+:root{
+  color-scheme:dark;
+  --pt-bg:#050b11;--pt-surface:#09131c;--pt-surface-2:#0d1923;--pt-surface-3:#101f2b;
+  --pt-text:#edf9fc;--pt-text-muted:#91aab3;--pt-text-soft:#718d96;
+  --pt-accent:#63dff2;--pt-accent-2:#8b7cff;
+  --pt-success:#65d9aa;--pt-warning:#f4c96b;--pt-danger:#ff7383;--pt-info:#72b7ff;
+  --pt-line:rgba(145,205,219,.10);--pt-line-strong:rgba(105,220,239,.22);
+  --pt-border-width:1px;--pt-border-width-strong:2px;--pt-border:var(--pt-border-width) solid var(--pt-line);--pt-border-strong:var(--pt-border-width) solid var(--pt-line-strong);
+  --pt-space-1:4px;--pt-space-2:8px;--pt-space-3:12px;--pt-space-4:16px;--pt-space-5:20px;--pt-space-6:24px;--pt-space-8:32px;--pt-space-10:40px;--pt-space-12:48px;
+  --pt-font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;
+  --pt-font-xs:.75rem;--pt-font-sm:.875rem;--pt-font-md:1rem;--pt-font-lg:1.125rem;--pt-font-xl:1.375rem;--pt-font-2xl:clamp(1.75rem,3vw,2.5rem);--pt-font-hero:clamp(2rem,4vw,3.35rem);
+  --pt-leading-tight:1.12;--pt-leading-normal:1.5;--pt-leading-relaxed:1.68;
+  --pt-radius-sm:10px;--pt-radius-md:14px;--pt-radius-lg:18px;--pt-radius-xl:24px;--pt-radius-pill:999px;
+  --pt-shadow-sm:0 8px 24px rgba(0,0,0,.16);--pt-shadow-md:0 18px 46px rgba(0,0,0,.22);--pt-shadow-lg:0 28px 80px rgba(0,0,0,.30);
+  --pt-control-sm:36px;--pt-control-md:44px;--pt-control-lg:52px;
+  --pt-sidebar-width:300px;--pt-sidebar-collapsed:76px;--pt-sidebar-drawer:min(390px,92vw);--pt-topbar-height:72px;--pt-content-max:1680px;
+  /* Reference values for JS, documentation and visual tests. Media queries remain literal CSS by design. */
+  --pt-breakpoint-xs:320px;--pt-breakpoint-sm:430px;--pt-breakpoint-tablet:768px;--pt-breakpoint-shell:980px;--pt-breakpoint-desktop:1280px;--pt-breakpoint-wide:1440px;--pt-breakpoint-fullhd:1920px;
+  --pt-z-base:1;--pt-z-sticky:320;--pt-z-backdrop:1190;--pt-z-drawer:1200;--pt-z-modal:2000;--pt-z-toast:2200;
+  --pt-fast:140ms;--pt-normal:190ms;
+  /* compatibility aliases while legacy CSS is migrated */
+  --admin-bg:var(--pt-bg);--admin-surface:var(--pt-surface);--admin-surface-2:var(--pt-surface-2);--admin-elevated:var(--pt-surface-3);
+  --admin-line:var(--pt-line);--admin-line-strong:var(--pt-line-strong);--admin-text:var(--pt-text);--admin-muted:var(--pt-text-muted);--admin-soft:var(--pt-text-soft);
+  --admin-accent:var(--pt-accent);--admin-accent-2:var(--pt-accent-2);--admin-success:var(--pt-success);--admin-warning:var(--pt-warning);--admin-danger:var(--pt-danger);
+  --admin-radius:var(--pt-radius-lg);--admin-radius-sm:var(--pt-radius-md);--admin-shadow:var(--pt-shadow-lg);--admin-fast:var(--pt-fast);--admin-normal:var(--pt-normal);
+}
+.admin-shell{font-family:var(--pt-font-family)}
+.admin-shell[data-admin-page="dashboard"]{--pt-module:#58dcff;--pt-module-rgb:88,220,255}
+.admin-shell[data-admin-page="operations"]{--pt-module:#ff7383;--pt-module-rgb:255,115,131}
+.admin-shell[data-admin-page="agents"]{--pt-module:#ad82ff;--pt-module-rgb:173,130,255}
+.admin-shell[data-admin-page="financial"]{--pt-module:#65d9aa;--pt-module-rgb:101,217,170}
+.admin-shell[data-admin-page="applications"]{--pt-module:#f4c96b;--pt-module-rgb:244,201,107}
+.admin-shell[data-admin-page="users"]{--pt-module:#72b7ff;--pt-module-rgb:114,183,255}
+.admin-shell[data-admin-page="establishments"]{--pt-module:#54e1cb;--pt-module-rgb:84,225,203}
+.admin-shell[data-admin-page="items"]{--pt-module:#ffae63;--pt-module-rgb:255,174,99}
+.admin-shell[data-admin-page="notifications"]{--pt-module:#ef79d7;--pt-module-rgb:239,121,215}
+.admin-shell[data-admin-page="activity"]{--pt-module:#5be6f5;--pt-module-rgb:91,230,245}
+:where(.admin-shell button,.admin-shell a,.admin-shell input,.admin-shell select,.admin-shell textarea):focus-visible{outline:2px solid var(--pt-module,var(--pt-accent));outline-offset:2px}
+:where(.admin-shell button,.admin-shell input,.admin-shell select){min-height:var(--pt-control-md)}
+:where(.admin-shell h1,.admin-shell h2,.admin-shell h3,.admin-shell p){text-wrap:pretty}
+:where(.admin-shell h1){font-size:var(--pt-font-2xl);line-height:var(--pt-leading-tight)}
+:where(.admin-shell h2){font-size:var(--pt-font-xl);line-height:1.2}
+:where(.admin-shell p){line-height:var(--pt-leading-normal)}
+.admin-shell .content{width:min(100%,var(--pt-content-max));margin-inline:auto;padding-inline:clamp(var(--pt-space-4),2.5vw,var(--pt-space-10))}
+.admin-shell .pt-stack{display:grid;gap:var(--pt-space-4)}
+.admin-shell .pt-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(min(100%,260px),1fr));gap:var(--pt-space-4)}
+.admin-shell .pt-surface{border:var(--pt-border);border-radius:var(--pt-radius-lg);background:var(--pt-surface);box-shadow:var(--pt-shadow-sm)}
+.admin-shell .pt-status{display:inline-flex;align-items:center;gap:var(--pt-space-2);min-height:28px;padding-inline:10px;border:var(--pt-border);border-radius:var(--pt-radius-pill);font-size:var(--pt-font-xs)}
+.admin-shell .pt-status::before{content:"";width:7px;height:7px;border-radius:50%;background:currentColor}
+.admin-shell .pt-status--success{color:var(--pt-success)}.admin-shell .pt-status--warning{color:var(--pt-warning)}.admin-shell .pt-status--danger{color:var(--pt-danger)}
+@media(max-width:980px){:root{--pt-topbar-height:64px}.admin-shell .content{padding-inline:clamp(14px,4vw,24px)}}

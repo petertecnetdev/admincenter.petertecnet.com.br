@@ -1,0 +1,51 @@
+/* Responsive hardening for ticket detail rows.
+ * Keep every metric available on narrow screens instead of hiding later columns.
+ */
+.aee-ticket-row {
+  min-width: 0;
+}
+
+.aee-ticket-row > div,
+.aee-ticket-row > button {
+  min-width: 0;
+}
+
+.aee-ticket-row > div b,
+.aee-ticket-row > div small {
+  overflow-wrap: anywhere;
+}
+
+@media (max-width: 720px) {
+  .aee-ticket-row {
+    grid-template-columns: minmax(0, 1fr) minmax(0, 1fr);
+    align-items: start;
+  }
+
+  .aee-ticket-row > div:nth-child(n + 2) {
+    display: grid;
+  }
+
+  .aee-ticket-row > button {
+    grid-column: 1 / -1;
+    width: 100%;
+  }
+}
+
+@media (max-width: 460px) {
+  .aee-ticket-row {
+    grid-template-columns: minmax(0, 1fr);
+    gap: 8px;
+  }
+
+  .aee-ticket-row > div:nth-child(n + 2) {
+    display: grid;
+    grid-template-columns: minmax(0, 1fr) auto;
+    gap: 6px;
+    align-items: baseline;
+  }
+
+  .aee-ticket-row > div:nth-child(n + 2) span,
+  .aee-ticket-row > div:nth-child(n + 2) small {
+    min-width: 0;
+  }
+}

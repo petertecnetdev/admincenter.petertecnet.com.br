@@ -1,0 +1,42 @@
+.auc-user-detail-shell {
+  display: grid;
+  gap: 18px;
+  min-width: 0;
+}
+
+.auc-user-detail-shell > .auc-communication-direct {
+  display: block !important;
+  visibility: visible !important;
+  opacity: 1 !important;
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+}
+
+.auc-user-detail-shell > .auc-communication-direct .aud-card {
+  margin: 0;
+  border-color: rgba(56, 189, 248, .34);
+  background: linear-gradient(135deg, rgba(8, 47, 73, .28), rgba(15, 23, 42, .92));
+}
+
+.auc-user-detail-shell > .auc-communication-direct .aud-card > header {
+  align-items: center;
+}
+
+@media (max-width: 760px) {
+  .auc-user-detail-shell {
+    gap: 12px;
+  }
+
+  .auc-user-detail-shell > .auc-communication-direct .aud-card > header {
+    align-items: stretch;
+  }
+
+  .auc-user-detail-shell > .auc-communication-direct .auc-quick-actions {
+    width: 100%;
+  }
+
+  .auc-user-detail-shell > .auc-communication-direct .auc-action {
+    flex: 1 1 120px;
+  }
+}

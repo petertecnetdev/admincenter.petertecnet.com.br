@@ -1,0 +1,164 @@
+.mkt-discovery-search {
+  order: -1;
+  position: relative;
+  width: clamp(210px, 22vw, 300px);
+  min-width: 0;
+  flex: 0 1 300px;
+}
+
+.mkt-discovery-search .global-discovery.is-compact {
+  width: 100%;
+  max-width: none;
+}
+
+.mkt-discovery-search .global-discovery-form {
+  grid-template-columns: auto minmax(0, 1fr) auto;
+  gap: 8px;
+  min-height: 44px;
+  padding: 5px 5px 5px 12px;
+  border-radius: 999px;
+  background: rgba(5, 18, 25, 0.76);
+  box-shadow: none;
+}
+
+.mkt-discovery-search .global-discovery-form > span {
+  font-size: 18px;
+}
+
+.mkt-discovery-search .global-discovery-form input {
+  font-size: 12px;
+}
+
+.mkt-discovery-search .global-discovery-form input::placeholder {
+  color: #78929c;
+}
+
+.mkt-discovery-search .global-discovery-form button {
+  width: 34px;
+  height: 34px;
+  display: grid;
+  place-items: center;
+  padding: 0;
+  border-radius: 999px;
+  font-size: 0;
+}
+
+.mkt-discovery-search .global-discovery-form button::after {
+  content: '↗';
+  font-size: 14px;
+  line-height: 1;
+}
+
+.mkt-discovery-search .global-discovery-suggestions,
+.mkt-discovery-search .global-discovery.is-compact .global-discovery-suggestions {
+  top: calc(100% + 10px);
+  bottom: auto;
+  left: 50%;
+  right: auto;
+  width: min(520px, calc(100vw - 32px));
+  transform: translateX(-50%);
+}
+
+/* A busca global já vive na navegação. Na landing, o catálogo mantém apenas os filtros de categoria. */
+.mkt-catalog-tools {
+  grid-template-columns: minmax(0, 1fr);
+}
+
+.mkt-catalog-tools > label {
+  display: none;
+}
+
+@media (max-width: 1080px) {
+  .mkt-discovery-search {
+    width: clamp(190px, 20vw, 230px);
+    flex-basis: 230px;
+  }
+
+  .mkt-discovery-search .global-discovery-form input {
+    font-size: 11px;
+  }
+}
+
+@media (max-width: 1050px) {
+  .mkt-header .mkt-menu {
+    display: block;
+  }
+
+  .mkt-header .mkt-nav {
+    position: absolute;
+    top: calc(100% + 1px);
+    left: 12px;
+    right: 12px;
+    display: none;
+    padding: 14px;
+    border: 1px solid var(--mkt-line-strong);
+    border-radius: 18px;
+    background: rgba(2, 10, 14, 0.97);
+    box-shadow: var(--mkt-shadow);
+    flex-direction: column;
+    align-items: stretch;
+    gap: 3px;
+  }
+
+  .mkt-header .mkt-nav.is-open {
+    display: flex;
+  }
+
+  .mkt-header .mkt-nav > a {
+    padding: 12px 10px;
+  }
+
+  .mkt-header .mkt-nav-cta {
+    justify-content: space-between;
+  }
+
+  .mkt-discovery-search {
+    order: -1;
+    width: 100%;
+    flex: 0 0 auto;
+    margin-bottom: 8px;
+  }
+
+  .mkt-discovery-search .global-discovery-form {
+    min-height: 48px;
+    border-radius: 15px;
+  }
+
+  .mkt-discovery-search .global-discovery-form input {
+    font-size: 14px;
+  }
+
+  .mkt-discovery-search .global-discovery-form button {
+    width: auto;
+    min-width: 76px;
+    padding: 0 15px;
+    border-radius: 11px;
+    font-size: 12px;
+  }
+
+  .mkt-discovery-search .global-discovery-form button::after {
+    content: none;
+  }
+
+  .mkt-discovery-search .global-discovery-suggestions,
+  .mkt-discovery-search .global-discovery.is-compact .global-discovery-suggestions {
+    position: static;
+    width: 100%;
+    max-height: min(52vh, 420px);
+    margin-top: 8px;
+    transform: none;
+    overflow-y: auto;
+  }
+}
+
+@media (max-width: 620px) {
+  .mkt-discovery-search .global-discovery-form {
+    grid-template-columns: auto minmax(0, 1fr);
+  }
+
+  .mkt-discovery-search .global-discovery-form button {
+    grid-column: 1 / -1;
+    width: 100%;
+    min-height: 38px;
+  }
+}

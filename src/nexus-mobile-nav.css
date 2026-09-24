@@ -1,0 +1,10 @@
+@keyframes ptNexusDrawerIn{from{transform:translateX(100%)}to{transform:translateX(0)}}
+@keyframes ptNexusBackdropIn{from{opacity:0}to{opacity:1}}
+@media(max-width:760px){
+.admin-mobile-menu-button{border-color:#31506e!important;background:rgba(255,255,255,.04)!important;border-radius:12px!important}
+.admin-mobile-backdrop.is-open{background:rgba(2,8,17,.7)!important;backdrop-filter:blur(4px)!important;-webkit-backdrop-filter:blur(4px)!important;animation:ptNexusBackdropIn .2s ease}
+.ecosystem-sidebar,.la-admin aside{left:auto!important;right:0!important;width:min(390px,91vw)!important;border-right:0!important;border-left:1px solid rgba(101,209,255,.22)!important;border-radius:0!important;background:linear-gradient(155deg,#12273d 0%,#0b1c2d 62%,#081522 100%)!important;box-shadow:-24px 0 70px rgba(0,0,0,.42)!important;transform:translateX(105%)!important;transition:none!important}
+body.admin-mobile-menu-open .ecosystem-sidebar,body.admin-mobile-menu-open .la-admin aside{transform:translateX(0)!important;animation:ptNexusDrawerIn .24s cubic-bezier(.2,.8,.2,1)}
+.ecosystem-sidebar nav button,.la-admin aside nav button{min-height:50px!important;border-radius:14px!important;background:rgba(255,255,255,.025)!important;border:1px solid transparent!important}
+.ecosystem-sidebar nav button.active,.ecosystem-sidebar nav button:hover,.la-admin aside nav button.active,.la-admin aside nav button:hover{background:rgba(89,199,255,.1)!important;border-color:rgba(101,209,255,.16)!important}
+}
