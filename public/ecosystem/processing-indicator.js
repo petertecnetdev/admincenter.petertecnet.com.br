@@ -147,7 +147,7 @@
   customElements.define(TAG, PeterProcessingIndicator)
 
   const upgradeLegacyStates = () => {
-    document.querySelectorAll('.mkt-state:not([data-pt-processing-upgraded])').forEach(node => {
+    document.querySelectorAll('.mkt-state:not([data-pt-processing-upgraded]), .aee-empty:not([data-pt-processing-upgraded])').forEach(node => {
       const text = node.textContent?.trim() || ''
       if (!/carregando|consultando|buscando|preparando/i.test(text)) return
       node.dataset.ptProcessingUpgraded = 'true'
