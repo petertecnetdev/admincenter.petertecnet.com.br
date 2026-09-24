@@ -117,35 +117,36 @@ function retryDelay(error) {
 
 async function execute(path, options, attempt = 0) {
   const trace = attempt === 0 ? recordRequestStart(path) : null
-  const token = localStorage.getItem(TOKEN_KEY)
-  const method = String(options.method || 'GET').toUpperCase()
+  const { publicRequest = false, ...requestOptions } = options
+  const token = publicRequest ? null : localStorage.getItem(TOKEN_KEY)
+  const method = String(requestOptions.method || 'GET').toUpperCase()
   const timeoutController = new AbortController()
-  const externalSignal = options.signal
+  const externalSignal = requestOptions.signal
   const onExternalAbort = () => timeoutController.abort(externalSignal.reason)
   if (externalSignal) {
     if (externalSignal.aborted) onExternalAbort()
     else externalSignal.addEventListener('abort', onExternalAbort, { once: true })
   }
-  const timeout = window.setTimeout(() => timeoutController.abort(), Number(options.timeout || DEFAULT_TIMEOUT))
+  const timeout = window.setTimeout(() => timeoutController.abort(), Number(requestOptions.timeout || DEFAULT_TIMEOUT))
   let succeeded = false
 
   try {
     const response = await fetch(`${ADMIN_API_BASE}${path}`, {
-      ...options,
+      ...requestOptions,
       method,
       signal: timeoutController.signal,
-      cache: method === 'GET' ? 'no-store' : options.cache,
+      cache: method === 'GET' ? 'no-store' : requestOptions.cache,
       headers: {
         Accept: 'application/json',
-        ...(options.body !== undefined ? { 'Content-Type': 'application/json' } : {}),
+        ...(requestOptions.body !== undefined ? { 'Content-Type': 'application/json' } : {}),
         ...(token ? { Authorization: `Bearer ${token}` } : {}),
-        ...options.headers,
+        ...requestOptions.headers,
       },
     })
 
     const payload = response.status === 204 ? null : await response.json().catch(() => ({}))
 
-    if (response.status === 401 && path !== '/auth/login' && path !== '/auth/google') {
+    if (!publicRequest && response.status === 401 && path !== '/auth/login' && path !== '/auth/google') {
       localStorage.removeItem(TOKEN_KEY)
       window.dispatchEvent(new Event('admin-session-expired'))
     }
@@ -248,4 +249,8 @@ export function adminRequest(path, options = {}) {
   return mutationPromise.finally(() => {
     if (inflightMutations.get(mutationKey) === mutationPromise) inflightMutations.delete(mutationKey)
   })
+}
+
+export function adminPublicRequest(path, options = {}) {
+  return adminRequest(path, { ...options, publicRequest: true })
 }
