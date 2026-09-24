@@ -1,10 +1,13 @@
 import { Component } from 'react'
 
+let moduleBoundarySequence = 0
+
 export default class AdminModuleBoundary extends Component {
   constructor(props) {
     super(props)
     this.state = { error: null, revision: 0 }
     this.errorHeadingRef = null
+    this.boundaryId = `admin-module-error-${++moduleBoundarySequence}`
   }
 
   static getDerivedStateFromError(error) {
@@ -28,8 +31,8 @@ export default class AdminModuleBoundary extends Component {
   render() {
     if (this.state.error) {
       const moduleName = this.props.name || 'Área administrativa'
-      const headingId = 'admin-module-error-heading'
-      const descriptionId = 'admin-module-error-description'
+      const headingId = `${this.boundaryId}-heading`
+      const descriptionId = `${this.boundaryId}-description`
 
       return <section
         className="admin-module-error"
