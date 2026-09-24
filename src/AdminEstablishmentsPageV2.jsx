@@ -4,6 +4,7 @@ import { adminRequest as apiRequest } from './adminApi.js'
 import AdminEstablishmentCatalog from './AdminEstablishmentCatalog.jsx'
 import AdminEstablishmentEvents from './AdminEstablishmentEvents.jsx'
 import AdminEstablishmentResourceEditor from './AdminEstablishmentResourceEditor.jsx'
+import AdminProcessingIndicator from './AdminProcessingIndicator.jsx'
 import './AdminEstablishmentsPage.css'
 
 const EMPTY_FILTERS = { search: '' }
@@ -337,7 +338,11 @@ export default function AdminEstablishmentsPageV2({ quickCreateToken = 0 }) {
       </div>
 
       {loading ? (
-        <div className="acu-loading">Carregando estabelecimentos…</div>
+        <AdminProcessingIndicator
+          title={loadedOnceRef.current ? 'Atualizando estabelecimentos' : 'Carregando estabelecimentos'}
+          messages="Consultando os estabelecimentos do ecossistema…|Sincronizando vínculos, responsáveis e aplicações…|Organizando a visão administrativa…"
+          detail={filters.search ? `Buscando por “${filters.search}”.` : 'Aguarde enquanto os dados são carregados.'}
+        />
       ) : rows.length === 0 ? (
         <div className="acu-empty">
           <strong>Nenhum estabelecimento encontrado.</strong>
