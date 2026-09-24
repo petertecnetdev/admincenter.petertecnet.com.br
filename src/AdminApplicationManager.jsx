@@ -112,14 +112,14 @@ function Editor({ application, onClose, onSaved }) {
         <button type="button" onClick={onClose} aria-label="Fechar">×</button>
       </header>
 
-      <nav className="app-manager-tabs" aria-label="Seções da edição">
-        <button type="button" className={tab === 'general' ? 'active' : ''} onClick={() => setTab('general')}>Informações</button>
-        <button type="button" className={tab === 'access' ? 'active' : ''} onClick={() => setTab('access')}>Acesso e visibilidade</button>
-        <button type="button" className={tab === 'operations' ? 'active' : ''} onClick={() => setTab('operations')}>Operação e versão</button>
+      <nav className="app-manager-tabs" aria-label="Seções da edição" role="tablist">
+        <button type="button" role="tab" aria-selected={tab === 'general'} aria-controls="app-manager-panel-general" id="app-manager-tab-general" className={tab === 'general' ? 'active' : ''} onClick={() => setTab('general')}>Informações</button>
+        <button type="button" role="tab" aria-selected={tab === 'access'} aria-controls="app-manager-panel-access" id="app-manager-tab-access" className={tab === 'access' ? 'active' : ''} onClick={() => setTab('access')}>Acesso e visibilidade</button>
+        <button type="button" role="tab" aria-selected={tab === 'operations'} aria-controls="app-manager-panel-operations" id="app-manager-tab-operations" className={tab === 'operations' ? 'active' : ''} onClick={() => setTab('operations')}>Operação e versão</button>
       </nav>
 
       <div className="app-manager-body">
-        {tab === 'general' && <div className="app-manager-grid">
+        {tab === 'general' && <div className="app-manager-grid" role="tabpanel" id="app-manager-panel-general" aria-labelledby="app-manager-tab-general">
           <Field label="Nome"><input value={form.name} onChange={event => set('name', event.target.value)} required/></Field>
           <Field label="Slug"><input value={form.slug} onChange={event => set('slug', event.target.value)} placeholder="nome-da-aplicacao"/></Field>
           <Field label="Descrição" wide><textarea rows="5" value={form.description} onChange={event => set('description', event.target.value)} placeholder="Explique o papel da aplicação no ecossistema."/></Field>
@@ -129,7 +129,7 @@ function Editor({ application, onClose, onSaved }) {
           <Field label="Ordem no launcher"><input type="number" min="0" max="100000" value={form.launcher_order} onChange={event => set('launcher_order', event.target.value)}/></Field>
         </div>}
 
-        {tab === 'access' && <div className="app-manager-toggle-list">
+        {tab === 'access' && <div className="app-manager-toggle-list" role="tabpanel" id="app-manager-panel-access" aria-labelledby="app-manager-tab-access">
           <Toggle label="Aplicação ativa" detail="Permite que a aplicação permaneça operacional no ecossistema." checked={form.is_active} onChange={value => set('is_active', value)} disabled={form.is_default}/>
           <Toggle label="Visível" detail="Controla a exposição da aplicação nas experiências que respeitam visibilidade." checked={form.is_visible} onChange={value => set('is_visible', value)} disabled={form.is_default}/>
           <Toggle label="Acesso self-service" detail="Permite que usuários acessem a aplicação sem liberação manual individual." checked={form.self_service_access} onChange={value => set('self_service_access', value)}/>
@@ -137,7 +137,7 @@ function Editor({ application, onClose, onSaved }) {
           <div className="app-manager-explain"><b>Regra de segurança</b><p>Apenas uma aplicação pode ser padrão. A API garante essa exclusividade e força a aplicação padrão como ativa e visível.</p></div>
         </div>}
 
-        {tab === 'operations' && <div className="app-manager-grid">
+        {tab === 'operations' && <div className="app-manager-grid" role="tabpanel" id="app-manager-panel-operations" aria-labelledby="app-manager-tab-operations">
           <Field label="Estado operacional">
             <select value={form.operational_status} onChange={event => set('operational_status', event.target.value)}>
               <option value="operational">Operacional</option>
