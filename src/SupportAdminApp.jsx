@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from 'react'
+import { adminRequest } from './adminApi'
 import './SupportAdminApp.css'
 
-const API = import.meta.env.VITE_API_URL || 'https://api.petertecnet.com.br/api'
 const TOKEN_KEY = 'petertecnet_admin_token'
 
 const statuses = [
@@ -9,32 +9,6 @@ const statuses = [
 ]
 const priorities = [['low', 'Baixa'], ['normal', 'Normal'], ['high', 'Alta'], ['urgent', 'Urgente']]
 const categories = [['general', 'Geral'], ['access', 'Acesso'], ['account', 'Conta'], ['technical', 'Técnico'], ['billing', 'Cobrança'], ['bug', 'Bug'], ['suggestion', 'Sugestão'], ['security', 'Segurança']]
-
-async function request(path, options = {}) {
-  const token = localStorage.getItem(TOKEN_KEY)
-  const response = await fetch(`${API}${path}`, {
-    ...options,
-    headers: {
-      Accept: 'application/json',
-      ...(options.body ? { 'Content-Type': 'application/json' } : {}),
-      ...(token ? { Authorization: `Bearer ${token}` } : {}),
-      ...options.headers,
-    },
-  })
-  const payload = response.status === 204 ? null : await response.json().catch(() => ({}))
-  if (response.status === 401 || response.status === 403) {
-    if (response.status === 401) localStorage.removeItem(TOKEN_KEY)
-    const error = new Error(payload?.message || 'Sessão administrativa inválida.')
-    error.status = response.status
-    throw error
-  }
-  if (!response.ok) {
-    const error = new Error(payload?.message || Object.values(payload?.errors || {}).flat()?.[0] || 'Falha ao concluir a operação.')
-    error.status = response.status
-    throw error
-  }
-  return payload
-}
 
 function isAbortError(error) {
   return error?.name === 'AbortError'
@@ -67,7 +41,7 @@ function TicketDetail({ ticket, onChanged }) {
   async function patch(field, value) {
     setSaving(true); setError('')
     try {
-      const payload = await request(`/admin/support/tickets/${ticket.id}`, { method: 'PATCH', body: JSON.stringify({ [field]: value }) })
+      const payload = await adminRequest(`/admin/support/tickets/${ticket.id}`, { method: 'PATCH', body: JSON.stringify({ [field]: value }) })
       onChanged(payload.ticket)
     } catch (err) { setError(err.message) }
     finally { setSaving(false) }
@@ -78,7 +52,7 @@ function TicketDetail({ ticket, onChanged }) {
     if (!reply.trim() || saving) return
     setSaving(true); setError('')
     try {
-      const payload = await request(`/admin/support/tickets/${ticket.id}/messages`, {
+      const payload = await adminRequest(`/admin/support/tickets/${ticket.id}/messages`, {
         method: 'POST', body: JSON.stringify({ message: reply.trim(), is_internal: internal }),
       })
       setReply('')
@@ -150,9 +124,9 @@ export default function SupportAdminApp() {
     try {
       const signal = controller.signal
       const [summaryPayload, ticketPayload, appsPayload] = await Promise.all([
-        request('/admin/support/summary', { signal }),
-        request(`/admin/support/tickets?${queryString}`, { signal }),
-        applications.length ? Promise.resolve({ applications }) : request('/admin/applications', { signal }),
+        adminRequest('/admin/support/summary', { signal }),
+        adminRequest(`/admin/support/tickets?${queryString}`, { signal }),
+        applications.length ? Promise.resolve({ applications }) : adminRequest('/admin/applications', { signal }),
       ])
       if (controller.signal.aborted || requestSequence !== listSequenceRef.current) return
       const rows = ticketPayload?.data || []
@@ -188,7 +162,7 @@ export default function SupportAdminApp() {
     detailRequestRef.current = controller
     setError('')
     try {
-      const payload = await request(`/admin/support/tickets/${row.id}`, { signal: controller.signal })
+      const payload = await adminRequest(`/admin/support/tickets/${row.id}`, { signal: controller.signal })
       if (!controller.signal.aborted) setSelected(payload.ticket)
     } catch (err) {
       if (!isAbortError(err) && !controller.signal.aborted) setError(err.message)
@@ -198,7 +172,7 @@ export default function SupportAdminApp() {
   async function changed(updated) {
     setSelected(updated)
     setTickets(current => current.map(item => item.id === updated.id ? { ...item, ...updated } : item))
-    const s = await request('/admin/support/summary').catch(() => null)
+    const s = await adminRequest('/admin/support/summary').catch(() => null)
     if (s?.summary) setSummary(s.summary)
   }
 
