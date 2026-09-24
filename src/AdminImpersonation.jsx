@@ -50,7 +50,7 @@ export function AdminImpersonationDialog({ user, applications = [], apiRequest, 
     setResolvedApplications(incomingApplications)
     setApplicationsLoading(false)
     setApplicationsError('')
-  }, [incomingApplications.length])
+  }, [applications])
 
   useEffect(() => {
     if (!user || incomingApplications.length) return undefined
