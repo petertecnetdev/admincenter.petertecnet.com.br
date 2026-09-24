@@ -5,13 +5,23 @@ export default function AdminProcessingIndicator({
   className = '',
   screen = false,
 }) {
-  return <div className={className || undefined} role="status" aria-live="polite" aria-busy="true">
+  const accessibleStatus = detail ? `${title}. ${detail}` : title
+
+  return <div
+    className={className || undefined}
+    role="status"
+    aria-live="polite"
+    aria-atomic="true"
+    aria-busy="true"
+    aria-label={accessibleStatus}
+  >
     <pt-processing-indicator
       compact={screen ? undefined : 'true'}
       screen={screen ? 'true' : undefined}
       title={title}
       messages={messages}
       progress-detail={detail || undefined}
+      aria-hidden="true"
     ></pt-processing-indicator>
   </div>
 }
