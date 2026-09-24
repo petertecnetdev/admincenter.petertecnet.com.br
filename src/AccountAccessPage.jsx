@@ -1,9 +1,7 @@
 import { useEffect, useMemo, useState } from 'react'
-import { ADMIN_API_BASE } from './adminApi.js'
+import { adminPublicRequest } from './adminApi.js'
 import { showNotice } from './utils/uiDialog.js'
 import './AccountAccessPage.css'
-
-const API = ADMIN_API_BASE
 
 const FALLBACK_VALIDATION_MESSAGES = {
   'validation.password.letters': 'A senha deve conter pelo menos uma letra.',
@@ -43,20 +41,18 @@ function showErrorAlert(title, error, fallback) {
 }
 
 async function apiRequest(path, options = {}) {
-  const response = await fetch(`${API}${path}`, {
-    ...options,
-    headers: { Accept: 'application/json', 'Content-Type': 'application/json', ...(options.headers || {}) },
-  })
-  const data = await response.json().catch(() => ({}))
-  if (!response.ok) {
-    const validation = Object.values(data?.errors || {}).flat().filter(Boolean).map((message) => humanMessage(message))
-    const message = validation[0] || humanMessage(data?.message || data?.error, 'Não foi possível concluir a operação.')
-    const error = new Error(message)
-    error.status = response.status
-    error.validationMessages = validation
+  try {
+    return await adminPublicRequest(path, options)
+  } catch (error) {
+    const validation = Object.values(error?.payload?.errors || {}).flat().filter(Boolean).map((message) => humanMessage(message))
+    if (validation.length) {
+      error.message = validation[0]
+      error.validationMessages = validation
+    } else {
+      error.message = humanMessage(error?.message, 'Não foi possível concluir a operação.')
+    }
     throw error
   }
-  return data
 }
 
 function safeAppUrl(raw) {
