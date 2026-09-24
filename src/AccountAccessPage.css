@@ -181,6 +181,30 @@
   color: #bdefff;
 }
 
+.account-access-status {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.account-access-status::before {
+  content: '';
+  width: 16px;
+  height: 16px;
+  flex: 0 0 16px;
+  box-sizing: border-box;
+  border: 2px solid rgba(189, 239, 255, 0.28);
+  border-top-color: #59d7ff;
+  border-radius: 50%;
+  animation: account-access-spin 0.75s linear infinite;
+}
+
+@keyframes account-access-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+
 .account-access-success {
   display: grid;
   gap: 16px;
@@ -219,6 +243,14 @@
 
 .account-access-footer-link a {
   color: #74dcff;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .account-access-status::before {
+    animation: none;
+    border-top-color: rgba(189, 239, 255, 0.28);
+    background: #59d7ff;
+  }
 }
 
 @media (max-width: 620px) {
