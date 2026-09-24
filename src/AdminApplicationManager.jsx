@@ -1,9 +1,7 @@
 import { useCallback, useEffect, useMemo, useState } from 'react'
 import { createPortal } from 'react-dom'
+import { adminRequest } from './adminApi.js'
 import './AdminApplicationManager.css'
-
-const API = import.meta.env.VITE_API_URL || 'https://api.petertecnet.com.br/api'
-const TOKEN_KEY = 'petertecnet_admin_token'
 
 const EMPTY_FORM = {
   name: '', slug: '', description: '', url: '', logo: '', category: '',
@@ -48,24 +46,6 @@ function normalizeApplication(application) {
   }
 }
 
-async function request(path, options = {}) {
-  const token = localStorage.getItem(TOKEN_KEY)
-  if (!token) throw new Error('Sessão administrativa indisponível.')
-  const response = await fetch(`${API}${path}`, {
-    ...options,
-    headers: {
-      Accept: 'application/json',
-      'Content-Type': 'application/json',
-      Authorization: `Bearer ${token}`,
-      ...options.headers,
-    },
-  })
-  const payload = response.status === 204 ? null : await response.json().catch(() => ({}))
-  if (!response.ok) {
-    throw new Error(payload?.message || payload?.error || Object.values(payload?.errors || {}).flat()?.[0] || 'Não foi possível salvar a aplicação.')
-  }
-  return payload
-}
 
 function Toggle({ label, detail, checked, onChange, disabled }) {
   return <label className="app-manager-toggle">
@@ -116,7 +96,7 @@ function Editor({ application, onClose, onSaved }) {
         author: form.author.trim() || null,
         release_date: form.release_date || null,
       }
-      const response = await request(`/admin/applications/${application.id}`, { method: 'PUT', body: JSON.stringify(payload) })
+      const response = await adminRequest(`/admin/applications/${application.id}`, { method: 'PUT', body: JSON.stringify(payload) })
       onSaved(response?.application || { ...application, ...payload })
     } catch (err) {
       setError(err.message)
@@ -201,10 +181,10 @@ export default function AdminApplicationManager() {
   }, [syncRoute])
 
   useEffect(() => {
-    if (!slug || !localStorage.getItem(TOKEN_KEY)) { setApplication(null); return }
+    if (!slug) { setApplication(null); return }
     let active = true
     setLoading(true)
-    request('/admin/applications')
+    adminRequest('/admin/applications')
       .then(payload => {
         if (!active) return
         const rows = payload?.applications || payload?.data || (Array.isArray(payload) ? payload : [])
