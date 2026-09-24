@@ -1,0 +1,55 @@
+name: Migrate Admin Center to standalone repository
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - ".github/workflows/migrate-admincenter.yml"
+
+permissions:
+  contents: write
+
+jobs:
+  migrate:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout destination
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Fetch Admin Center from monorepo
+        shell: bash
+        run: |
+          set -euo pipefail
+          git clone --depth 1 --filter=blob:none --sparse \
+            https://github.com/petertecnetdev/petertecnet.com.br.git source-repo
+          git -C source-repo sparse-checkout set apps/admincenter
+
+      - name: Move Admin Center to repository root
+        shell: bash
+        run: |
+          set -euo pipefail
+          rsync -a --delete \
+            --exclude ".git" \
+            --exclude ".github" \
+            source-repo/apps/admincenter/ ./
+          rm -rf source-repo
+          rm -f .migration-seed
+          rm -f .github/workflows/migrate-admincenter.yml
+          rmdir .github/workflows 2>/dev/null || true
+          rmdir .github 2>/dev/null || true
+
+      - name: Commit standalone Admin Center
+        shell: bash
+        run: |
+          set -euo pipefail
+          git config user.name "Peter Tecnet Migration"
+          git config user.email "petertecnet@gmail.com"
+          git add -A
+          if git diff --cached --quiet; then
+            echo "No migration changes detected."
+            exit 0
+          fi
+          git commit -m "refactor: move Admin Center to standalone repository"
+          git push origin HEAD:main
