@@ -42,7 +42,7 @@ check('application edits refresh only application data', applicationsCenter.incl
 check('core modules share centralized admin API client', app.includes("adminRequest as request") && items.includes("adminRequest as apiRequest") && establishments.includes("adminRequest as apiRequest"))
 check('admin API deduplicates concurrent reads', apiClient.includes('inflightReads') && apiClient.includes("method === 'GET'"))
 check('admin API retries only safe read failures', apiClient.includes("method === 'GET' && attempt < 1"))
-check('admin API preserves caller cancellation for stale requests', apiClient.includes('const externalSignal = options.signal') && apiClient.includes('timeoutController.abort(externalSignal.reason)') && apiClient.includes('delay(350 + Math.round(Math.random() * 150), externalSignal)'))
+check('admin API preserves caller cancellation for stale requests', apiClient.includes('const externalSignal = requestOptions.signal') && apiClient.includes('timeoutController.abort(externalSignal.reason)') && apiClient.includes('delay(350 + Math.round(Math.random() * 150), externalSignal)'))
 check('replaceable reads compose caller and internal AbortSignals', apiClient.includes('function composeSignals') && apiClient.includes('composeSignals(options.signal, controller?.signal)') && apiClient.includes('composed.cleanup()'))
 check('forbidden module responses do not expire the whole session', !apiClient.includes("response.status === 401 || response.status === 403"))
 check('command palette exposes direct creation actions', app.includes("new-establishment") && app.includes("new-item") && app.includes("onQuickAction"))
