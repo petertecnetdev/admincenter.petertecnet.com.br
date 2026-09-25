@@ -5,7 +5,7 @@ const file = path.resolve('src/SupportAdminApp.jsx')
 const source = fs.readFileSync(file, 'utf8')
 
 const required = [
-  ['request accepts caller options', 'async function request(path, options = {})'],
+  ['support uses shared request client', "import { adminRequest } from './adminApi'"],
   ['list controller', 'const listRequestRef = useRef(null)'],
   ['list abort before refresh', 'listRequestRef.current?.abort()'],
   ['list request sequence', 'const requestSequence = ++listSequenceRef.current'],
