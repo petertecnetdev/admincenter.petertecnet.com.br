@@ -360,3 +360,16 @@
     flex: 1 1 180px;
   }
 }
+
+
+.auc-action--onboarding {
+  border-color: rgba(56, 189, 248, .38);
+  background: linear-gradient(135deg, rgba(8, 145, 178, .9), rgba(37, 99, 235, .86));
+  color: #fff;
+  box-shadow: 0 8px 22px rgba(14, 116, 144, .15);
+}
+
+.auc-action--onboarding:hover:not(:disabled) {
+  border-color: rgba(125, 211, 252, .62);
+  background: linear-gradient(135deg, rgba(14, 116, 144, .98), rgba(29, 78, 216, .94));
+}
