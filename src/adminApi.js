@@ -1,6 +1,6 @@
 export const ADMIN_API_BASE = import.meta.env.VITE_API_URL || 'https://api.petertecnet.com.br/api'
 const TOKEN_KEY = 'petertecnet_admin_token'
-const DEFAULT_TIMEOUT = 18000
+const DEFAULT_TIMEOUT = 45000
 const inflightReads = new Map()
 const inflightMutations = new Map()
 const replaceableReads = new Map()
@@ -22,7 +22,6 @@ function recordRequestStart(path) {
   const recent = (requestHistory.get(key) || []).filter(time => now - time < STORM_WINDOW_MS)
   recent.push(now)
   requestHistory.set(key, recent)
-
   if (recent.length >= STORM_THRESHOLD && now - Number(lastStormNotice.get(key) || 0) > STORM_WINDOW_MS) {
     lastStormNotice.set(key, now)
     window.dispatchEvent(new CustomEvent('admin-api-storm', { detail: { route: key, count: recent.length, windowMs: STORM_WINDOW_MS } }))
@@ -34,13 +33,12 @@ function recordRequestEnd(trace, ok) {
   if (!trace) return
   const duration = Math.max(0, performance.now() - trace.startedAt)
   const current = requestStats.get(trace.key) || { count: 0, failures: 0, totalDuration: 0, maxDuration: 0 }
-  const next = {
+  requestStats.set(trace.key, {
     count: current.count + 1,
     failures: current.failures + (ok ? 0 : 1),
     totalDuration: current.totalDuration + duration,
     maxDuration: Math.max(current.maxDuration, duration),
-  }
-  requestStats.set(trace.key, next)
+  })
 }
 
 export function getAdminApiDiagnostics() {
@@ -73,7 +71,6 @@ function delay(ms, signal) {
 function composeSignals(...signals) {
   const activeSignals = signals.filter(Boolean)
   if (activeSignals.length <= 1) return { signal: activeSignals[0] || null, cleanup: () => {} }
-
   const controller = new AbortController()
   const onAbort = signal => () => {
     if (!controller.signal.aborted) controller.abort(signal.reason)
@@ -84,7 +81,6 @@ function composeSignals(...signals) {
     else signal.addEventListener('abort', handler, { once: true })
     return { signal, handler }
   })
-
   return {
     signal: controller.signal,
     cleanup: () => listeners.forEach(({ signal, handler }) => signal.removeEventListener('abort', handler)),
@@ -109,9 +105,7 @@ function requestError(response, payload) {
 }
 
 function retryDelay(error) {
-  if (error?.status === 429 && Number(error.retryAfter) > 0) {
-    return Math.min(Number(error.retryAfter) * 1000, MAX_RATE_LIMIT_RETRY_MS)
-  }
+  if (error?.status === 429 && Number(error.retryAfter) > 0) return Math.min(Number(error.retryAfter) * 1000, MAX_RATE_LIMIT_RETRY_MS)
   return 350 + Math.round(Math.random() * 150)
 }
 
@@ -129,7 +123,6 @@ async function execute(path, options, attempt = 0) {
   }
   const timeout = window.setTimeout(() => timeoutController.abort(), Number(requestOptions.timeout || DEFAULT_TIMEOUT))
   let succeeded = false
-
   try {
     const response = await fetch(`${ADMIN_API_BASE}${path}`, {
       ...requestOptions,
@@ -143,14 +136,11 @@ async function execute(path, options, attempt = 0) {
         ...requestOptions.headers,
       },
     })
-
     const payload = response.status === 204 ? null : await response.json().catch(() => ({}))
-
     if (!publicRequest && response.status === 401 && path !== '/auth/login' && path !== '/auth/google') {
       localStorage.removeItem(TOKEN_KEY)
       window.dispatchEvent(new Event('admin-session-expired'))
     }
-
     if (!response.ok) {
       const error = requestError(response, payload)
       const retryable = method === 'GET' && attempt < 1 && (response.status >= 500 || response.status === 408 || response.status === 429)
@@ -162,17 +152,15 @@ async function execute(path, options, attempt = 0) {
       }
       throw error
     }
-
     succeeded = true
     return payload
   } catch (error) {
     if (error?.name === 'AbortError') {
       if (externalSignal?.aborted) throw error
-      const timeoutError = new Error('A API demorou para responder.')
+      const timeoutError = new Error('A API demorou para responder. Tente novamente; seus dados não foram perdidos.')
       timeoutError.code = 'ADMIN_API_TIMEOUT'
       throw timeoutError
     }
-
     const retryableNetwork = method === 'GET' && attempt < 1 && navigator.onLine && error instanceof TypeError
     if (retryableNetwork) {
       await delay(350 + Math.round(Math.random() * 150), externalSignal)
@@ -208,31 +196,23 @@ export function adminRequest(path, options = {}) {
   const method = String(options.method || 'GET').toUpperCase()
   const cacheMs = Math.max(0, Number(options.cacheMs || 0))
   const requestKey = `${method}:${path}`
-  const cancelKey = method === 'GET'
-    ? String(options.cancelKey || (path.startsWith('/admin/ecosystem/command/search?') ? 'global-admin-search' : '')).trim()
-    : ''
-
+  const cancelKey = method === 'GET' ? String(options.cancelKey || (path.startsWith('/admin/ecosystem/command/search?') ? 'global-admin-search' : '')).trim() : ''
   if (method === 'GET') {
     const cached = memoryCache.get(requestKey)
     if (cached && cached.expiresAt > Date.now()) return Promise.resolve(cached.value)
     if (!options.force && inflightReads.has(requestKey)) return inflightReads.get(requestKey)
-
     const controller = cancelKey ? new AbortController() : null
     if (controller) {
       const previous = replaceableReads.get(cancelKey)
       if (previous) previous.abort()
       replaceableReads.set(cancelKey, controller)
     }
-
     const composed = composeSignals(options.signal, controller?.signal)
     const requestOptions = composed.signal ? { ...options, signal: composed.signal } : options
     const promise = execute(path, requestOptions).then(payload => {
-      if (method === 'GET' && cacheMs > 0) {
-        memoryCache.set(requestKey, { value: payload, expiresAt: Date.now() + cacheMs })
-      }
+      if (cacheMs > 0) memoryCache.set(requestKey, { value: payload, expiresAt: Date.now() + cacheMs })
       return payload
     })
-
     inflightReads.set(requestKey, promise)
     return promise.finally(() => {
       composed.cleanup()
@@ -240,7 +220,6 @@ export function adminRequest(path, options = {}) {
       if (controller && replaceableReads.get(cancelKey) === controller) replaceableReads.delete(cancelKey)
     })
   }
-
   invalidateAdminApi()
   const mutationKey = `${requestKey}:${String(options.body || '')}`
   if (!options.force && inflightMutations.has(mutationKey)) return inflightMutations.get(mutationKey)
