@@ -42,7 +42,12 @@ function validateHttpsUrl(value) {
 export default function AdminUserDetailExperience(props) {
   const { userId, apiRequest, applications = [] } = props
   const [user, setUser] = useState(null)
+  const [userDetail, setUserDetail] = useState(null)
   const [open, setOpen] = useState(false)
+  const [onboardingOpen, setOnboardingOpen] = useState(false)
+  const [onboardingProductionId, setOnboardingProductionId] = useState('')
+  const [onboardingBusy, setOnboardingBusy] = useState(false)
+  const [onboardingNotice, setOnboardingNotice] = useState('')
   const [impersonationOpen, setImpersonationOpen] = useState(false)
   const [accessManagerOpen, setAccessManagerOpen] = useState(false)
   const [detailRevision, setDetailRevision] = useState(0)
@@ -57,10 +62,16 @@ export default function AdminUserDetailExperience(props) {
     setLoadingUser(true)
     apiRequest(`/admin/ecosystem/users/${userId}`)
       .then(payload => {
-        if (active) setUser(payload?.user || null)
+        if (active) {
+          setUser(payload?.user || null)
+          setUserDetail(payload || null)
+        }
       })
       .catch(() => {
-        if (active) setUser(null)
+        if (active) {
+          setUser(null)
+          setUserDetail(null)
+        }
       })
       .finally(() => {
         if (active) setLoadingUser(false)
@@ -83,6 +94,10 @@ export default function AdminUserDetailExperience(props) {
   }, [open, sending])
 
   const recipientLabel = useMemo(() => user ? `${fullName(user)} · ${user.email || 'sem e-mail'}` : `Usuário #${userId}`, [user, userId])
+  const producerOrganizations = useMemo(
+    () => (userDetail?.resources?.productions?.data || []).filter(row => row?.id && row?.application?.slug),
+    [userDetail],
+  )
 
   function openComposer(channel) {
     setForm(current => ({ ...EMPTY_FORM, channel, type: current.type || 'info' }))
@@ -195,8 +210,40 @@ export default function AdminUserDetailExperience(props) {
     }
   }
 
+  function openProducerOnboarding() {
+    if (!producerOrganizations.length) return
+    setOnboardingProductionId(String(producerOrganizations[0].id))
+    setOnboardingNotice('')
+    setError('')
+    setOnboardingOpen(true)
+  }
+
+  async function sendProducerOnboarding() {
+    const production = producerOrganizations.find(row => String(row.id) === String(onboardingProductionId))
+    if (!production?.application?.slug) {
+      setOnboardingNotice('Selecione uma produção válida.')
+      return
+    }
+
+    setOnboardingBusy(true)
+    setOnboardingNotice('')
+    setError('')
+    try {
+      const payload = await apiRequest(
+        `/v1/apps/${encodeURIComponent(production.application.slug)}/organizations/${production.id}/onboarding/resend-handoff`,
+        { method: 'POST' },
+      )
+      setOnboardingNotice(payload?.message || `Onboarding enviado para ${user?.email || 'o produtor'}.`)
+    } catch (err) {
+      setOnboardingNotice(err.message || 'Não foi possível enviar o onboarding do produtor.')
+    } finally {
+      setOnboardingBusy(false)
+    }
+  }
+
   const quickActions = <div className="auc-quick-actions" aria-label="Ações rápidas do usuário">
     <button type="button" className="auc-action auc-action--both" onClick={() => openComposer('both')} disabled={loadingUser || !user?.email}>Comunicar</button>
+    {producerOrganizations.length > 0 && <button type="button" className="auc-action auc-action--onboarding" onClick={openProducerOnboarding} disabled={loadingUser || !user?.email}>Enviar onboarding</button>}
     <button type="button" className="auc-action auc-action--access" onClick={() => setAccessManagerOpen(true)} disabled={loadingUser || !user}>Administrar acesso</button>
     <button type="button" className="auc-action auc-action--impersonate" onClick={() => setImpersonationOpen(true)} disabled={loadingUser || !canImpersonate(user)}>Entrar como usuário</button>
   </div>
@@ -269,9 +316,40 @@ export default function AdminUserDetailExperience(props) {
     </section>
   </div> : null
 
+  const onboardingModal = onboardingOpen ? <div className="auc-modal-backdrop" role="presentation" onMouseDown={event => {
+    if (event.target === event.currentTarget && !onboardingBusy) setOnboardingOpen(false)
+  }}>
+    <section className="auc-modal" role="dialog" aria-modal="true" aria-labelledby="auc-onboarding-title">
+      <header className="auc-modal-head">
+        <div>
+          <span>ENTREGA AO PRODUTOR</span>
+          <h2 id="auc-onboarding-title">Enviar onboarding para {fullName(user)}</h2>
+          <p>O e-mail leva o produtor aos termos, identidade, documentos, prova de vida e chave Pix.</p>
+        </div>
+        <button type="button" className="auc-close" onClick={() => setOnboardingOpen(false)} disabled={onboardingBusy} aria-label="Fechar">×</button>
+      </header>
+      <div className="auc-form">
+        <label className="auc-wide">Produção
+          <select value={onboardingProductionId} onChange={event => { setOnboardingProductionId(event.target.value); setOnboardingNotice('') }} disabled={onboardingBusy}>
+            {producerOrganizations.map(row => <option key={row.id} value={row.id}>{row.name} · {row.application?.name || row.application?.slug}</option>)}
+          </select>
+        </label>
+        <div className="auc-feedback auc-wide">
+          O envio usa o fluxo oficial da produção e registra a data de entrega no onboarding. Nenhuma etapa de identidade ou aceite é concluída pelo administrador.
+        </div>
+        {onboardingNotice && <div className="auc-feedback auc-feedback--success">{onboardingNotice}</div>}
+        <div className="auc-modal-actions auc-wide">
+          <button type="button" className="auc-secondary" onClick={() => setOnboardingOpen(false)} disabled={onboardingBusy}>Fechar</button>
+          <div><button type="button" className="auc-primary" onClick={sendProducerOnboarding} disabled={onboardingBusy || !onboardingProductionId}>{onboardingBusy ? 'Enviando…' : 'Enviar e-mail de onboarding'}</button></div>
+        </div>
+      </div>
+    </section>
+  </div> : null
+
   return <div className="auc-user-detail-shell" data-user-detail-experience="true">
     <AdminUserDetailPage key={String(userId) + ':' + String(detailRevision)} {...props} detailActions={quickActions}/>
     {modal}
+    {onboardingModal}
     {accessManagerOpen && user && <AdminUserAccessManager
       open={accessManagerOpen}
       user={user}
