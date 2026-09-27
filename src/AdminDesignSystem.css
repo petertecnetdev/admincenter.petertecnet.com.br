@@ -37,6 +37,7 @@
 .admin-shell[data-admin-page="users"]{--pt-module:#72b7ff;--pt-module-rgb:114,183,255}
 .admin-shell[data-admin-page="establishments"]{--pt-module:#54e1cb;--pt-module-rgb:84,225,203}
 .admin-shell[data-admin-page="items"]{--pt-module:#ffae63;--pt-module-rgb:255,174,99}
+.admin-shell[data-admin-page="media"]{--pt-module:#b789ff;--pt-module-rgb:183,137,255}
 .admin-shell[data-admin-page="notifications"]{--pt-module:#ef79d7;--pt-module-rgb:239,121,215}
 .admin-shell[data-admin-page="activity"]{--pt-module:#5be6f5;--pt-module-rgb:91,230,245}
 :where(.admin-shell button,.admin-shell a,.admin-shell input,.admin-shell select,.admin-shell textarea):focus-visible{outline:2px solid var(--pt-module,var(--pt-accent));outline-offset:2px}
