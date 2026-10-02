@@ -2,15 +2,20 @@ import { useEffect, useMemo, useState } from 'react'
 import AdminUserDetailPage from './AdminUserDetailPage.jsx'
 import { AdminImpersonationDialog, canImpersonate } from './AdminImpersonation.jsx'
 import AdminUserAccessManager from './AdminUserAccessManager.jsx'
+import { applyCommunicationTemplate, templatesForApplication } from './adminUserCommunicationTemplates.js'
 import './AdminUserCommunication.css'
 import './AdminUserCommunicationShell.css'
 
 const EMPTY_FORM = {
   channel: 'both',
   type: 'info',
+  app_slug: '',
+  template_key: 'custom',
   subject: '',
   message: '',
-  action_url: '',
+  production_id: '',
+  include_events: false,
+  actions: [],
 }
 
 const CHANNEL_LABELS = {
@@ -18,13 +23,6 @@ const CHANNEL_LABELS = {
   notification: 'Notificação',
   both: 'E-mail + notificação',
 }
-
-const TEMPLATES = [
-  { key: 'information', label: 'Informação', subject: 'Informação da Peter Tecnet', type: 'info' },
-  { key: 'support', label: 'Suporte', subject: 'Atualização do seu atendimento', type: 'general' },
-  { key: 'account', label: 'Conta', subject: 'Informação sobre sua conta Peter Tecnet', type: 'info' },
-  { key: 'important', label: 'Aviso', subject: 'Aviso importante da Peter Tecnet', type: 'warning' },
-]
 
 function fullName(user) {
   return [user?.first_name, user?.last_name].filter(Boolean).join(' ') || user?.user_name || user?.email || 'Usuário'
@@ -98,9 +96,39 @@ export default function AdminUserDetailExperience(props) {
     () => (userDetail?.resources?.productions?.data || []).filter(row => row?.id && row?.application?.slug),
     [userDetail],
   )
+  const communicationApplications = useMemo(() => {
+    const globalBySlug = new Map(applications.filter(app => app?.slug).map(app => [app.slug, app]))
+    const linked = new Map()
+    ;(userDetail?.platforms || []).forEach(row => {
+      const app = row?.application
+      if (app?.slug) linked.set(app.slug, { ...app, ...(globalBySlug.get(app.slug) || {}) })
+    })
+    producerOrganizations.forEach(row => {
+      const app = row?.application
+      if (app?.slug) linked.set(app.slug, { ...app, ...(globalBySlug.get(app.slug) || {}) })
+    })
+    if (!linked.size) applications.filter(app => app?.slug).forEach(app => linked.set(app.slug, app))
+    return [...linked.values()]
+  }, [applications, producerOrganizations, userDetail])
+  const selectedApplication = useMemo(
+    () => communicationApplications.find(app => app.slug === form.app_slug) || null,
+    [communicationApplications, form.app_slug],
+  )
+  const availableTemplates = useMemo(() => templatesForApplication(form.app_slug), [form.app_slug])
+  const selectedProduction = useMemo(
+    () => producerOrganizations.find(row => String(row.id) === String(form.production_id)) || null,
+    [form.production_id, producerOrganizations],
+  )
+  const previewEvents = useMemo(
+    () => (userDetail?.resources?.events?.data || [])
+      .filter(row => String(row?.production?.id || '') === String(form.production_id || ''))
+      .slice(0, 6),
+    [form.production_id, userDetail],
+  )
 
   function openComposer(channel) {
-    setForm(current => ({ ...EMPTY_FORM, channel, type: current.type || 'info' }))
+    const defaultApp = communicationApplications.find(app => app.slug === 'cutinapp') || communicationApplications[0]
+    setForm({ ...EMPTY_FORM, channel, app_slug: defaultApp?.slug || '' })
     setError('')
     setSuccess('')
     setOpen(true)
@@ -112,10 +140,63 @@ export default function AdminUserDetailExperience(props) {
     setSuccess('')
   }
 
-  function applyTemplate(template) {
-    setForm(current => ({ ...current, subject: template.subject, type: template.type }))
+  function changeApplication(appSlug) {
+    setForm(current => ({
+      ...current,
+      app_slug: appSlug,
+      template_key: 'custom',
+      production_id: '',
+      include_events: false,
+      actions: [],
+    }))
     setError('')
     setSuccess('')
+  }
+
+  function applyTemplate(template) {
+    const application = communicationApplications.find(app => app.slug === form.app_slug) || null
+    const production = template.requiresProduction
+      ? producerOrganizations.find(row => row.application?.slug === form.app_slug) || producerOrganizations[0] || null
+      : null
+    const patch = applyCommunicationTemplate(template, application, production)
+    setForm(current => ({
+      ...current,
+      ...patch,
+      production_id: production?.id ? String(production.id) : '',
+    }))
+    setError('')
+    setSuccess('')
+  }
+
+  function changeProduction(productionId) {
+    const production = producerOrganizations.find(row => String(row.id) === String(productionId)) || null
+    const template = availableTemplates.find(row => row.key === form.template_key)
+    const actions = template?.key === 'production_completed'
+      ? applyCommunicationTemplate(template, selectedApplication, production).actions
+      : form.actions
+    setForm(current => ({ ...current, production_id: productionId, actions }))
+    setError('')
+    setSuccess('')
+  }
+
+  function updateAction(index, field, value) {
+    setForm(current => ({
+      ...current,
+      actions: current.actions.map((action, actionIndex) => actionIndex === index ? { ...action, [field]: value } : action),
+    }))
+    setError('')
+    setSuccess('')
+  }
+
+  function addAction() {
+    setForm(current => current.actions.length >= 3 ? current : ({
+      ...current,
+      actions: [...current.actions, { label: '', url: '' }],
+    }))
+  }
+
+  function removeAction(index) {
+    setForm(current => ({ ...current, actions: current.actions.filter((_, actionIndex) => actionIndex !== index) }))
   }
 
   async function ensureNotificationReach() {
@@ -136,23 +217,30 @@ export default function AdminUserDetailExperience(props) {
       body: JSON.stringify({
         subject: form.subject.trim(),
         message: form.message.trim(),
-        action_url: form.action_url.trim() || null,
+        app_slug: form.app_slug || null,
+        template_key: form.template_key || 'custom',
+        production_id: form.production_id ? Number(form.production_id) : null,
+        include_events: Boolean(form.include_events),
+        actions: form.actions
+          .map(action => ({ label: action.label.trim(), url: action.url.trim() }))
+          .filter(action => action.label && action.url),
       }),
     })
   }
 
   async function sendNotification() {
+    const primaryAction = form.actions.find(action => action.url?.trim())
     return apiRequest('/admin/ecosystem/notifications', {
       method: 'POST',
       body: JSON.stringify({
         audience_type: 'users',
         user_ids: [Number(userId)],
-        app_id: null,
+        app_id: selectedApplication?.id || null,
         type: form.type,
         title: form.subject.trim(),
         message: form.message.trim(),
-        reference_url: form.action_url.trim() || null,
-        data: { source: 'admin_user_detail', user_id: Number(userId) },
+        reference_url: primaryAction?.url?.trim() || null,
+        data: { source: 'admin_user_detail', user_id: Number(userId), template_key: form.template_key },
       }),
     })
   }
@@ -166,8 +254,18 @@ export default function AdminUserDetailExperience(props) {
       setError('Informe o assunto/título e a mensagem antes de enviar.')
       return
     }
-    if (!validateHttpsUrl(form.action_url)) {
-      setError('O link opcional deve usar HTTPS.')
+    if (form.template_key === 'production_completed' && !form.production_id) {
+      setError('Selecione a produção concluída antes de enviar.')
+      return
+    }
+    const invalidAction = form.actions.find(action => action.url?.trim() && !validateHttpsUrl(action.url))
+    if (invalidAction) {
+      setError('Todos os links dos botões precisam usar HTTPS.')
+      return
+    }
+    const incompleteAction = form.actions.find(action => Boolean(action.label?.trim()) !== Boolean(action.url?.trim()))
+    if (incompleteAction) {
+      setError('Cada botão precisa ter um texto e um link.')
       return
     }
 
@@ -184,7 +282,7 @@ export default function AdminUserDetailExperience(props) {
         delivered.push('notificação')
       }
       setSuccess(`Enviado com sucesso por ${delivered.join(' e ')} para ${fullName(user)}.`)
-      setForm(current => ({ ...EMPTY_FORM, channel: current.channel }))
+      setForm(current => ({ ...EMPTY_FORM, channel: current.channel, app_slug: current.app_slug }))
     } catch (err) {
       const partial = delivered.length ? ` ${delivered.join(' e ')} já foi enviado;` : ''
       setError(`${partial} ${err.message || 'Não foi possível concluir o envio.'}`.trim())
@@ -275,11 +373,19 @@ export default function AdminUserDetailExperience(props) {
       </div>
 
       <div className="auc-template-row">
-        <span>Atalhos</span>
-        <div>{TEMPLATES.map(template => <button key={template.key} type="button" onClick={() => applyTemplate(template)} disabled={sending}>{template.label}</button>)}</div>
+        <span>Mensagens padrão</span>
+        <div>{availableTemplates.map(template => <button key={template.key} className={form.template_key === template.key ? 'active' : ''} type="button" onClick={() => applyTemplate(template)} disabled={sending}>{template.label}</button>)}</div>
       </div>
 
       <form className="auc-form" onSubmit={submit}>
+        <label className="auc-wide">Identidade do e-mail
+          <select value={form.app_slug} onChange={event => changeApplication(event.target.value)} disabled={sending}>
+            <option value="">Peter Tecnet (padrão)</option>
+            {communicationApplications.map(app => <option key={app.id || app.slug} value={app.slug}>{app.name || app.slug}</option>)}
+          </select>
+          <small>{selectedApplication?.slug === 'cutinapp' ? 'Usará a logo e o padrão visual atual da Cutinapp.' : 'O e-mail usa o branding configurado para a aplicação.'}</small>
+        </label>
+
         <label className="auc-wide">Assunto / título
           <input value={form.subject} onChange={event => change('subject', event.target.value)} maxLength={180} placeholder="Ex.: Informação importante sobre sua conta" autoFocus required/>
         </label>
@@ -294,9 +400,33 @@ export default function AdminUserDetailExperience(props) {
             <option value="marketing">Marketing</option>
           </select>
         </label>}
-        <label className={(form.channel === 'email' ? 'auc-wide' : '')}>Link HTTPS opcional
-          <input type="url" value={form.action_url} onChange={event => change('action_url', event.target.value)} maxLength={500} placeholder="https://..."/>
-        </label>
+
+        {form.template_key === 'production_completed' && <label className="auc-wide">Produção concluída
+          <select value={form.production_id} onChange={event => changeProduction(event.target.value)} disabled={sending} required>
+            <option value="">Selecione a produção</option>
+            {producerOrganizations.filter(row => !form.app_slug || row.application?.slug === form.app_slug).map(row => <option key={row.id} value={row.id}>{row.name} · {row.application?.name || row.application?.slug}</option>)}
+          </select>
+          <small>O servidor confirma a titularidade antes de incluir produção e eventos no e-mail.</small>
+        </label>}
+
+        {(form.channel === 'email' || form.channel === 'both') && <div className="auc-wide auc-actions-editor">
+          <div className="auc-actions-editor__head">
+            <div><strong>Botões do e-mail</strong><small>Até 3 ações HTTPS. O primeiro botão recebe maior destaque.</small></div>
+            <button type="button" className="auc-secondary" onClick={addAction} disabled={sending || form.actions.length >= 3}>Adicionar botão</button>
+          </div>
+          {form.actions.length === 0 && <p className="auc-actions-empty">Nenhum botão configurado. Você pode enviar apenas a mensagem ou adicionar ações.</p>}
+          {form.actions.map((action, index) => <div className="auc-action-row" key={`action-${index}`}>
+            <input value={action.label} onChange={event => updateAction(index, 'label', event.target.value)} maxLength={60} placeholder="Texto do botão" aria-label={`Texto do botão ${index + 1}`}/>
+            <input type="url" value={action.url} onChange={event => updateAction(index, 'url', event.target.value)} maxLength={500} placeholder="https://..." aria-label={`Link do botão ${index + 1}`}/>
+            <button type="button" className="auc-action-remove" onClick={() => removeAction(index)} disabled={sending} aria-label={`Remover botão ${index + 1}`}>Remover</button>
+          </div>)}
+        </div>}
+
+        {form.include_events && form.production_id && <div className="auc-wide auc-event-preview">
+          <div className="auc-event-preview__head"><strong>Prévia que irá no e-mail</strong><span>{selectedProduction?.name || 'Produção'} · até 6 eventos</span></div>
+          {previewEvents.length === 0 ? <p>Nenhum evento vinculado a esta produção foi encontrado.</p> : previewEvents.map(event => <div className="auc-event-preview__item" key={event.id}><strong>{event.title || event.name}</strong><span>{event.start_date ? new Date(event.start_date).toLocaleString('pt-BR') : 'Data a confirmar'}{event.city ? ` · ${event.city}${event.uf ? `/${event.uf}` : ''}` : ''}</span></div>)}
+        </div>}
+
         <label className="auc-wide">Mensagem
           <textarea value={form.message} onChange={event => change('message', event.target.value)} maxLength={5000} rows={8} placeholder="Escreva a informação que este usuário deve receber..." required/>
           <small>{form.message.length}/5000 caracteres</small>
