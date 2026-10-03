@@ -14,6 +14,7 @@ const AdminEstablishmentsPage = lazy(() => import('./AdminEstablishmentsPageV2.j
 const AdminItemsManager = lazy(() => import('./AdminItemsManager.jsx'))
 const AdminApplicationsCenter = lazy(() => import('./AdminApplicationsCenter.jsx'))
 const ImportantEventsCenter = lazy(() => import('./ImportantEventsCenter.jsx'))
+const MediaLibraryPage = lazy(() => import('./MediaLibraryPage.jsx'))
 
 const TOKEN_KEY = 'petertecnet_admin_token'
 const OWNER_EMAIL = 'petertecnet@gmail.com'
@@ -26,6 +27,7 @@ const navItems = [
   ['applications', 'Aplicações', 'apps'],
   ['establishments', 'Estabelecimentos', 'building'],
   ['items', 'Itens', 'items'],
+  ['media', 'Mídia', 'media'],
   ['notifications', 'Notificações', 'bell'],
   ['activity', 'Atividade', 'activity'],
 ]
@@ -39,6 +41,7 @@ const PAGE_CONFIG = {
   users: { slug: 'usuarios', label: 'Usuários' },
   establishments: { slug: 'estabelecimentos', label: 'Estabelecimentos' },
   items: { slug: 'itens', label: 'Itens' },
+  media: { slug: 'midia', label: 'Mídia' },
   notifications: { slug: 'notificacoes', label: 'Notificações' },
   activity: { slug: 'atividade', label: 'Atividade' },
 }
@@ -85,6 +88,7 @@ function AdminIcon({ name }) {
     users: '<circle cx="9" cy="8" r="3"/><path d="M3 20c.7-4 2.8-6 6-6s5.3 2 6 6M16 5.5a3 3 0 0 1 0 5.8M17 14c2.5.3 4 2.1 4 5"/>',
     building: '<path d="M4 21V4h11v17M15 9h5v12M8 8h3M8 12h3M8 16h3M18 13h1"/>',
     items: '<path d="m4 7 8-4 8 4-8 4zM4 7v10l8 4 8-4V7M12 11v10"/>',
+    media: '<rect x="3" y="4" width="18" height="16" rx="2"/><circle cx="8.5" cy="9" r="1.5"/><path d="m5 17 4.5-4.5 3.5 3 2.5-2.5 3.5 4"/>',
     bell: '<path d="M18 8a6 6 0 0 0-12 0c0 7-3 7-3 9h18c0-2-3-2-3-9M10 21h4"/>',
     activity: '<path d="M3 12h4l2-5 4 10 2-5h6"/>',
   }
@@ -911,6 +915,12 @@ function Dashboard({ user, onLogout }) {
           <section id="items-admin-integration" className="section-anchor admin-native-module" data-admin-page-key="items" hidden={activePage !== 'items'} aria-hidden={activePage !== 'items'}>
             {activePage === 'items' && <AdminModuleBoundary name="Itens"><Suspense fallback={<ModuleSkeleton title="Carregando itens…" />}>
               <AdminItemsManager applications={applications} quickCreateToken={quickCreate.target === 'items' ? quickCreate.token : 0} />
+            </Suspense></AdminModuleBoundary>}
+          </section>
+
+          <section id="media-library-admin" className="section-anchor admin-native-module" data-admin-page-key="media" hidden={activePage !== 'media'} aria-hidden={activePage !== 'media'}>
+            {activePage === 'media' && <AdminModuleBoundary name="Media Library"><Suspense fallback={<ModuleSkeleton title="Carregando biblioteca de mídia…" />}>
+              <MediaLibraryPage request={request} applications={applications} />
             </Suspense></AdminModuleBoundary>}
           </section>
 

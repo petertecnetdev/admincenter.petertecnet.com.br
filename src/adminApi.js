@@ -114,6 +114,7 @@ async function execute(path, options, attempt = 0) {
   const { publicRequest = false, ...requestOptions } = options
   const token = publicRequest ? null : localStorage.getItem(TOKEN_KEY)
   const method = String(requestOptions.method || 'GET').toUpperCase()
+  const bodyIsFormData = typeof FormData !== 'undefined' && requestOptions.body instanceof FormData
   const timeoutController = new AbortController()
   const externalSignal = requestOptions.signal
   const onExternalAbort = () => timeoutController.abort(externalSignal.reason)
@@ -131,7 +132,7 @@ async function execute(path, options, attempt = 0) {
       cache: method === 'GET' ? 'no-store' : requestOptions.cache,
       headers: {
         Accept: 'application/json',
-        ...(requestOptions.body !== undefined ? { 'Content-Type': 'application/json' } : {}),
+        ...(requestOptions.body !== undefined && !bodyIsFormData ? { 'Content-Type': 'application/json' } : {}),
         ...(token ? { Authorization: `Bearer ${token}` } : {}),
         ...requestOptions.headers,
       },
