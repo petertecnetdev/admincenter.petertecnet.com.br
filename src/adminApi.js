@@ -263,11 +263,21 @@ export function cancelAdminRequest(cancelKey) {
   return true
 }
 
+// GET/cache e mutações com mesmo caminho mas cabeçalhos de escopo diferentes
+// não podem compartilhar Promise nem resposta (ex.: X-Application-Id).
+function requestHeaderScope(headers) {
+  const pairs = Object.entries(headers || {})
+    .filter(([name]) => name.toLowerCase() !== 'authorization')
+    .map(([name, value]) => [name.toLowerCase(), String(value)])
+    .sort(([nameA, valueA], [nameB, valueB]) => nameA.localeCompare(nameB) || valueA.localeCompare(valueB))
+  return JSON.stringify(pairs)
+}
+
 export function adminRequest(path, options = {}) {
   const method = String(options.method || 'GET').toUpperCase()
   const cacheMs = Math.max(0, Number(options.cacheMs || 0))
   const session = sessionSnapshot(Boolean(options.publicRequest))
-  const requestKey = (options.publicRequest ? 'public:' : 'private:') + session.generation + ':' + method + ':' + path
+  const requestKey = (options.publicRequest ? 'public:' : 'private:') + session.generation + ':' + method + ':' + path + ':' + requestHeaderScope(options.headers)
   const rawCancelKey = method === 'GET' ? String(options.cancelKey || (path.startsWith('/admin/ecosystem/command/search?') ? 'global-admin-search' : '')).trim() : ''
   const cancelKey = rawCancelKey ? session.generation + ':' + rawCancelKey : ''
   if (method === 'GET') {
