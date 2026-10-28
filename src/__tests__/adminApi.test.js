@@ -257,3 +257,43 @@ test('falha de rede PUT não repete mutação nem expõe mensagem bruta', async 
   expect(error.message).not.toContain('segredo')
   expect(fetch).toHaveBeenCalledTimes(1)
 })
+
+test.each(['GET', 'PUT'])('%s com application-id distinto não compartilha requisição ou cache', async method => {
+  const pendingA = deferred()
+  const pendingB = deferred()
+  fetch.mockReturnValueOnce(pendingA.promise).mockReturnValueOnce(pendingB.promise)
+  const { adminRequest } = api()
+  localStorage.setItem(KEY, 'A')
+  const base = method === 'GET' ? { cacheMs: 60000 } : { method, body: '{"enabled":true}' }
+  const requestA = adminRequest('/shared/workers', { ...base, headers: { 'X-Application-Id': '11' } })
+  const requestB = adminRequest('/shared/workers', { ...base, headers: { 'x-application-id': '22' } })
+  expect(fetch).toHaveBeenCalledTimes(2)
+  expect(fetch.mock.calls[0][1].headers['X-Application-Id']).toBe('11')
+  expect(fetch.mock.calls[1][1].headers['x-application-id']).toBe('22')
+  pendingB.resolve(reply(200, { owner: 'B' }))
+  pendingA.resolve(reply(200, { owner: 'A' }))
+  expect(await requestB).toEqual({ owner: 'B' })
+  expect(await requestA).toEqual({ owner: 'A' })
+  if (method === 'GET') {
+    expect(await adminRequest('/shared/workers', { ...base, headers: { 'x-application-id': '11' } })).toEqual({ owner: 'A' })
+    expect(await adminRequest('/shared/workers', { ...base, headers: { 'X-Application-Id': '22' } })).toEqual({ owner: 'B' })
+    expect(fetch).toHaveBeenCalledTimes(2)
+  }
+})
+
+test('mesmo cabeçalho com ordem e caixa diferentes mantém deduplicação GET', async () => {
+  const pending = deferred()
+  fetch.mockReturnValueOnce(pending.promise)
+  const { adminRequest } = api()
+  localStorage.setItem(KEY, 'A')
+  const first = adminRequest('/shared/workers', {
+    headers: { 'X-Application-Id': '11', 'X-Trace': 'same' },
+  })
+  const second = adminRequest('/shared/workers', {
+    headers: { 'x-trace': 'same', 'x-application-id': '11' },
+  })
+  expect(fetch).toHaveBeenCalledTimes(1)
+  pending.resolve(reply(200, { owner: 'A' }))
+  expect(await first).toEqual({ owner: 'A' })
+  expect(await second).toEqual({ owner: 'A' })
+})
