@@ -237,6 +237,11 @@ export function invalidateAdminApi(prefix = '') {
   for (const key of memoryCache.keys()) {
     if (!prefix || key.includes(prefix)) memoryCache.delete(key)
   }
+  // Um GET iniciado antes da mutação não pode ser reutilizado nem repovoar o cache
+  // depois da invalidação. A conclusão antiga continua sujeita ao contexto do caller.
+  for (const key of inflightReads.keys()) {
+    if (!prefix || key.includes(prefix)) inflightReads.delete(key)
+  }
 }
 
 export function cancelAdminRequest(cancelKey) {
