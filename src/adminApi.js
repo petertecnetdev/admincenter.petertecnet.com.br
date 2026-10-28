@@ -124,6 +124,15 @@ function composeSignals(...signals) {
   }
 }
 
+// HeadersInit aceita objeto, pares [nome, valor] ou Headers. Usar a mesma
+// representação no transporte e na chave evita deduplicação entre apps distintos.
+function requestHeaderPairs(headers) {
+  if (!headers) return []
+  if (Array.isArray(headers)) return headers
+  if (typeof headers.entries === 'function' && typeof headers.forEach === 'function') return [...headers.entries()]
+  return Object.entries(headers)
+}
+
 function parseRetryAfter(value) {
   if (!value) return 0
   const seconds = Number(value)
@@ -173,7 +182,7 @@ async function execute(path, options, session, attempt = 0) {
     // Headers HTTP não diferenciam maiúsculas/minúsculas: remover qualquer
     // variante de Authorization antes de inserir o Bearer da sessão capturada.
     const safeHeaders = Object.fromEntries(
-      Object.entries(requestOptions.headers || {}).filter(([name]) => name.toLowerCase() !== 'authorization'),
+      requestHeaderPairs(requestOptions.headers).filter(([name]) => String(name).toLowerCase() !== 'authorization'),
     )
     const response = await fetch(`${ADMIN_API_BASE}${path}`, {
       ...requestOptions,
@@ -268,8 +277,8 @@ export function cancelAdminRequest(cancelKey) {
 // GET/cache e mutações com mesmo caminho mas cabeçalhos de escopo diferentes
 // não podem compartilhar Promise nem resposta (ex.: X-Application-Id).
 function requestHeaderScope(headers) {
-  const pairs = Object.entries(headers || {})
-    .filter(([name]) => name.toLowerCase() !== 'authorization')
+  const pairs = requestHeaderPairs(headers)
+    .filter(([name]) => String(name).toLowerCase() !== 'authorization')
     .map(([name, value]) => [name.toLowerCase(), String(value)])
     .sort(([nameA, valueA], [nameB, valueB]) => nameA.localeCompare(nameB) || valueA.localeCompare(valueB))
   return JSON.stringify(pairs)
