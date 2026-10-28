@@ -258,6 +258,8 @@ export function adminRequest(path, options = {}) {
   const rawCancelKey = method === 'GET' ? String(options.cancelKey || (path.startsWith('/admin/ecosystem/command/search?') ? 'global-admin-search' : '')).trim() : ''
   const cancelKey = rawCancelKey ? session.generation + ':' + rawCancelKey : ''
   if (method === 'GET') {
+    // Uma leitura forçada não pode reutilizar cache nem deixar um valor antigo após falha.
+    if (options.force) memoryCache.delete(requestKey)
     const cached = memoryCache.get(requestKey)
     if (cached && cached.expiresAt > Date.now()) return Promise.resolve(cached.value)
     if (!options.force && inflightReads.has(requestKey)) return inflightReads.get(requestKey)
@@ -271,7 +273,10 @@ export function adminRequest(path, options = {}) {
     const requestOptions = composed.signal ? { ...options, signal: composed.signal } : options
     const promise = execute(path, requestOptions, session).then(payload => {
       assertCurrentSession(session)
-      if (cacheMs > 0) memoryCache.set(requestKey, { value: payload, expiresAt: Date.now() + cacheMs })
+      // Um GET anterior não deve sobrescrever o cache de uma atualização forçada mais recente.
+      if (cacheMs > 0 && inflightReads.get(requestKey) === promise) {
+        memoryCache.set(requestKey, { value: payload, expiresAt: Date.now() + cacheMs })
+      }
       return payload
     })
     inflightReads.set(requestKey, promise)
