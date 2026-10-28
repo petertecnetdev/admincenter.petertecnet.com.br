@@ -1,0 +1,182 @@
+const KEY = 'petertecnet_admin_token'
+const reply = (status, body = {}) => ({ status, ok: status >= 200 && status < 300, headers: { get: () => null }, json: async () => body })
+function deferred() {
+  let resolve
+  const promise = new Promise(r => { resolve = r })
+  return { promise, resolve }
+}
+const api = () => require('../adminApi.js')
+beforeEach(() => {
+  jest.resetModules()
+  jest.useRealTimers()
+  localStorage.clear()
+  globalThis.__ADMIN_IMPORT_META_ENV__ = { VITE_API_URL: 'https://api.example.invalid/api' }
+  global.fetch = jest.fn()
+  Object.defineProperty(navigator, 'onLine', { configurable: true, value: true })
+})
+afterEach(() => jest.useRealTimers())
+
+test('cacheMs>0 isola dados A/B', async () => {
+  const { adminRequest } = api()
+  localStorage.setItem(KEY, 'A')
+  fetch.mockResolvedValueOnce(reply(200, { owner: 'A' })).mockResolvedValueOnce(reply(200, { owner: 'B' }))
+  expect(await adminRequest('/items', { cacheMs: 60000 })).toEqual({ owner: 'A' })
+  localStorage.setItem(KEY, 'B')
+  expect(await adminRequest('/items', { cacheMs: 60000 })).toEqual({ owner: 'B' })
+  expect(fetch).toHaveBeenCalledTimes(2)
+  expect(fetch.mock.calls[1][1].headers.Authorization).toBe('Bearer B')
+})
+
+test.each([['GET', undefined], ['PUT', '{"enabled":true}']])('%s simultâneo A/B não compartilha Promise', async (method, body) => {
+  const a = deferred(), b = deferred()
+  fetch.mockReturnValueOnce(a.promise).mockReturnValueOnce(b.promise)
+  const { adminRequest } = api()
+  const options = method === 'GET' ? {} : { method, body }
+  localStorage.setItem(KEY, 'A')
+  const old = adminRequest('/workers', options).catch(error => error)
+  localStorage.setItem(KEY, 'B')
+  const current = adminRequest('/workers', options)
+  b.resolve(reply(200, { owner: 'B' }))
+  expect(await current).toEqual({ owner: 'B' })
+  a.resolve(reply(200, { owner: 'A' }))
+  expect((await old).code).toBe('ADMIN_SESSION_CHANGED')
+  expect(fetch).toHaveBeenCalledTimes(2)
+})
+
+test('401 tardio A não limpa token B', async () => {
+  const a = deferred(), b = deferred()
+  fetch.mockReturnValueOnce(a.promise).mockReturnValueOnce(b.promise)
+  const { adminRequest } = api()
+  const expired = jest.fn()
+  window.addEventListener('admin-session-expired', expired)
+  localStorage.setItem(KEY, 'A')
+  const old = adminRequest('/auth/me').catch(error => error)
+  localStorage.setItem(KEY, 'B')
+  const current = adminRequest('/auth/me')
+  b.resolve(reply(200, { user: 'B' }))
+  await current
+  a.resolve(reply(401, { message: 'segredo A' }))
+  expect((await old).code).toBe('ADMIN_SESSION_CHANGED')
+  expect(localStorage.getItem(KEY)).toBe('B')
+  expect(expired).not.toHaveBeenCalled()
+  window.removeEventListener('admin-session-expired', expired)
+})
+
+test('retry 503 não reutiliza token B', async () => {
+  jest.useFakeTimers()
+  fetch.mockResolvedValueOnce(reply(503, { message: 'PII A' }))
+  const { adminRequest } = api()
+  localStorage.setItem(KEY, 'A')
+  const old = adminRequest('/items').catch(error => error)
+  await Promise.resolve()
+  await Promise.resolve()
+  localStorage.setItem(KEY, 'B')
+  await jest.advanceTimersByTimeAsync(1000)
+  expect((await old).code).toBe('ADMIN_SESSION_CHANGED')
+  expect(fetch).toHaveBeenCalledTimes(1)
+  expect(fetch.mock.calls[0][1].headers.Authorization).toBe('Bearer A')
+})
+
+test('retry 408 preserva Bearer A', async () => {
+  jest.useFakeTimers()
+  fetch.mockResolvedValueOnce(reply(408)).mockResolvedValueOnce(reply(200, { ok: true }))
+  const { adminRequest } = api()
+  localStorage.setItem(KEY, 'A')
+  const pending = adminRequest('/items')
+  await jest.advanceTimersByTimeAsync(1000)
+  expect(await pending).toEqual({ ok: true })
+  expect(fetch.mock.calls[1][1].headers.Authorization).toBe('Bearer A')
+})
+
+test('A→B→A invalida resposta da primeira A', async () => {
+  const a = deferred()
+  fetch.mockReturnValueOnce(a.promise).mockResolvedValueOnce(reply(200, { owner: 'B' })).mockResolvedValueOnce(reply(200, { owner: 'A-new' }))
+  const { adminRequest } = api()
+  localStorage.setItem(KEY, 'A')
+  const old = adminRequest('/items').catch(error => error)
+  localStorage.setItem(KEY, 'B')
+  await adminRequest('/items')
+  localStorage.setItem(KEY, 'A')
+  expect(await adminRequest('/items')).toEqual({ owner: 'A-new' })
+  a.resolve(reply(200, { owner: 'A-old' }))
+  expect((await old).code).toBe('ADMIN_SESSION_CHANGED')
+})
+
+test('erros 403/422 são sanitizados, sem payload bruto', async () => {
+  fetch.mockResolvedValueOnce(reply(403, { message: 'token A', errors: { secret: ['CPF A'] } }))
+    .mockResolvedValueOnce(reply(422, { message: 'CPF B' }))
+  const { adminRequest } = api()
+  localStorage.setItem(KEY, 'B')
+  const forbidden = await adminRequest('/items').catch(error => error)
+  const invalid = await adminRequest('/items', { force: true }).catch(error => error)
+  expect(forbidden.message).toBe('Você não tem permissão para esta operação.')
+  expect(invalid.message).toBe('Verifique os dados informados.')
+  expect(forbidden.payload).toBeUndefined()
+  expect(invalid.payload).toBeUndefined()
+})
+
+test('storage event invalida resposta antiga', async () => {
+  const a = deferred()
+  fetch.mockReturnValueOnce(a.promise)
+  const { adminRequest, getAdminApiSessionSnapshot } = api()
+  localStorage.setItem(KEY, 'A')
+  const old = adminRequest('/items').catch(error => error)
+  const generation = getAdminApiSessionSnapshot().generation
+  localStorage.setItem(KEY, 'B')
+  window.dispatchEvent(new StorageEvent('storage', { key: KEY, newValue: 'B' }))
+  expect(getAdminApiSessionSnapshot().generation).toBeGreaterThan(generation)
+  a.resolve(reply(200, { owner: 'A' }))
+  expect((await old).code).toBe('ADMIN_SESSION_CHANGED')
+})
+
+test.each([429, 503])('HTTP %s após troca de sessão não executa retry com token B', async status => {
+  jest.useFakeTimers()
+  fetch.mockResolvedValueOnce(reply(status, { message: 'PII A' }))
+  const { adminRequest } = api()
+  localStorage.setItem(KEY, 'A')
+  const old = adminRequest('/items').catch(error => error)
+  await Promise.resolve()
+  await Promise.resolve()
+  localStorage.setItem(KEY, 'B')
+  await jest.advanceTimersByTimeAsync(1000)
+  expect((await old).code).toBe('ADMIN_SESSION_CHANGED')
+  expect(fetch).toHaveBeenCalledTimes(1)
+})
+
+test('falha de rede após troca de sessão não repete com token B', async () => {
+  jest.useFakeTimers()
+  fetch.mockRejectedValueOnce(new TypeError('rede interrompida'))
+  const { adminRequest } = api()
+  localStorage.setItem(KEY, 'A')
+  const old = adminRequest('/items').catch(error => error)
+  await Promise.resolve()
+  await Promise.resolve()
+  localStorage.setItem(KEY, 'B')
+  await jest.advanceTimersByTimeAsync(1000)
+  expect((await old).code).toBe('ADMIN_SESSION_CHANGED')
+  expect(fetch).toHaveBeenCalledTimes(1)
+})
+
+test.each(['GET', 'PUT'])('deduplicação %s permanece funcional dentro da mesma sessão', async method => {
+  const pending = deferred()
+  fetch.mockReturnValueOnce(pending.promise)
+  const { adminRequest } = api()
+  localStorage.setItem(KEY, 'A')
+  const options = method === 'GET' ? {} : { method, body: '{"enabled":true}' }
+  const first = adminRequest('/workers', options)
+  const second = adminRequest('/workers', options)
+  expect(fetch).toHaveBeenCalledTimes(1)
+  pending.resolve(reply(200, { ok: true }))
+  expect(await first).toEqual({ ok: true })
+  expect(await second).toEqual({ ok: true })
+})
+
+test('401 atual invalida sessão A, sem expor mensagem bruta', async () => {
+  fetch.mockResolvedValueOnce(reply(401, { message: 'dados privados de A' }))
+  const { adminRequest } = api()
+  localStorage.setItem(KEY, 'A')
+  const error = await adminRequest('/auth/me').catch(value => value)
+  expect(error.status).toBe(401)
+  expect(error.message).toBe('Sessão expirada. Entre novamente.')
+  expect(localStorage.getItem(KEY)).toBeNull()
+})
