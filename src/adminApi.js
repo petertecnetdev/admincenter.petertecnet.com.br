@@ -263,10 +263,21 @@ export function invalidateAdminApi(prefix = '') {
   }
 }
 
-export function cancelAdminRequest(cancelKey) {
+// Cancelamento substitutivo deve respeitar o app da rota e o cabeçalho canônico.
+// Caso contrário, uma busca da aplicação B aborta a leitura ainda válida de A.
+function requestCancelScope(path, headers) {
+  const match = String(path || '').match(/^\/v1\/apps\/([^/?]+)(?:\/|$)/)
+  const applicationIds = requestHeaderPairs(headers)
+    .filter(([name]) => String(name).toLowerCase() === 'x-application-id')
+    .map(([, value]) => String(value))
+    .sort()
+  return JSON.stringify([match?.[1] || '', applicationIds])
+}
+
+export function cancelAdminRequest(cancelKey, options = {}) {
   const key = String(cancelKey || '').trim()
   if (!key) return false
-  const scopedKey = sessionSnapshot().generation + ':' + key
+  const scopedKey = sessionSnapshot().generation + ':' + requestCancelScope(options.path, options.headers) + ':' + key
   const controller = replaceableReads.get(scopedKey)
   if (!controller) return false
   controller.abort()
@@ -290,7 +301,7 @@ export function adminRequest(path, options = {}) {
   const session = sessionSnapshot(Boolean(options.publicRequest))
   const requestKey = (options.publicRequest ? 'public:' : 'private:') + session.generation + ':' + method + ':' + path + ':' + requestHeaderScope(options.headers)
   const rawCancelKey = method === 'GET' ? String(options.cancelKey || (path.startsWith('/admin/ecosystem/command/search?') ? 'global-admin-search' : '')).trim() : ''
-  const cancelKey = rawCancelKey ? session.generation + ':' + rawCancelKey : ''
+  const cancelKey = rawCancelKey ? session.generation + ':' + requestCancelScope(path, options.headers) + ':' + rawCancelKey : ''
   if (method === 'GET') {
     // Uma leitura forçada não pode reutilizar cache nem deixar um valor antigo após falha.
     if (options.force) memoryCache.delete(requestKey)
