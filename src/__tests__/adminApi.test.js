@@ -212,3 +212,21 @@ test('falha de GET forçado não restaura cache anterior à revogação', async 
   expect(await adminRequest('/permissions', { cacheMs: 60000 })).toEqual({ canManage: false })
   expect(fetch).toHaveBeenCalledTimes(3)
 })
+
+
+test('PUT invalida GET pendente: não reutiliza resposta antiga nem contamina cache novo', async () => {
+  const oldResponse = deferred()
+  fetch.mockReturnValueOnce(oldResponse.promise)
+    .mockResolvedValueOnce(reply(200, { saved: true }))
+    .mockResolvedValueOnce(reply(200, { owner: 'atualizado' }))
+  const { adminRequest } = api()
+  localStorage.setItem(KEY, 'A')
+  const old = adminRequest('/items', { cacheMs: 60000 })
+  expect(await adminRequest('/items', { method: 'PUT', body: '{"enabled":true}' })).toEqual({ saved: true })
+  expect(await adminRequest('/items', { cacheMs: 60000 })).toEqual({ owner: 'atualizado' })
+  expect(fetch).toHaveBeenCalledTimes(3)
+  oldResponse.resolve(reply(200, { owner: 'obsoleto' }))
+  expect(await old).toEqual({ owner: 'obsoleto' })
+  expect(await adminRequest('/items', { cacheMs: 60000 })).toEqual({ owner: 'atualizado' })
+  expect(fetch).toHaveBeenCalledTimes(3)
+})
