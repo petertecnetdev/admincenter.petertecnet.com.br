@@ -3,8 +3,8 @@ import { act, fireEvent, render, screen, waitFor } from '@testing-library/react'
 import AutomationCenter from '../AutomationCenter.jsx'
 
 const apps = [
-  { id: 11, slug: 'a', name: 'Aplicação A', capabilities: ['operations.view', 'admin.access.manage'] },
-  { id: 22, slug: 'b', name: 'Aplicação B', capabilities: ['operations.view', 'admin.access.manage'] },
+  { id: 11, application_id: 11, slug: 'a', name: 'Aplicação A', capabilities: ['operations.view', 'admin.access.manage'] },
+  { id: 22, application_id: 22, slug: 'b', name: 'Aplicação B', capabilities: ['operations.view', 'admin.access.manage'] },
 ]
 const dto = (application_id, worker = 'discovery_quality', extra = {}) => ({
   data: {
@@ -138,6 +138,28 @@ test('aplicação B removida não causa fallback silencioso para A', async () =>
   expect(screen.queryByText('Qualidade dos candidatos')).toBeNull()
   expect(screen.queryByText('Qualidade do catálogo')).toBeNull()
   expect(request.mock.calls.length).toBe(before)
+})
+
+test('revogação de admin.access.manage durante PUT descarta confirmação tardia', async () => {
+  const pendingPut = deferred()
+  const request = jest.fn((path, options) => options?.method === 'PUT' ? pendingPut.promise : Promise.resolve(dto(11)))
+  const { rerender } = render(<AutomationCenter applications={[apps[0]]} request={request}/>)
+  await screen.findByText('Qualidade dos candidatos')
+  fireEvent.click(screen.getByRole('button', { name: 'Pausar' }))
+  await waitFor(() => expect(request.mock.calls.some(([, options]) => options?.method === 'PUT')).toBe(true))
+  rerender(<AutomationCenter applications={[{ ...apps[0], capabilities: ['operations.view'] }]} request={request}/>)
+  await screen.findByText('Qualidade dos candidatos')
+  expect(screen.getByRole('button', { name: 'Pausar' }).disabled).toBe(true)
+  await act(async () => pendingPut.resolve({ ok: true }))
+  expect(screen.queryByText('Configuração salva.')).toBeNull()
+  expect(screen.getByRole('button', { name: 'Pausar' }).disabled).toBe(true)
+})
+
+test('id genérico não substitui application_id canônico', async () => {
+  const request = jest.fn().mockResolvedValue(dto(11))
+  render(<AutomationCenter applications={[{ id: 11, slug: 'a', capabilities: ['operations.view', 'admin.access.manage'] }]} request={request}/>)
+  expect(await screen.findByText(/identidade da aplicação indisponível/)).toBeTruthy()
+  expect(request).not.toHaveBeenCalled()
 })
 
 test.each([320, 360, 390, 430])('smoke RTL viewport %spx sem fallback ou ações sem RBAC', async width => {

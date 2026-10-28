@@ -73,11 +73,11 @@ export default function AutomationCenter({ applications = [], request }) {
   const session = getAdminApiSessionSnapshot()
   const selectedApp = apps.find(app => String(app.slug || app.app_slug) === chosenSlug)
   const slug = selectedApp ? chosenSlug : ''
-  const appId = String(selectedApp?.application_id ?? selectedApp?.id ?? '')
+  const appId = String(selectedApp?.application_id ?? '')
   const validAppId = /^[a-zA-Z0-9-]{1,64}$/.test(appId)
   const canView = validAppId && hasCapability(selectedApp, 'operations.view')
   const canManage = canView && hasCapability(selectedApp, 'admin.access.manage')
-  const contextKey = session.generation + ':' + appId + ':' + slug
+  const contextKey = session.generation + ':' + appId + ':' + slug + ':' + (canView ? 'view' : 'no-view') + ':' + (canManage ? 'manage' : 'no-manage')
   const activeContext = useRef(contextKey)
   if (activeContext.current !== contextKey) {
     activeContext.current = contextKey
