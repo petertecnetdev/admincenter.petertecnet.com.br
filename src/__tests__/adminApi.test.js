@@ -230,3 +230,30 @@ test('PUT invalida GET pendente: não reutiliza resposta antiga nem contamina ca
   expect(await adminRequest('/items', { cacheMs: 60000 })).toEqual({ owner: 'atualizado' })
   expect(fetch).toHaveBeenCalledTimes(3)
 })
+
+test('falha de rede após retry GET é sanitizada sem expor dados internos', async () => {
+  jest.useFakeTimers()
+  fetch.mockRejectedValueOnce(new TypeError('URL privada de A e token secreto'))
+    .mockRejectedValueOnce(new TypeError('detalhe privado da conexão'))
+  const { adminRequest } = api()
+  localStorage.setItem(KEY, 'A')
+  const pending = adminRequest('/items').catch(error => error)
+  await jest.advanceTimersByTimeAsync(1000)
+  const error = await pending
+  expect(error.code).toBe('ADMIN_API_NETWORK')
+  expect(error.message).toBe('Falha de conexão com o serviço. Tente novamente.')
+  expect(error.message).not.toMatch(/privad|token|secreto/i)
+  expect(fetch).toHaveBeenCalledTimes(2)
+  expect(fetch.mock.calls.map(([, options]) => options.headers.Authorization)).toEqual(['Bearer A', 'Bearer A'])
+})
+
+test('falha de rede PUT não repete mutação nem expõe mensagem bruta', async () => {
+  fetch.mockRejectedValueOnce(new TypeError('segredo do cliente A'))
+  const { adminRequest } = api()
+  localStorage.setItem(KEY, 'A')
+  const error = await adminRequest('/workers', { method: 'PUT', body: '{"enabled":true}' }).catch(value => value)
+  expect(error.code).toBe('ADMIN_API_NETWORK')
+  expect(error.message).toBe('Falha de conexão com o serviço. Tente novamente.')
+  expect(error.message).not.toContain('segredo')
+  expect(fetch).toHaveBeenCalledTimes(1)
+})
