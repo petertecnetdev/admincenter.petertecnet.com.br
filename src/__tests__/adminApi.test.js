@@ -297,3 +297,25 @@ test('mesmo cabeçalho com ordem e caixa diferentes mantém deduplicação GET',
   expect(await first).toEqual({ owner: 'A' })
   expect(await second).toEqual({ owner: 'A' })
 })
+
+
+test.each(['GET', 'PUT'])('%s ignora Authorization arbitrário em qualquer caixa e usa somente Bearer da sessão', async method => {
+  fetch.mockResolvedValueOnce(reply(200, { ok: true }))
+  const { adminRequest } = api()
+  localStorage.setItem(KEY, 'A')
+  const options = {
+    method,
+    ...(method === 'PUT' ? { body: '{"enabled":true}' } : {}),
+    headers: {
+      AUTHORIZATION: 'Bearer token-externo-1',
+      aUtHoRiZaTiOn: 'Bearer token-externo-2',
+      authorization: 'Bearer token-externo-3',
+      'X-Application-Id': '11',
+    },
+  }
+  expect(await adminRequest('/shared/workers', options)).toEqual({ ok: true })
+  const sentHeaders = fetch.mock.calls[0][1].headers
+  expect(Object.keys(sentHeaders).filter(name => name.toLowerCase() === 'authorization')).toEqual(['Authorization'])
+  expect(sentHeaders.Authorization).toBe('Bearer A')
+  expect(sentHeaders['X-Application-Id']).toBe('11')
+})
