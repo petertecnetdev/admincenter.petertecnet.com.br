@@ -368,3 +368,52 @@ test('Headers com entries/forEach compartilha escopo com objeto equivalente sem 
   expect(await adminRequest('/shared/workers', { cacheMs: 60000, headers: { 'x-application-id': '33' } })).toEqual({ owner: 'A33' })
   expect(fetch).toHaveBeenCalledTimes(1)
 })
+
+
+test.each([
+  ['X-Application-Id', '/shared/search?q=a', '/shared/search?q=b', { 'X-Application-Id': '11' }, { 'X-Application-Id': '22' }],
+  ['slug da rota', '/v1/apps/alpha/admin/search?q=a', '/v1/apps/beta/admin/search?q=b', {}, {}],
+])('cancelKey igual não aborta leitura de outro app identificada por %s', async (_, pathA, pathB, headersA, headersB) => {
+  const pendingA = deferred()
+  const pendingB = deferred()
+  fetch.mockReturnValueOnce(pendingA.promise).mockReturnValueOnce(pendingB.promise)
+  const { adminRequest } = api()
+  localStorage.setItem(KEY, 'A')
+  const first = adminRequest(pathA, { cancelKey: 'search', headers: headersA })
+  const second = adminRequest(pathB, { cancelKey: 'search', headers: headersB })
+  expect(fetch).toHaveBeenCalledTimes(2)
+  expect(fetch.mock.calls[0][1].signal.aborted).toBe(false)
+  expect(fetch.mock.calls[1][1].signal.aborted).toBe(false)
+  pendingA.resolve(reply(200, { app: 'alpha' }))
+  pendingB.resolve(reply(200, { app: 'beta' }))
+  expect(await first).toEqual({ app: 'alpha' })
+  expect(await second).toEqual({ app: 'beta' })
+})
+
+test('cancelKey ainda substitui busca anterior da mesma aplicação', async () => {
+  fetch.mockImplementationOnce((_, { signal }) => new Promise((resolve, reject) => {
+    signal.addEventListener('abort', () => reject(new DOMException('Cancelada', 'AbortError')), { once: true })
+  })).mockResolvedValueOnce(reply(200, { current: true }))
+  const { adminRequest } = api()
+  localStorage.setItem(KEY, 'A')
+  const first = adminRequest('/v1/apps/alpha/admin/search?q=1', { cancelKey: 'search' }).catch(error => error)
+  const second = adminRequest('/v1/apps/alpha/admin/search?q=2', { cancelKey: 'search' })
+  expect(fetch.mock.calls[0][1].signal.aborted).toBe(true)
+  expect((await first).name).toBe('AbortError')
+  expect(await second).toEqual({ current: true })
+})
+
+test('cancelAdminRequest cancela apenas o escopo explícito da aplicação', async () => {
+  fetch.mockImplementationOnce((_, { signal }) => new Promise((resolve, reject) => {
+    signal.addEventListener('abort', () => reject(new DOMException('Cancelada', 'AbortError')), { once: true })
+  }))
+  const { adminRequest, cancelAdminRequest } = api()
+  localStorage.setItem(KEY, 'A')
+  const path = '/v1/apps/alpha/admin/search?q=1'
+  const headers = { 'X-Application-Id': '11' }
+  const pending = adminRequest(path, { cancelKey: 'search', headers }).catch(error => error)
+  expect(cancelAdminRequest('search', { path, headers: { 'x-application-id': '22' } })).toBe(false)
+  expect(fetch.mock.calls[0][1].signal.aborted).toBe(false)
+  expect(cancelAdminRequest('search', { path, headers })).toBe(true)
+  expect((await pending).name).toBe('AbortError')
+})
