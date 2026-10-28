@@ -319,3 +319,52 @@ test.each(['GET', 'PUT'])('%s ignora Authorization arbitrário em qualquer caixa
   expect(sentHeaders.Authorization).toBe('Bearer A')
   expect(sentHeaders['X-Application-Id']).toBe('11')
 })
+
+
+test.each(['GET', 'PUT'])('%s com HeadersInit em pares preserva application-id e isola cache/deduplicação', async method => {
+  const pendingA = deferred()
+  const pendingB = deferred()
+  fetch.mockReturnValueOnce(pendingA.promise).mockReturnValueOnce(pendingB.promise)
+  const { adminRequest } = api()
+  localStorage.setItem(KEY, 'A')
+  const base = method === 'GET' ? { cacheMs: 60000 } : { method, body: '{"enabled":true}' }
+  const first = adminRequest('/shared/workers', {
+    ...base,
+    headers: [['X-Application-Id', '11'], ['AUTHORIZATION', 'Bearer externo A']],
+  })
+  const second = adminRequest('/shared/workers', {
+    ...base,
+    headers: [['x-application-id', '22'], ['authorization', 'Bearer externo B']],
+  })
+  expect(fetch).toHaveBeenCalledTimes(2)
+  for (const [index, id] of [[0, '11'], [1, '22']]) {
+    const headers = fetch.mock.calls[index][1].headers
+    expect(Object.keys(headers).filter(name => name.toLowerCase() === 'authorization')).toEqual(['Authorization'])
+    expect(headers.Authorization).toBe('Bearer A')
+    expect(Object.entries(headers).some(([name, value]) => name.toLowerCase() === 'x-application-id' && value === id)).toBe(true)
+  }
+  pendingB.resolve(reply(200, { owner: 'B' }))
+  pendingA.resolve(reply(200, { owner: 'A' }))
+  expect(await second).toEqual({ owner: 'B' })
+  expect(await first).toEqual({ owner: 'A' })
+  if (method === 'GET') {
+    expect(await adminRequest('/shared/workers', { cacheMs: 60000, headers: { 'x-application-id': '11' } })).toEqual({ owner: 'A' })
+    expect(await adminRequest('/shared/workers', { cacheMs: 60000, headers: { 'X-Application-Id': '22' } })).toEqual({ owner: 'B' })
+    expect(fetch).toHaveBeenCalledTimes(2)
+  }
+})
+
+test('Headers com entries/forEach compartilha escopo com objeto equivalente sem perder app_id', async () => {
+  const { adminRequest } = api()
+  localStorage.setItem(KEY, 'A')
+  const headers = {
+    entries: () => [['X-Application-Id', '33'], ['AUTHORIZATION', 'Bearer externo']][Symbol.iterator](),
+    forEach: () => {},
+  }
+  fetch.mockResolvedValueOnce(reply(200, { owner: 'A33' }))
+  expect(await adminRequest('/shared/workers', { cacheMs: 60000, headers })).toEqual({ owner: 'A33' })
+  expect(fetch.mock.calls[0][1].headers['X-Application-Id']).toBe('33')
+  expect(fetch.mock.calls[0][1].headers.Authorization).toBe('Bearer A')
+  expect(await adminRequest('/shared/workers', { cacheMs: 60000, headers: { 'x-application-id': '33' } })).toEqual({ owner: 'A33' })
+  expect(fetch).toHaveBeenCalledTimes(1)
+})
