@@ -225,6 +225,14 @@ async function execute(path, options, session, attempt = 0) {
       succeeded = true
       return retried
     }
+    // Erros nativos de fetch podem conter URLs, tokens ou detalhes internos.
+    // A UI recebe apenas um código e uma mensagem de rede permitidos.
+    if (error instanceof TypeError) {
+      assertCurrentSession(session)
+      const networkError = new Error('Falha de conexão com o serviço. Tente novamente.')
+      networkError.code = 'ADMIN_API_NETWORK'
+      throw networkError
+    }
     throw error
   } finally {
     window.clearTimeout(timeout)
