@@ -170,9 +170,11 @@ async function execute(path, options, session, attempt = 0) {
   let succeeded = false
   try {
     assertCurrentSession(session)
-    const safeHeaders = { ...(requestOptions.headers || {}) }
-    delete safeHeaders.Authorization
-    delete safeHeaders.authorization
+    // Headers HTTP não diferenciam maiúsculas/minúsculas: remover qualquer
+    // variante de Authorization antes de inserir o Bearer da sessão capturada.
+    const safeHeaders = Object.fromEntries(
+      Object.entries(requestOptions.headers || {}).filter(([name]) => name.toLowerCase() !== 'authorization'),
+    )
     const response = await fetch(`${ADMIN_API_BASE}${path}`, {
       ...requestOptions,
       method,
