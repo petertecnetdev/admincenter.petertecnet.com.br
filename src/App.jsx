@@ -14,6 +14,7 @@ const AdminEstablishmentsPage = lazy(() => import('./AdminEstablishmentsPageV2.j
 const AdminItemsManager = lazy(() => import('./AdminItemsManager.jsx'))
 const AdminApplicationsCenter = lazy(() => import('./AdminApplicationsCenter.jsx'))
 const ImportantEventsCenter = lazy(() => import('./ImportantEventsCenter.jsx'))
+const AutomationCenter = lazy(() => import('./AutomationCenter.jsx'))
 
 const TOKEN_KEY = 'petertecnet_admin_token'
 const OWNER_EMAIL = 'petertecnet@gmail.com'
@@ -21,6 +22,7 @@ const OWNER_EMAIL = 'petertecnet@gmail.com'
 const navItems = [
   ['users', 'Usuários', 'users'],
   ['operations', 'Operações', 'pulse'],
+  ['automation', 'Automações', 'pulse'],
   ['agents', 'Agentes', 'agents'],
   ['financial', 'Financeiro', 'finance'],
   ['applications', 'Aplicações', 'apps'],
@@ -33,6 +35,7 @@ const navItems = [
 const PAGE_CONFIG = {
   dashboard: { slug: 'visao-geral', label: 'Visão geral' },
   operations: { slug: 'operacoes', label: 'Operações' },
+  automation: { slug: 'automacoes', label: 'Automações' },
   agents: { slug: 'agentes', label: 'Agentes' },
   financial: { slug: 'financeiro', label: 'Financeiro' },
   applications: { slug: 'aplicacoes', label: 'Aplicações' },
@@ -891,6 +894,10 @@ function Dashboard({ user, onLogout }) {
             {activePage === 'financial' && <AdminModuleBoundary name="Financeiro"><Suspense fallback={<ModuleSkeleton title="Carregando repasses…" />}><AdminPayoutCenter request={request}/></Suspense></AdminModuleBoundary>}
           </section>
 
+          <section id="automation" className="section-anchor" data-admin-page-key="automation" hidden={activePage !== 'automation'} aria-hidden={activePage !== 'automation'}>
+            <SectionHeading kicker="AUTOMAÇÕES" title="Central de Workers" text="Gerencie as automações por aplicação, acompanhe execuções e ajuste intervalos."/>
+            {activePage === 'automation' && <AdminModuleBoundary name="Automações"><Suspense fallback={<ModuleSkeleton title="Carregando automações…" />}><AutomationCenter applications={applications} request={request}/></Suspense></AdminModuleBoundary>}
+          </section>
           <section id="applications" className="section-anchor" data-admin-page-key="applications" hidden={activePage !== 'applications'} aria-hidden={activePage !== 'applications'}>
             <SectionHeading kicker="APLICAÇÕES" title="Ecossistema em produção" text="Adoção, atividade, configuração e estado operacional das aplicações conectadas à API central."/>
             {activePage === 'applications' && <AdminModuleBoundary name="Aplicações"><Suspense fallback={<ModuleSkeleton title="Carregando aplicações…" />}><AdminApplicationsCenter applications={applications} dashboard={dashboard} financial={financial} activity={activity} command={command} request={request} onReload={reloadApplications}/></Suspense></AdminModuleBoundary>}

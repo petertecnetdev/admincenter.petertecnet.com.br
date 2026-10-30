@@ -12,6 +12,43 @@ const STORM_WINDOW_MS = 60000
 const STORM_THRESHOLD = 25
 const MAX_RATE_LIMIT_RETRY_MS = 60000
 
+let observedToken
+let sessionGeneration = 0
+
+function sessionSnapshot(publicRequest = false) {
+  const token = localStorage.getItem(TOKEN_KEY)
+  if (token !== observedToken) {
+    observedToken = token
+    sessionGeneration += 1
+    memoryCache.clear()
+    inflightReads.clear()
+    inflightMutations.clear()
+    for (const controller of replaceableReads.values()) controller.abort()
+    replaceableReads.clear()
+    queueMicrotask(() => window.dispatchEvent(new Event('admin-api-session-changed')))
+  }
+  return { generation: sessionGeneration, token: publicRequest ? null : token, publicRequest }
+}
+
+export function getAdminApiSessionSnapshot() {
+  const session = sessionSnapshot()
+  return { generation: session.generation, authenticated: Boolean(session.token) }
+}
+
+window.addEventListener('storage', event => {
+  if (event.key === TOKEN_KEY || event.key === null) sessionSnapshot()
+})
+
+function assertCurrentSession(session) {
+  if (session.publicRequest) return
+  const current = sessionSnapshot()
+  if (current.generation !== session.generation || current.token !== session.token) {
+    const error = new Error('A sessão foi alterada. Atualize a consulta.')
+    error.code = 'ADMIN_SESSION_CHANGED'
+    throw error
+  }
+}
+
 function routeKey(path) {
   return String(path || '').split('?')[0]
 }
@@ -87,6 +124,15 @@ function composeSignals(...signals) {
   }
 }
 
+// HeadersInit aceita objeto, pares [nome, valor] ou Headers. Usar a mesma
+// representação no transporte e na chave evita deduplicação entre apps distintos.
+function requestHeaderPairs(headers) {
+  if (!headers) return []
+  if (Array.isArray(headers)) return headers
+  if (typeof headers.entries === 'function' && typeof headers.forEach === 'function') return [...headers.entries()]
+  return Object.entries(headers)
+}
+
 function parseRetryAfter(value) {
   if (!value) return 0
   const seconds = Number(value)
@@ -95,12 +141,21 @@ function parseRetryAfter(value) {
   return Number.isFinite(retryAt) ? Math.max(0, (retryAt - Date.now()) / 1000) : 0
 }
 
-function requestError(response, payload) {
-  const validation = Object.values(payload?.errors || {}).flat()?.[0]
-  const error = new Error(validation || payload?.error || payload?.message || 'Não foi possível concluir a operação.')
+function requestError(response) {
+  // Nunca encaminhar mensagens, erros de validação ou payloads arbitrários da API.
+  const messages = {
+    400: 'Solicitação inválida.',
+    401: 'Sessão expirada. Entre novamente.',
+    403: 'Você não tem permissão para esta operação.',
+    404: 'Recurso não encontrado.',
+    408: 'A solicitação expirou. Tente novamente.',
+    409: 'A operação está em conflito. Atualize os dados.',
+    422: 'Verifique os dados informados.',
+    429: 'Muitas solicitações. Aguarde antes de tentar novamente.',
+  }
+  const error = new Error(messages[response.status] || (response.status >= 500 ? 'Serviço temporariamente indisponível.' : 'Não foi possível concluir a operação.'))
   error.status = response.status
-  error.retryAfter = parseRetryAfter(response.headers.get('Retry-After')) || Number(payload?.retry_after || 0)
-  error.payload = payload
+  error.retryAfter = parseRetryAfter(response.headers.get('Retry-After'))
   return error
 }
 
@@ -109,10 +164,9 @@ function retryDelay(error) {
   return 350 + Math.round(Math.random() * 150)
 }
 
-async function execute(path, options, attempt = 0) {
+async function execute(path, options, session, attempt = 0) {
   const trace = attempt === 0 ? recordRequestStart(path) : null
-  const { publicRequest = false, ...requestOptions } = options
-  const token = publicRequest ? null : localStorage.getItem(TOKEN_KEY)
+  const { publicRequest: _publicRequest, ...requestOptions } = options
   const method = String(requestOptions.method || 'GET').toUpperCase()
   const timeoutController = new AbortController()
   const externalSignal = requestOptions.signal
@@ -124,6 +178,12 @@ async function execute(path, options, attempt = 0) {
   const timeout = window.setTimeout(() => timeoutController.abort(), Number(requestOptions.timeout || DEFAULT_TIMEOUT))
   let succeeded = false
   try {
+    assertCurrentSession(session)
+    // Headers HTTP não diferenciam maiúsculas/minúsculas: remover qualquer
+    // variante de Authorization antes de inserir o Bearer da sessão capturada.
+    const safeHeaders = Object.fromEntries(
+      requestHeaderPairs(requestOptions.headers).filter(([name]) => String(name).toLowerCase() !== 'authorization'),
+    )
     const response = await fetch(`${ADMIN_API_BASE}${path}`, {
       ...requestOptions,
       method,
@@ -132,31 +192,38 @@ async function execute(path, options, attempt = 0) {
       headers: {
         Accept: 'application/json',
         ...(requestOptions.body !== undefined ? { 'Content-Type': 'application/json' } : {}),
-        ...(token ? { Authorization: `Bearer ${token}` } : {}),
-        ...requestOptions.headers,
+        ...safeHeaders,
+        ...(session.token ? { Authorization: 'Bearer ' + session.token } : {}),
       },
     })
     const payload = response.status === 204 ? null : await response.json().catch(() => ({}))
-    if (!publicRequest && response.status === 401 && path !== '/auth/login' && path !== '/auth/google') {
-      localStorage.removeItem(TOKEN_KEY)
-      window.dispatchEvent(new Event('admin-session-expired'))
+    assertCurrentSession(session)
+    if (!session.publicRequest && response.status === 401 && path !== '/auth/login' && path !== '/auth/google') {
+      if (localStorage.getItem(TOKEN_KEY) === session.token) {
+        localStorage.removeItem(TOKEN_KEY)
+        sessionSnapshot()
+        window.dispatchEvent(new Event('admin-session-expired'))
+      }
     }
     if (!response.ok) {
-      const error = requestError(response, payload)
+      const error = requestError(response)
       const retryable = method === 'GET' && attempt < 1 && (response.status >= 500 || response.status === 408 || response.status === 429)
       if (retryable && navigator.onLine) {
         await delay(retryDelay(error), externalSignal)
-        const retried = await execute(path, options, attempt + 1)
+        assertCurrentSession(session)
+        const retried = await execute(path, options, session, attempt + 1)
         succeeded = true
         return retried
       }
       throw error
     }
+    assertCurrentSession(session)
     succeeded = true
     return payload
   } catch (error) {
     if (error?.name === 'AbortError') {
       if (externalSignal?.aborted) throw error
+      assertCurrentSession(session)
       const timeoutError = new Error('A API demorou para responder. Tente novamente; seus dados não foram perdidos.')
       timeoutError.code = 'ADMIN_API_TIMEOUT'
       throw timeoutError
@@ -164,9 +231,18 @@ async function execute(path, options, attempt = 0) {
     const retryableNetwork = method === 'GET' && attempt < 1 && navigator.onLine && error instanceof TypeError
     if (retryableNetwork) {
       await delay(350 + Math.round(Math.random() * 150), externalSignal)
-      const retried = await execute(path, options, attempt + 1)
+      assertCurrentSession(session)
+        const retried = await execute(path, options, session, attempt + 1)
       succeeded = true
       return retried
+    }
+    // Erros nativos de fetch podem conter URLs, tokens ou detalhes internos.
+    // A UI recebe apenas um código e uma mensagem de rede permitidos.
+    if (error instanceof TypeError) {
+      assertCurrentSession(session)
+      const networkError = new Error('Falha de conexão com o serviço. Tente novamente.')
+      networkError.code = 'ADMIN_API_NETWORK'
+      throw networkError
     }
     throw error
   } finally {
@@ -180,24 +256,55 @@ export function invalidateAdminApi(prefix = '') {
   for (const key of memoryCache.keys()) {
     if (!prefix || key.includes(prefix)) memoryCache.delete(key)
   }
+  // Um GET iniciado antes da mutação não pode ser reutilizado nem repovoar o cache
+  // depois da invalidação. A conclusão antiga continua sujeita ao contexto do caller.
+  for (const key of inflightReads.keys()) {
+    if (!prefix || key.includes(prefix)) inflightReads.delete(key)
+  }
 }
 
-export function cancelAdminRequest(cancelKey) {
+// Cancelamento substitutivo deve respeitar o app da rota e o cabeçalho canônico.
+// Caso contrário, uma busca da aplicação B aborta a leitura ainda válida de A.
+function requestCancelScope(path, headers) {
+  const match = String(path || '').match(/^\/v1\/apps\/([^/?]+)(?:\/|$)/)
+  const applicationIds = requestHeaderPairs(headers)
+    .filter(([name]) => String(name).toLowerCase() === 'x-application-id')
+    .map(([, value]) => String(value))
+    .sort()
+  return JSON.stringify([match?.[1] || '', applicationIds])
+}
+
+export function cancelAdminRequest(cancelKey, options = {}) {
   const key = String(cancelKey || '').trim()
   if (!key) return false
-  const controller = replaceableReads.get(key)
+  const scopedKey = sessionSnapshot().generation + ':' + requestCancelScope(options.path, options.headers) + ':' + key
+  const controller = replaceableReads.get(scopedKey)
   if (!controller) return false
   controller.abort()
-  replaceableReads.delete(key)
+  replaceableReads.delete(scopedKey)
   return true
+}
+
+// GET/cache e mutações com mesmo caminho mas cabeçalhos de escopo diferentes
+// não podem compartilhar Promise nem resposta (ex.: X-Application-Id).
+function requestHeaderScope(headers) {
+  const pairs = requestHeaderPairs(headers)
+    .filter(([name]) => String(name).toLowerCase() !== 'authorization')
+    .map(([name, value]) => [name.toLowerCase(), String(value)])
+    .sort(([nameA, valueA], [nameB, valueB]) => nameA.localeCompare(nameB) || valueA.localeCompare(valueB))
+  return JSON.stringify(pairs)
 }
 
 export function adminRequest(path, options = {}) {
   const method = String(options.method || 'GET').toUpperCase()
   const cacheMs = Math.max(0, Number(options.cacheMs || 0))
-  const requestKey = `${method}:${path}`
-  const cancelKey = method === 'GET' ? String(options.cancelKey || (path.startsWith('/admin/ecosystem/command/search?') ? 'global-admin-search' : '')).trim() : ''
+  const session = sessionSnapshot(Boolean(options.publicRequest))
+  const requestKey = (options.publicRequest ? 'public:' : 'private:') + session.generation + ':' + method + ':' + path + ':' + requestHeaderScope(options.headers)
+  const rawCancelKey = method === 'GET' ? String(options.cancelKey || (path.startsWith('/admin/ecosystem/command/search?') ? 'global-admin-search' : '')).trim() : ''
+  const cancelKey = rawCancelKey ? session.generation + ':' + requestCancelScope(path, options.headers) + ':' + rawCancelKey : ''
   if (method === 'GET') {
+    // Uma leitura forçada não pode reutilizar cache nem deixar um valor antigo após falha.
+    if (options.force) memoryCache.delete(requestKey)
     const cached = memoryCache.get(requestKey)
     if (cached && cached.expiresAt > Date.now()) return Promise.resolve(cached.value)
     if (!options.force && inflightReads.has(requestKey)) return inflightReads.get(requestKey)
@@ -209,8 +316,12 @@ export function adminRequest(path, options = {}) {
     }
     const composed = composeSignals(options.signal, controller?.signal)
     const requestOptions = composed.signal ? { ...options, signal: composed.signal } : options
-    const promise = execute(path, requestOptions).then(payload => {
-      if (cacheMs > 0) memoryCache.set(requestKey, { value: payload, expiresAt: Date.now() + cacheMs })
+    const promise = execute(path, requestOptions, session).then(payload => {
+      assertCurrentSession(session)
+      // Um GET anterior não deve sobrescrever o cache de uma atualização forçada mais recente.
+      if (cacheMs > 0 && inflightReads.get(requestKey) === promise) {
+        memoryCache.set(requestKey, { value: payload, expiresAt: Date.now() + cacheMs })
+      }
       return payload
     })
     inflightReads.set(requestKey, promise)
@@ -221,9 +332,9 @@ export function adminRequest(path, options = {}) {
     })
   }
   invalidateAdminApi()
-  const mutationKey = `${requestKey}:${String(options.body || '')}`
+  const mutationKey = requestKey + ':' + String(options.body || '')
   if (!options.force && inflightMutations.has(mutationKey)) return inflightMutations.get(mutationKey)
-  const mutationPromise = execute(path, options)
+  const mutationPromise = execute(path, options, session)
   inflightMutations.set(mutationKey, mutationPromise)
   return mutationPromise.finally(() => {
     if (inflightMutations.get(mutationKey) === mutationPromise) inflightMutations.delete(mutationKey)
