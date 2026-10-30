@@ -90,3 +90,32 @@ test('erro de login A após login em outra aba não revoga a sessão B', async (
 
   expect(localStorage.getItem(TOKEN_KEY)).toBe('sessao-B')
 })
+
+test('403 obsoleto de /auth/me da sessão A não revoga token B', async () => {
+  const oldSession = deferred()
+  const newSession = deferred()
+  let validations = 0
+  localStorage.setItem(TOKEN_KEY, 'sessao-A')
+  adminRequest.mockImplementation(path => {
+    if (path === '/auth/me') return ++validations === 1 ? oldSession.promise : newSession.promise
+    return Promise.resolve({})
+  })
+
+  render(<App />)
+  await waitFor(() => expect(validations).toBe(1))
+
+  await act(async () => {
+    localStorage.setItem(TOKEN_KEY, 'sessao-B')
+    window.dispatchEvent(new StorageEvent('storage', {
+      key: TOKEN_KEY, oldValue: 'sessao-A', newValue: 'sessao-B',
+    }))
+  })
+  await waitFor(() => expect(validations).toBe(2))
+
+  await act(async () => {
+    oldSession.reject({ status: 403, message: 'Permissão revogada na sessão A' })
+    await Promise.resolve()
+  })
+
+  expect(localStorage.getItem(TOKEN_KEY)).toBe('sessao-B')
+})
